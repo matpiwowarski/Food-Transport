@@ -4,12 +4,19 @@ public class Vehicle {
     private int maxWeight;
     private double averageSpeed;
 
-    // Constructor
+    // Constructors
     public Vehicle()
     {
 
     }
 
+    public Vehicle(String registrationNumber, double averageSpeed)
+    {
+        this.registrationNumber = registrationNumber;
+        this.averageSpeed = averageSpeed;
+    }
+
+    // Getters/Setters
     public String getRegistrationNumber() {
         return registrationNumber;
     }
@@ -40,5 +47,18 @@ public class Vehicle {
 
     public void setAverageSpeed(double averageSpeed) {
         this.averageSpeed = averageSpeed;
+    }
+
+    // Methods
+    public int calculateTravelTime(Route route)
+    {
+        int travelDays = 0;
+        // distance -> km
+        // average speed -> km/h
+
+        double travelHours = route.getDistance() / this.averageSpeed;
+        travelDays = (int)Math.ceil(travelHours / 24);
+
+        return travelDays;
     }
 }

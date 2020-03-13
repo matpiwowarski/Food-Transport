@@ -3,11 +3,20 @@ public class Route {
     private Warehouse warehouse;
     private double distance;
 
+    // Constructors
     public Route()
     {
 
     }
 
+    public Route(Store store, Warehouse warehouse, double distance)
+    {
+        this.store = store;
+        this.warehouse = warehouse;
+        this.distance = distance;
+    }
+
+    // Getters/Setters
     public Store getStore() {
         return store;
     }
@@ -31,4 +40,6 @@ public class Route {
     public void setDistance(double distance) {
         this.distance = distance;
     }
+
+    // Methods
 }

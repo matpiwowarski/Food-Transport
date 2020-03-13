@@ -32,9 +32,4 @@ public class Location {
     }
 
     // Methods
-    public void DisplayCityAndCountry()
-    {
-        System.out.println(this.city);
-        System.out.println(this.country);
-    }
 }
