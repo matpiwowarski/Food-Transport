@@ -1,3 +1,10 @@
+/**
+ * Store Class
+ *
+ * @author  Mateusz Piwowarski
+ * @since   2020-03-18
+ */
+
 public class Store {
     private String name;
     private Location location;

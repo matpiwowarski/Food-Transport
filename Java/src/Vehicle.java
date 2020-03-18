@@ -1,3 +1,10 @@
+/**
+ * Vehicle Class
+ *
+ * @author  Mateusz Piwowarski
+ * @since   2020-03-18
+ */
+
 public class Vehicle {
     private String registrationNumber;
     private double volume;
@@ -56,6 +63,14 @@ public class Vehicle {
     }
 
     // Methods
+
+    /**
+     * calculateTravelTime function
+     * Calculate travel time in days to run the route by vehicle
+     * @param route vehicle's target route
+     * @return travel days to run the route
+     * @since 2020-03-18
+     */
     public int calculateTravelTime(Route route)
     {
         int travelDays = 0;

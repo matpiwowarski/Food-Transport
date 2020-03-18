@@ -1,3 +1,10 @@
+/**
+ * Route Class
+ *
+ * @author  Mateusz Piwowarski
+ * @since   2020-03-18
+ */
+
 public class Route {
     private Store store;
     private Warehouse warehouse;

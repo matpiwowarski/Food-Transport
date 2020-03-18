@@ -1,3 +1,10 @@
+/**
+ * FoodItem Class
+ *
+ * @author  Mateusz Piwowarski
+ * @since   2020-03-18
+ */
+
 public class FoodItem {
     private String label;
     private double volume;

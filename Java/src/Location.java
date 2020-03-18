@@ -1,3 +1,10 @@
+/**
+ * Location Class
+ *
+ * @author  Mateusz Piwowarski
+ * @since   2020-03-18
+ */
+
 public class Location {
     private String city;
     private String country;
