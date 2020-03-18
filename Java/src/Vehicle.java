@@ -1,7 +1,7 @@
 public class Vehicle {
     private String registrationNumber;
     private double volume;
-    private int maxWeight;
+    private double maxWeight;
     private double averageSpeed;
 
     // Constructors
@@ -33,11 +33,11 @@ public class Vehicle {
         this.volume = volume;
     }
 
-    public int getMaxWeight() {
+    public double getMaxWeight() {
         return maxWeight;
     }
 
-    public void setMaxWeight(int maxWeight) {
+    public void setMaxWeight(double maxWeight) {
         this.maxWeight = maxWeight;
     }
 
@@ -60,5 +60,16 @@ public class Vehicle {
         travelDays = (int)Math.ceil(travelHours / 24);
 
         return travelDays;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("RegistrationNumber: " + registrationNumber);
+        str.append(" Volume: " + volume);
+        str.append(" MaxWeight: " + maxWeight);
+        str.append(" AverageSpeed: " + averageSpeed);
+
+        return str.toString();
     }
 }

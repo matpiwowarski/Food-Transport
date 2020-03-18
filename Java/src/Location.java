@@ -32,4 +32,12 @@ public class Location {
     }
 
     // Methods
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("City: " + city);
+        str.append(" Country: " + country);
+
+        return str.toString();
+    }
 }

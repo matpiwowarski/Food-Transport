@@ -42,4 +42,13 @@ public class Route {
     }
 
     // Methods
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("Store: " + store.toString());
+        str.append(" Warehouse: " + warehouse.toString());
+        str.append(" Distance: " + distance);
+
+        return str.toString();
+    }
 }
