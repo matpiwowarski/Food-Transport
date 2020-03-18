@@ -13,17 +13,32 @@ public class Warehouse {
     private FoodItem[] foodItems;
 
     // Constructors
+
+    /**
+     * Create Warehouse with empty fields
+     */
     private Warehouse()
     {
 
     }
 
+    /**
+     * Create Warehouse with name and location
+     * @param name
+     * @param location
+     */
     private Warehouse(String name, Location location)
     {
         this.name = name;
         this.location = location;
     }
 
+    /**
+     * Create Warehouse with name, location and capacity (size of foodItems array)
+     * @param name name of warehouse
+     * @param location location of warehouse
+     * @param capacity size of foodItems array (food item count)
+     */
     public Warehouse(String name, Location location, int capacity)
     {
         this(name,location);
@@ -31,18 +46,35 @@ public class Warehouse {
     }
 
     // Getters/Setters
+
+    /**
+     * get name of warehouse
+     * @return name of warehouse
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * set name of warehouse
+     * @param name name of warehouse
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * get location of warehouse
+     * @return location of warehouse
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * set location of warehouse
+     * @param location location of warehouse
+     */
     public void setLocation(Location location) {
         this.location = location;
     }
@@ -121,7 +153,10 @@ public class Warehouse {
         }
         return false;
     }
-
+    /**
+     * Return information about object in String
+     * @return information as String about object (with all the fields)
+     */
     @Override
     public String toString() {
         return "Warehouse{" +

@@ -10,11 +10,20 @@ public class Location {
     private String country;
 
     // Constructors
+
+    /**
+     * Create Location with empty fields
+     */
     public Location()
     {
 
     }
 
+    /**
+     * Create Location with name of city and name of country
+     * @param city name of city
+     * @param country name of country
+     */
     public Location(String city, String country)
     {
         this.city = city;
@@ -22,24 +31,43 @@ public class Location {
     }
 
     // Getters/Setters
+    /**
+     * get city name of location
+     * @return city name of location
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     * set city name of location
+     * @param city city name of location
+     */
     public void setCity(String city) {
         this.city = city;
     }
 
+    /**
+     * get country name of location
+     * @return country name of location
+     */
     public String getCountry() {
         return country;
     }
 
+    /**
+     * set country name of location
+     * @param country country name of location
+     */
     public void setCountry(String country) {
         this.country = country;
     }
 
     // Methods
-
+    /**
+     * Return information about object in String
+     * @return information as String about object (with all the fields)
+     */
     @Override
     public String toString() {
         return "Location{" +
