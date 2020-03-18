@@ -1,9 +1,9 @@
 public class Launcher {
     public static void main(String[] args) {
 
-        FoodItem orange = new FoodItem("yellow Orange", 10, 10, "2022");
-        FoodItem banana = new FoodItem("green Banana", 5, 5, "2023");
-        FoodItem apple = new FoodItem("red Apple", 3, 3, "2021");
+        FoodItem orange = new FoodItem("yellow Orange", 10, 10, java.time.LocalDate.now().plusYears(1));
+        FoodItem banana = new FoodItem("green Banana", 5, 5, java.time.LocalDate.now().plusYears(3));
+        FoodItem apple = new FoodItem("red Apple", 3, 3, java.time.LocalDate.now().plusYears(2));
 
         Location maribor = new Location("Maribor", "Slovenia");
         Location katowice = new Location("Katowice", "Poland");

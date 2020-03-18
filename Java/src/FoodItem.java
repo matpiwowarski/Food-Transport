@@ -2,7 +2,7 @@ public class FoodItem {
     private String label;
     private double volume;
     private double weight;
-    private String expirationDate;
+    private java.time.LocalDate expirationDate;
 
     // constructors
 
@@ -16,7 +16,7 @@ public class FoodItem {
 
     }
 
-    public FoodItem(String label, double volume, double weight, String expirationDate)
+    public FoodItem(String label, double volume, double weight, java.time.LocalDate expirationDate)
     {
         this(label);
         this.volume = volume;
@@ -50,11 +50,11 @@ public class FoodItem {
         this.weight = weight;
     }
 
-    public String getExpirationDate() {
+    public java.time.LocalDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(String expirationDate) {
+    public void setExpirationDate(java.time.LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 
@@ -66,7 +66,7 @@ public class FoodItem {
                 "label='" + label + '\'' +
                 ", volume=" + volume +
                 ", weight=" + weight +
-                ", expirationDate='" + expirationDate + '\'' +
+                ", expirationDate=" + expirationDate +
                 '}';
     }
 }
