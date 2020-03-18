@@ -16,6 +16,12 @@ public class Vehicle {
         this.averageSpeed = averageSpeed;
     }
 
+    public Vehicle(String registrationNumber, double volume, double maxWeight, double averageSpeed)
+    {
+        this(registrationNumber, averageSpeed);
+        this.volume = volume;
+        this.maxWeight = maxWeight;
+    }
     // Getters/Setters
     public String getRegistrationNumber() {
         return registrationNumber;

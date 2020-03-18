@@ -16,6 +16,14 @@ public class FoodItem {
 
     }
 
+    public FoodItem(String label, double volume, double weight, String expirationDate)
+    {
+        this(label);
+        this.volume = volume;
+        this.weight = weight;
+        this.expirationDate = expirationDate;
+    }
+
     // getters/setters
 
     public String getLabel() {

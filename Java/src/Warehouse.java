@@ -85,9 +85,12 @@ public class Warehouse {
     {
         for(int i = 0; i < this.foodItems.length;  i++)
         {
-            if(this.foodItems[i].getLabel() == label)
+            if(this.foodItems[i] != null)
             {
-                return true;
+                if(this.foodItems[i].getLabel() == label)
+                {
+                    return true;
+                }
             }
         }
         return false;
