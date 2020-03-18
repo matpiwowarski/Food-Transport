@@ -1,5 +1,5 @@
 /**
- * Location Class
+ * Represenation of location
  *
  * @author  Mateusz Piwowarski
  * @since   2020-03-18

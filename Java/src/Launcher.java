@@ -1,3 +1,10 @@
+/**
+ * User can run every methods here in main method
+ *
+ * @author  Mateusz Piwowarski
+ * @since   2020-03-18
+ */
+
 public class Launcher {
     public static void main(String[] args) {
 

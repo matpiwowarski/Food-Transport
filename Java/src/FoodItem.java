@@ -1,5 +1,5 @@
 /**
- * FoodItem Class
+ * Represenation of food item
  *
  * @author  Mateusz Piwowarski
  * @since   2020-03-18

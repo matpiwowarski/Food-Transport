@@ -1,5 +1,5 @@
 /**
- * Route Class
+ * Represenation of route
  *
  * @author  Mateusz Piwowarski
  * @since   2020-03-18

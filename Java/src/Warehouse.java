@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 /**
- * Warehouse Class
+ * Represenation of warehouse
  *
  * @author  Mateusz Piwowarski
  * @since   2020-03-18
@@ -50,7 +50,6 @@ public class Warehouse {
     // Methods
 
     /**
-     * addItem function
      * Adds food item to the warehouse's array
      * @param foodItem food item that we want to add to the warehouse's array
      * @since 2020-03-18
@@ -68,7 +67,6 @@ public class Warehouse {
         // no place in array = no adding new foodItem
     }
     /**
-     * removeItem function
      * Removes food item from the warehouse's array
      * @param foodItem food item that we want to remove from the warehouse's array
      * @since 2020-03-18
@@ -85,7 +83,6 @@ public class Warehouse {
         }
     }
     /**
-     * returnTheNumberOfFoodItems function
      * Count how many food items do we have in FoodItem array
      * @return count of food items in the FoodItem array
      * @since 2020-03-18
@@ -105,7 +102,6 @@ public class Warehouse {
     }
 
     /**
-     * foodItemExists function
      * Checks if there is food item in foodItems array by label
      * @param label is label that we will find food item by
      * @return true/false if function found food item or not

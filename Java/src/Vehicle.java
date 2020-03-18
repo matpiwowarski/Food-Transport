@@ -1,5 +1,5 @@
 /**
- * Vehicle Class
+ * Represenation of vehicle
  *
  * @author  Mateusz Piwowarski
  * @since   2020-03-18
@@ -65,7 +65,6 @@ public class Vehicle {
     // Methods
 
     /**
-     * calculateTravelTime function
      * Calculate travel time in days to run the route by vehicle
      * @param route vehicle's target route
      * @return travel days to run the route

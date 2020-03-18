@@ -1,5 +1,5 @@
 /**
- * Store Class
+ * Represenation of store
  *
  * @author  Mateusz Piwowarski
  * @since   2020-03-18
