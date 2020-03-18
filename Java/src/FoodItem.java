@@ -51,14 +51,14 @@ public class FoodItem {
     }
 
     // methods
+
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append("Label: " + label);
-        str.append(" Volume: " + volume);
-        str.append(" Weight: " + weight);
-        str.append(" ExpirationDate: " + expirationDate);
-
-        return str.toString();
+        return "FoodItem{" +
+                "label='" + label + '\'' +
+                ", volume=" + volume +
+                ", weight=" + weight +
+                ", expirationDate='" + expirationDate + '\'' +
+                '}';
     }
 }

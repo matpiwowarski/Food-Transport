@@ -32,12 +32,12 @@ public class Store {
     }
 
     // Methods
+
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append("Name: " + name);
-        str.append(" Location: " + location.toString());
-
-        return str.toString();
+        return "Store{" +
+                "name='" + name + '\'' +
+                ", location=" + location.toString() +
+                '}';
     }
 }

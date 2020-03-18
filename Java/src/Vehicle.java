@@ -64,12 +64,11 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append("RegistrationNumber: " + registrationNumber);
-        str.append(" Volume: " + volume);
-        str.append(" MaxWeight: " + maxWeight);
-        str.append(" AverageSpeed: " + averageSpeed);
-
-        return str.toString();
+        return "Vehicle{" +
+                "registrationNumber='" + registrationNumber + '\'' +
+                ", volume=" + volume +
+                ", maxWeight=" + maxWeight +
+                ", averageSpeed=" + averageSpeed +
+                '}';
     }
 }

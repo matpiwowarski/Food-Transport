@@ -95,11 +95,10 @@ public class Warehouse {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append("Name: " + name);
-        str.append(" Location: " + location.toString());
-        str.append(" Food Items: " + Arrays.toString(foodItems));
-
-        return str.toString();
+        return "Warehouse{" +
+                "name='" + name + '\'' +
+                ", location=" + location.toString() +
+                ", foodItems=" + Arrays.toString(foodItems) +
+                '}';
     }
 }
