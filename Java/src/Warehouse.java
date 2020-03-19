@@ -46,7 +46,21 @@ public class Warehouse {
     }
 
     // Getters/Setters
+    /**
+     * get array of food items
+     * @return food items array
+     */
+    public FoodItem[] getFoodItems() {
+        return foodItems;
+    }
 
+    /**
+     * set array of food items
+     * @param foodItems food items array
+     */
+    public void setFoodItems(FoodItem[] foodItems) {
+        this.foodItems = foodItems;
+    }
     /**
      * get name of warehouse
      * @return name of warehouse
