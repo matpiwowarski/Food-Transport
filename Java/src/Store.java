@@ -21,8 +21,8 @@ public class Store {
 
     /**
      * Create Store with name and location
-     * @param name
-     * @param location
+     * @param name name of the store
+     * @param location location of the store
      */
     public Store(String name, Location location)
     {

@@ -24,8 +24,8 @@ public class Warehouse {
 
     /**
      * Create Warehouse with name and location
-     * @param name
-     * @param location
+     * @param name name of warehouse
+     * @param location location of warehouse
      */
     private Warehouse(String name, Location location)
     {
