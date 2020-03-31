@@ -1,5 +1,7 @@
 package si.um.opj.piwowarski.logic.transport;
 
+import si.um.opj.piwowarski.logic.FoodItemType;
+
 /**
  * Represenation of si.um.opj.piwowarski.logic.transport.Van
  *
@@ -9,6 +11,8 @@ package si.um.opj.piwowarski.logic.transport;
  */
 
 public class Van extends Vehicle {
+
+    private FoodItemType foodItemType;
 
     // constructors
 
@@ -23,8 +27,19 @@ public class Van extends Vehicle {
         super(registrationNumber, averageSpeed);
     }
 
-    public Van(String registrationNumber, double volume, double maxWeight, double averageSpeed, int length) {
+    public Van(String registrationNumber, double volume, double maxWeight, double averageSpeed, int length, FoodItemType foodItemType) {
         super(registrationNumber, volume, maxWeight, averageSpeed, length);
+        this.foodItemType = foodItemType;
+    }
+
+    // getters/setters
+
+    public FoodItemType getFoodItemType() {
+        return foodItemType;
+    }
+
+    public void setFoodItemType(FoodItemType foodItemType) {
+        this.foodItemType = foodItemType;
     }
 
     // methods
@@ -36,6 +51,8 @@ public class Van extends Vehicle {
 
     @Override
     public String toString() {
-        return "si.um.opj.piwowarski.logic.transport.Van{}" + super.toString();
+        return "Van{" +
+                "foodItemType=" + foodItemType +
+                '}' + super.toString();
     }
 }

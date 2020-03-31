@@ -4,8 +4,8 @@ package si.um.opj.piwowarski.logic;
  * Represenation of food item
  *
  * @author  Mateusz Piwowarski
- * @since   2020-03-18
- * @version 2.0
+ * @since   2020-03-31
+ * @version 3.0
  */
 
 public class FoodItem {
@@ -13,6 +13,7 @@ public class FoodItem {
     private double volume;
     private double weight;
     private java.time.LocalDate expirationDate;
+    private FoodItemType type;
 
     // constructors
 
@@ -49,6 +50,14 @@ public class FoodItem {
     }
 
     // getters/setters
+
+    public FoodItemType getType() {
+        return type;
+    }
+
+    public void setType(FoodItemType type) {
+        this.type = type;
+    }
 
     /**
      * get food item's label
@@ -122,11 +131,12 @@ public class FoodItem {
      */
     @Override
     public String toString() {
-        return "si.um.opj.piwowarski.logic.FoodItem{" +
+        return "FoodItem{" +
                 "label='" + label + '\'' +
                 ", volume=" + volume +
                 ", weight=" + weight +
                 ", expirationDate=" + expirationDate +
+                ", type=" + type +
                 '}';
     }
 }
