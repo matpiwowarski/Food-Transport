@@ -16,7 +16,7 @@ public class Launcher {
         Location maribor = new Location("Maribor", "Slovenia");
         Location katowice = new Location("Katowice", "Poland");
         Store mmPanda = new Store("MM Panda", maribor);
-        Vehicle ferrari = new Vehicle("XD123", 200, 3000, 150, 10);
+        //Vehicle ferrari = new Vehicle("XD123", 200, 3000, 150, 10);
         Warehouse wareHouse = new Warehouse("Test warehouse", katowice, 10);
         Route testRoute = new Route(mmPanda, wareHouse, 600);
 

@@ -9,12 +9,12 @@ import java.util.Arrays;
  */
 
 public abstract class Vehicle {
-    private String registrationNumber;
-    private double volume;
-    private double maxWeight;
-    private double averageSpeed;
+    protected String registrationNumber;
+    protected double volume;
+    protected double maxWeight;
+    protected double averageSpeed;
     /** array of food items*/
-    private FoodItem[] cargo;
+    protected FoodItem[] cargo;
 
     /**
      * Create vehicle with empty fields
