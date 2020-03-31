@@ -5,6 +5,7 @@ import java.util.Arrays;
  *
  * @author  Mateusz Piwowarski
  * @since   2020-03-18
+ * @version 2.0
  */
 
 public class Warehouse {
