@@ -1,3 +1,5 @@
+package si.um.opj.piwowarski;
+
 import si.um.opj.piwowarski.logic.FoodItem;
 import si.um.opj.piwowarski.logic.Location;
 

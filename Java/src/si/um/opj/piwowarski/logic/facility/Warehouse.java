@@ -2,6 +2,8 @@ package si.um.opj.piwowarski.logic.facility;
 
 import java.util.Arrays;
 import java.time.LocalDate;
+import si.um.opj.piwowarski.logic.FoodItem;
+import si.um.opj.piwowarski.logic.*;
 
 /**
  * Represenation of warehouse
@@ -11,20 +13,10 @@ import java.time.LocalDate;
  * @version 3.0
  */
 
-public class Warehouse {
-    private String name;
-    private Location location;
+public class Warehouse extends BusinessFacility {
     private FoodItem[] foodItems;
 
     // Constructors
-
-    /**
-     * Create si.um.opj.piwowarski.logic.facility.Warehouse with empty fields
-     */
-    private Warehouse()
-    {
-
-    }
 
     /**
      * Create si.um.opj.piwowarski.logic.facility.Warehouse with name and location
@@ -33,8 +25,7 @@ public class Warehouse {
      */
     private Warehouse(String name, Location location)
     {
-        this.name = name;
-        this.location = location;
+        super(name, location);
     }
 
     /**
@@ -65,41 +56,10 @@ public class Warehouse {
     public void setFoodItems(FoodItem[] foodItems) {
         this.foodItems = foodItems;
     }
-    /**
-     * get name of warehouse
-     * @return name of warehouse
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * set name of warehouse
-     * @param name name of warehouse
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * get location of warehouse
-     * @return location of warehouse
-     */
-    public Location getLocation() {
-        return location;
-    }
-
-    /**
-     * set location of warehouse
-     * @param location location of warehouse
-     */
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     // Methods
 
-    private Boolean stillVaild(FoodItem foodItem)
+    private Boolean stillValid(FoodItem foodItem)
     {
         if(foodItem.getExpirationDate().isAfter(LocalDate.now().plusDays(3)))
             return false;
@@ -114,7 +74,7 @@ public class Warehouse {
      */
     public void addItem(FoodItem foodItem)
     {
-        if(stillVaild(foodItem))
+        if(stillValid(foodItem))
         {
             for(int i = 0; i < this.foodItems.length;  i++)
             {
@@ -182,16 +142,11 @@ public class Warehouse {
         }
         return false;
     }
-    /**
-     * Return information about object in String
-     * @return information as String about object (with all the fields)
-     */
+
     @Override
     public String toString() {
-        return "si.um.opj.piwowarski.logic.facility.Warehouse{" +
-                "name='" + name + '\'' +
-                ", location=" + location.toString() +
-                ", foodItems=" + Arrays.toString(foodItems) +
-                '}';
+        return "Warehouse{" +
+                "foodItems=" + Arrays.toString(foodItems) +
+                '}' + super.toString();
     }
 }
