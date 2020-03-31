@@ -1,11 +1,12 @@
 import java.util.Arrays;
+import java.time.LocalDate;
 
 /**
  * Represenation of warehouse
  *
  * @author  Mateusz Piwowarski
- * @since   2020-03-18
- * @version 2.0
+ * @since   2020-03-31
+ * @version 3.0
  */
 
 public class Warehouse {
@@ -96,22 +97,33 @@ public class Warehouse {
 
     // Methods
 
+    private Boolean stillVaild(FoodItem foodItem)
+    {
+        if(foodItem.getExpirationDate().isAfter(LocalDate.now().plusDays(3)))
+            return false;
+
+        return true;
+    }
+
     /**
-     * Adds food item to the warehouse's array
+     * Checks if food item is valid and tries to add food item to the warehouse's array
      * @param foodItem food item that we want to add to the warehouse's array
-     * @since 2020-03-18
+     * @since 2020-03-31
      */
     public void addItem(FoodItem foodItem)
     {
-        for(int i = 0; i < this.foodItems.length;  i++)
+        if(stillVaild(foodItem))
         {
-            if(this.foodItems[i] == null)
+            for(int i = 0; i < this.foodItems.length;  i++)
             {
-                this.foodItems[i] = foodItem; // adding
-                break;
+                if(this.foodItems[i] == null)
+                {
+                    this.foodItems[i] = foodItem; // adding
+                    break;
+                }
             }
-        }
-        // no place in array = no adding new foodItem
+            // no place in array = no adding new foodItem
+        }// else fooItem is invalid
     }
     /**
      * Removes food item from the warehouse's array
