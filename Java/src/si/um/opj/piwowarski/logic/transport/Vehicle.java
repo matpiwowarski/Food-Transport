@@ -1,6 +1,7 @@
 package si.um.opj.piwowarski.logic.transport;
 
 import java.util.Arrays;
+import si.um.opj.piwowarski.logic.*;
 
 /**
  * Represenation of vehicle
@@ -55,6 +56,7 @@ public abstract class Vehicle {
         this(registrationNumber, averageSpeed);
         this.volume = volume;
         this.maxWeight = maxWeight;
+        this.cargo = new FoodItem[length];
     }
     // Getters/Setters
 
@@ -185,17 +187,15 @@ public abstract class Vehicle {
 
         return travelDays;
     }
-    /**
-     * Return information about object in String
-     * @return information as String about object (with all the fields)
-     */
+
     @Override
     public String toString() {
-        return "si.um.opj.piwowarski.logic.transport.Vehicle{" +
+        return "Vehicle{" +
                 "registrationNumber='" + registrationNumber + '\'' +
                 ", volume=" + volume +
                 ", maxWeight=" + maxWeight +
                 ", averageSpeed=" + averageSpeed +
+                ", cargo=" + Arrays.toString(cargo) +
                 '}';
     }
 }

@@ -11,8 +11,8 @@ import si.um.opj.piwowarski.logic.*;
 
 public class BusinessFacility {
 
-    private String name;
-    private Location location;
+    protected String name;
+    protected Location location;
 
     // constructors
 
@@ -44,4 +44,13 @@ public class BusinessFacility {
         this.location = location;
     }
 
+    // methods
+
+    @Override
+    public String toString() {
+        return "BusinessFacility{" +
+                "name='" + name + '\'' +
+                ", location=" + location +
+                '}';
+    }
 }

@@ -33,7 +33,7 @@ public class Truck extends Vehicle {
         this.numberOfTrailers = numberOfTrailers;
     }
 
-    // methods
+    // getters/setters
 
     public int getNumberOfTrailers() {
         return numberOfTrailers;
@@ -42,6 +42,8 @@ public class Truck extends Vehicle {
     public void setNumberOfTrailers(int numberOfTrailers) {
         this.numberOfTrailers = numberOfTrailers;
     }
+
+    // methods
 
     @Override
     public double getVehicleMaxVolume() {
