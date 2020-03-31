@@ -1,1 +1,1 @@
-javadoc -d doc src/*
+javadoc -d doc -subpackages si -private -author -version
