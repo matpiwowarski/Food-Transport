@@ -16,34 +16,12 @@ public class Launcher {
         Location maribor = new Location("Maribor", "Slovenia");
         Location katowice = new Location("Katowice", "Poland");
         Store mmPanda = new Store("MM Panda", maribor);
-        Vehicle ferrari = new Vehicle("XD123", 200, 3000, 150);
+        Vehicle ferrari = new Vehicle("XD123", 200, 3000, 150, 10);
         Warehouse wareHouse = new Warehouse("Test warehouse", katowice, 10);
         Route testRoute = new Route(mmPanda, wareHouse, 600);
 
-        // NEW WAREHOUSE METHODS
 
-        wareHouse.addItem(orange);
-        wareHouse.addItem(banana);
-        wareHouse.addItem(apple);
 
-        System.out.println("Do we have green Banana?: " + wareHouse.foodItemExists("green Banana"));
-        System.out.println("food count: " + wareHouse.returnTheNumberOfFoodItems());
-
-        System.out.println("Remove " + banana.toString());
-        wareHouse.removeItem(banana);
-
-        System.out.println("Do we have green Banana?: " + wareHouse.foodItemExists("green Banana"));
-        System.out.println("food count: " + wareHouse.returnTheNumberOfFoodItems());
-
-        // TESTING TO STRING()
-        /*
-        System.out.println(orange.toString());
-        System.out.println(maribor.toString());
-        System.out.println(katowice.toString());
-        System.out.println(mmPanda.toString());
-        System.out.println(ferrari.toString());
-        System.out.println(wareHouse.toString());
-         */
 
     }
 }

@@ -1,16 +1,20 @@
+import java.util.Arrays;
+
 /**
  * Represenation of vehicle
  *
  * @author  Mateusz Piwowarski
- * @since   2020-03-18
- * @version 2.0
+ * @since   2020-03-31
+ * @version 3.0
  */
 
-public class Vehicle {
+public abstract class Vehicle {
     private String registrationNumber;
     private double volume;
     private double maxWeight;
     private double averageSpeed;
+    /** array of food items*/
+    private FoodItem[] cargo;
 
     /**
      * Create vehicle with empty fields
@@ -19,6 +23,10 @@ public class Vehicle {
     public Vehicle()
     {
 
+    }
+
+    public Vehicle(int length) {
+        this.cargo = new FoodItem[length];
     }
 
     /**
@@ -38,14 +46,23 @@ public class Vehicle {
      * @param volume vehicle's volume
      * @param maxWeight vehicle's max weight (kg)
      * @param averageSpeed vehicle's average speed (km/h)
+     * @param length count of food items in vehicle's cargo array
      */
-    public Vehicle(String registrationNumber, double volume, double maxWeight, double averageSpeed)
+    public Vehicle(String registrationNumber, double volume, double maxWeight, double averageSpeed, int length)
     {
         this(registrationNumber, averageSpeed);
         this.volume = volume;
         this.maxWeight = maxWeight;
     }
     // Getters/Setters
+
+    public FoodItem[] getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(FoodItem[] cargo) {
+        this.cargo = cargo;
+    }
 
     /**
      * get vehicle's registration number
@@ -112,6 +129,42 @@ public class Vehicle {
     }
 
     // Methods
+
+    public void loadFoodItem(FoodItem foodItem)
+    {
+        for(int i = 0; i < this.cargo.length;  i++)
+        {
+            if(this.cargo[i] == null)
+            {
+                this.cargo[i] = foodItem; // adding
+                break;
+            }
+        }
+        // no place in array = no adding new foodItem
+    }
+
+    public void unloadFoodItems()
+    {
+        Arrays.fill(this.cargo, null);
+    }
+
+    public double getTakenSpace()
+    {
+        double percentsTaken = 0;
+        double percentsPerItem = (double)1 / cargo.length;
+
+        for(int i = 0; i < this.cargo.length;  i++)
+        {
+            if(this.cargo[i] != null)
+            {
+                percentsTaken += percentsPerItem;
+            }
+        }
+
+        return percentsTaken;
+    }
+
+    public abstract double getVehicleMaxVolume();
 
     /**
      * Calculate travel time in days to run the route by vehicle
