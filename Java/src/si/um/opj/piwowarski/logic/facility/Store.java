@@ -1,3 +1,5 @@
+package si.um.opj.piwowarski.logic.facility;
+
 /**
  * Represenation of store
  *
@@ -13,7 +15,7 @@ public class Store {
     // Constructors
 
     /**
-     * Create Store with empty fields
+     * Create si.um.opj.piwowarski.logic.facility.Store with empty fields
      */
     public Store()
     {
@@ -21,7 +23,7 @@ public class Store {
     }
 
     /**
-     * Create Store with name and location
+     * Create si.um.opj.piwowarski.logic.facility.Store with name and location
      * @param name name of the store
      * @param location location of the store
      */
@@ -72,7 +74,7 @@ public class Store {
      */
     @Override
     public String toString() {
-        return "Store{" +
+        return "si.um.opj.piwowarski.logic.facility.Store{" +
                 "name='" + name + '\'' +
                 ", location=" + location.toString() +
                 '}';

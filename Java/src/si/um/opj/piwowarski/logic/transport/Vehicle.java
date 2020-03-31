@@ -1,3 +1,5 @@
+package si.um.opj.piwowarski.logic.transport;
+
 import java.util.Arrays;
 
 /**
@@ -189,7 +191,7 @@ public abstract class Vehicle {
      */
     @Override
     public String toString() {
-        return "Vehicle{" +
+        return "si.um.opj.piwowarski.logic.transport.Vehicle{" +
                 "registrationNumber='" + registrationNumber + '\'' +
                 ", volume=" + volume +
                 ", maxWeight=" + maxWeight +

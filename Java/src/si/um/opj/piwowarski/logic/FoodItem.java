@@ -1,3 +1,5 @@
+package si.um.opj.piwowarski.logic;
+
 /**
  * Represenation of food item
  *
@@ -120,7 +122,7 @@ public class FoodItem {
      */
     @Override
     public String toString() {
-        return "FoodItem{" +
+        return "si.um.opj.piwowarski.logic.FoodItem{" +
                 "label='" + label + '\'' +
                 ", volume=" + volume +
                 ", weight=" + weight +

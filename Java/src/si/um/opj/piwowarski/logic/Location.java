@@ -1,3 +1,5 @@
+package si.um.opj.piwowarski.logic;
+
 /**
  * Represenation of location
  *
@@ -13,7 +15,7 @@ public class Location {
     // Constructors
 
     /**
-     * Create Location with empty fields
+     * Create si.um.opj.piwowarski.logic.Location with empty fields
      */
     public Location()
     {
@@ -21,7 +23,7 @@ public class Location {
     }
 
     /**
-     * Create Location with name of city and name of country
+     * Create si.um.opj.piwowarski.logic.Location with name of city and name of country
      * @param city name of city
      * @param country name of country
      */
@@ -71,7 +73,7 @@ public class Location {
      */
     @Override
     public String toString() {
-        return "Location{" +
+        return "si.um.opj.piwowarski.logic.Location{" +
                 "city='" + city + '\'' +
                 ", country='" + country + '\'' +
                 '}';

@@ -1,3 +1,6 @@
+import si.um.opj.piwowarski.logic.FoodItem;
+import si.um.opj.piwowarski.logic.Location;
+
 /**
  * User can run every methods here in main method
  *
@@ -15,13 +18,10 @@ public class Launcher {
 
         Location maribor = new Location("Maribor", "Slovenia");
         Location katowice = new Location("Katowice", "Poland");
-        Store mmPanda = new Store("MM Panda", maribor);
-        //Vehicle ferrari = new Vehicle("XD123", 200, 3000, 150, 10);
-        Warehouse wareHouse = new Warehouse("Test warehouse", katowice, 10);
-        Route testRoute = new Route(mmPanda, wareHouse, 600);
-
-
-
+        //Store mmPanda = new Store("MM Panda", maribor);
+        //si.um.opj.piwowarski.logic.transport.Vehicle ferrari = new si.um.opj.piwowarski.logic.transport.Vehicle("XD123", 200, 3000, 150, 10);
+        //Warehouse wareHouse = new Warehouse("Test warehouse", katowice, 10);
+        //si.um.opj.piwowarski.logic.Route testRoute = new si.um.opj.piwowarski.logic.Route(mmPanda, wareHouse, 600);
 
     }
 }

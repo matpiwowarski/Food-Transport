@@ -1,5 +1,7 @@
+package si.um.opj.piwowarski.logic.transport;
+
 /**
- * Represenation of Van
+ * Represenation of si.um.opj.piwowarski.logic.transport.Van
  *
  * @author  Mateusz Piwowarski
  * @since   2020-03-31
@@ -34,6 +36,6 @@ public class Van extends Vehicle {
 
     @Override
     public String toString() {
-        return "Van{}" + super.toString();
+        return "si.um.opj.piwowarski.logic.transport.Van{}" + super.toString();
     }
 }

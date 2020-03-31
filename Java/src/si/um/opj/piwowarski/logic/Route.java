@@ -1,3 +1,8 @@
+package si.um.opj.piwowarski.logic;
+
+import si.um.opj.piwowarski.logic.facility.Store;
+import si.um.opj.piwowarski.logic.facility.Warehouse;
+
 /**
  * Represenation of route with store, warehouse and distance between them
  *
@@ -13,7 +18,7 @@ public class Route {
 
     // Constructors
     /**
-     * Create Route with empty fields
+     * Create si.um.opj.piwowarski.logic.Route with empty fields
      */
     public Route()
     {
@@ -21,10 +26,10 @@ public class Route {
     }
 
     /**
-     * Create Route with Store object, Warehouse object and distance
-     * @param store object of Store
-     * @param warehouse object of Warehouse
-     * @param distance distance between Store and Warehouse
+     * Create si.um.opj.piwowarski.logic.Route with si.um.opj.piwowarski.logic.facility.Store object, si.um.opj.piwowarski.logic.facility.Warehouse object and distance
+     * @param store object of si.um.opj.piwowarski.logic.facility.Store
+     * @param warehouse object of si.um.opj.piwowarski.logic.facility.Warehouse
+     * @param distance distance between si.um.opj.piwowarski.logic.facility.Store and si.um.opj.piwowarski.logic.facility.Warehouse
      */
     public Route(Store store, Warehouse warehouse, double distance)
     {
@@ -90,7 +95,7 @@ public class Route {
      */
     @Override
     public String toString() {
-        return "Route{" +
+        return "si.um.opj.piwowarski.logic.Route{" +
                 "store=" + store.toString() +
                 ", warehouse=" + warehouse.toString() +
                 ", distance=" + distance +

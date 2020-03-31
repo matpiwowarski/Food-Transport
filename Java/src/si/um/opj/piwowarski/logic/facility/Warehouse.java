@@ -1,3 +1,5 @@
+package si.um.opj.piwowarski.logic.facility;
+
 import java.util.Arrays;
 import java.time.LocalDate;
 
@@ -17,7 +19,7 @@ public class Warehouse {
     // Constructors
 
     /**
-     * Create Warehouse with empty fields
+     * Create si.um.opj.piwowarski.logic.facility.Warehouse with empty fields
      */
     private Warehouse()
     {
@@ -25,7 +27,7 @@ public class Warehouse {
     }
 
     /**
-     * Create Warehouse with name and location
+     * Create si.um.opj.piwowarski.logic.facility.Warehouse with name and location
      * @param name name of warehouse
      * @param location location of warehouse
      */
@@ -36,7 +38,7 @@ public class Warehouse {
     }
 
     /**
-     * Create Warehouse with name, location and capacity (size of foodItems array)
+     * Create si.um.opj.piwowarski.logic.facility.Warehouse with name, location and capacity (size of foodItems array)
      * @param name name of warehouse
      * @param location location of warehouse
      * @param capacity size of foodItems array (food item count)
@@ -142,8 +144,8 @@ public class Warehouse {
         }
     }
     /**
-     * Count how many food items do we have in FoodItem array
-     * @return count of food items in the FoodItem array
+     * Count how many food items do we have in si.um.opj.piwowarski.logic.FoodItem array
+     * @return count of food items in the si.um.opj.piwowarski.logic.FoodItem array
      * @since 2020-03-18
      */
     public int returnTheNumberOfFoodItems()
@@ -186,7 +188,7 @@ public class Warehouse {
      */
     @Override
     public String toString() {
-        return "Warehouse{" +
+        return "si.um.opj.piwowarski.logic.facility.Warehouse{" +
                 "name='" + name + '\'' +
                 ", location=" + location.toString() +
                 ", foodItems=" + Arrays.toString(foodItems) +

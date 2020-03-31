@@ -1,5 +1,7 @@
+package si.um.opj.piwowarski.logic.transport;
+
 /**
- * Represenation of Truck
+ * Represenation of si.um.opj.piwowarski.logic.transport.Truck
  *
  * @author  Mateusz Piwowarski
  * @since   2020-03-31
@@ -48,7 +50,7 @@ public class Truck extends Vehicle {
 
     @Override
     public String toString() {
-        return "Truck{" +
+        return "si.um.opj.piwowarski.logic.transport.Truck{" +
                 "numberOfTrailers=" + numberOfTrailers +
                 '}' + super.toString();
     }
