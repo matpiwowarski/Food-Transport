@@ -17,14 +17,14 @@ import java.io.Console;
 public class Launcher {
     public static void main(String[] args) {
 
-        FoodItem orange = new FoodItem("yellow Orange", 10, 10, java.time.LocalDate.now().plusYears(1));
-        FoodItem banana = new FoodItem("green Banana", 5, 5, java.time.LocalDate.now().plusDays(4));
-        FoodItem apple = new FoodItem("red Apple", 3, 3, java.time.LocalDate.now().plusDays(2));
+        FoodItem orange = new FoodItem("yellow Orange", 1, 10, java.time.LocalDate.now().plusYears(1));
+        FoodItem banana = new FoodItem("green Banana", 1, 5, java.time.LocalDate.now().plusDays(4));
+        FoodItem apple = new FoodItem("red Apple", 1, 3, java.time.LocalDate.now().plusDays(2));
 
         Location maribor = new Location("Maribor", "Slovenia");
         Location katowice = new Location("Katowice", "Poland");
         Store mmPanda = new Store("MM Panda", maribor);
-        Truck bigTruck = new Truck("XD123", 50, 3000, 70, 10, 3);
+        Truck bigTruck = new Truck("XD123", 10, 3000, 70, 10, 10);
         Van frozenVan = new Van("VAN", 50,4000, 60, 5, FoodItemType.FROZEN);
         Warehouse wareHouse = new Warehouse("Test warehouse", katowice, 10);
         Route testRoute = new si.um.opj.piwowarski.logic.Route(mmPanda, wareHouse, 600);

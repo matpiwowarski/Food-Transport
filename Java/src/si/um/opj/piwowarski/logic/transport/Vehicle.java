@@ -154,16 +154,17 @@ public abstract class Vehicle {
 
     public double getTakenSpace()
     {
-        double percentsTaken = 0;
-        double percentsPerItem = (double)1 / cargo.length;
+        double foodItemsVolume = 0;
 
         for(int i = 0; i < this.cargo.length;  i++)
         {
             if(this.cargo[i] != null)
             {
-                percentsTaken += percentsPerItem;
+                foodItemsVolume += this.cargo[i].getVolume();
             }
         }
+
+        double percentsTaken = foodItemsVolume / this.getVehicleMaxVolume();
 
         return percentsTaken;
     }

@@ -61,10 +61,7 @@ public class Warehouse extends BusinessFacility {
 
     private Boolean stillValid(FoodItem foodItem)
     {
-        if(foodItem.getExpirationDate().isAfter(LocalDate.now().plusDays(3)))
-            return true;
-
-        return false;
+        return foodItem.getExpirationDate().isAfter(LocalDate.now().plusDays(3));
     }
 
     /**
