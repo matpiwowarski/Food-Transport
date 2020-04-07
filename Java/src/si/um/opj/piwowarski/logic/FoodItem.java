@@ -44,8 +44,22 @@ public class FoodItem {
     public FoodItem(String label, double volume, double weight, java.time.LocalDate expirationDate)
     {
         this(label);
-        this.volume = volume;
-        this.weight = weight;
+        if(volume < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.volume = volume;
+        }
+        if( weight < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.weight = weight;
+        }
         this.expirationDate = expirationDate;
     }
 

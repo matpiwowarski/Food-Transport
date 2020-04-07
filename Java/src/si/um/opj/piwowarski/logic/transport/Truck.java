@@ -15,22 +15,50 @@ public class Truck extends Vehicle {
     // constructors
 
     public Truck(int numberOfTrailers) {
-        this.numberOfTrailers = numberOfTrailers;
+        if(numberOfTrailers < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.numberOfTrailers = numberOfTrailers;
+        }
     }
 
     public Truck(int length, int numberOfTrailers) {
         super(length);
-        this.numberOfTrailers = numberOfTrailers;
+        if(numberOfTrailers < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.numberOfTrailers = numberOfTrailers;
+        }
     }
 
     public Truck(String registrationNumber, double averageSpeed, int numberOfTrailers) {
         super(registrationNumber, averageSpeed);
-        this.numberOfTrailers = numberOfTrailers;
+        if(numberOfTrailers < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.numberOfTrailers = numberOfTrailers;
+        }
     }
 
     public Truck(String registrationNumber, double volume, double maxWeight, double averageSpeed, int length, int numberOfTrailers) {
         super(registrationNumber, volume, maxWeight, averageSpeed, length);
-        this.numberOfTrailers = numberOfTrailers;
+        if(numberOfTrailers < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.numberOfTrailers = numberOfTrailers;
+        }
     }
 
     // getters/setters

@@ -35,7 +35,14 @@ public class Route {
     {
         this.store = store;
         this.warehouse = warehouse;
-        this.distance = distance;
+        if(distance < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.distance = distance;
+        }
     }
 
     // Getters/Setters

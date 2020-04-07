@@ -42,7 +42,14 @@ public abstract class Vehicle {
     public Vehicle(String registrationNumber, double averageSpeed)
     {
         this.registrationNumber = registrationNumber;
-        this.averageSpeed = averageSpeed;
+        if(averageSpeed < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.averageSpeed = averageSpeed;
+        }
     }
 
     /**
@@ -56,8 +63,22 @@ public abstract class Vehicle {
     public Vehicle(String registrationNumber, double volume, double maxWeight, double averageSpeed, int length)
     {
         this(registrationNumber, averageSpeed);
-        this.volume = volume;
-        this.maxWeight = maxWeight;
+        if(volume < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.volume = volume;
+        }
+        if(maxWeight < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.maxWeight = maxWeight;
+        }
         this.cargo = new FoodItem[length];
     }
     // Getters/Setters
