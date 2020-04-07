@@ -167,13 +167,24 @@ public class Warehouse extends BusinessFacility implements Transportable{
         //Onto a truck, we can load a whole array of food items
         if(vehicle instanceof Truck)
         {
+            boolean success = true;
             try{
                 vehicle.loadFoodItem(foodItems);
             }
             catch (Exception e)
             {
-                System.out.println("accepting vehicle failed: truck " + vehicle.getRegistrationNumber() + "couldn't load food items");
+                success = false;
+                System.out.println("accepting vehicle failed: truck " + vehicle.getRegistrationNumber() + " couldn't load food items");
                 vehicle.unloadFoodItems();
+            }
+            // removing items array if added to truck
+            if(success)
+            {
+                // foreach
+                for(FoodItem item : vehicle.getCargo())
+                {
+                    this.removeItem(item);
+                }
             }
         }
         // while loading onto a van is done one food item at a time.
@@ -182,13 +193,23 @@ public class Warehouse extends BusinessFacility implements Transportable{
             // foreach
             for(FoodItem item : foodItems)
             {
-                try{
-                    vehicle.loadFoodItem(item);
-                }
-                catch (Exception e)
+                if(item != null)
                 {
-                    System.out.println("accepting vehicle failed: item " + item.getLabel() + "couldn't be loaded");
-                    // without unloading whole van
+                    boolean success = true;
+                    try{
+                        vehicle.loadFoodItem(item);
+                    }
+                    catch (Exception e)
+                    {
+                        success = false;
+                        System.out.println("accepting vehicle failed: item " + item.getLabel() + " couldn't be loaded");
+                        // without unloading whole van
+                    }
+                    // removing item if added to van
+                    if(success)
+                    {
+                        this.removeItem(item);
+                    }
                 }
             }
         }
