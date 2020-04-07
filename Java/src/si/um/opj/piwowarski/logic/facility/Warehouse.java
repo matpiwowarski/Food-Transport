@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.time.LocalDate;
 import si.um.opj.piwowarski.logic.FoodItem;
 import si.um.opj.piwowarski.logic.*;
+import si.um.opj.piwowarski.logic.exception.CapacityExceededException;
+import si.um.opj.piwowarski.logic.exception.VolumeExceededException;
 import si.um.opj.piwowarski.logic.transport.*;
 
 /**

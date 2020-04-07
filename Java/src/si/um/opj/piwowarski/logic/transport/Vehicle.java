@@ -2,6 +2,8 @@ package si.um.opj.piwowarski.logic.transport;
 
 import java.util.Arrays;
 import si.um.opj.piwowarski.logic.*;
+import si.um.opj.piwowarski.logic.exception.CapacityExceededException;
+import si.um.opj.piwowarski.logic.exception.VolumeExceededException;
 
 /**
  * Represenation of vehicle

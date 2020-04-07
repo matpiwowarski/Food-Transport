@@ -1,4 +1,4 @@
-package si.um.opj.piwowarski.logic.transport;
+package si.um.opj.piwowarski.logic.exception;
 
 import si.um.opj.piwowarski.logic.FoodItem;
 
