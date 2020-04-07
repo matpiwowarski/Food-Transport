@@ -1,4 +1,4 @@
 package si.um.opj.piwowarski.logic.transport;
 
-public class CapacityExceededException extends Throwable {
+public class CapacityExceededException extends Exception {
 }

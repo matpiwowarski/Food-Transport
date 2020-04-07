@@ -170,9 +170,9 @@ public class Warehouse extends BusinessFacility implements Transportable{
             try{
                 vehicle.loadFoodItem(foodItems);
             }
-            catch (CapacityExceededException e)
+            catch (Exception e)
             {
-                System.out.println("accepting vehicle failed");
+                System.out.println("accepting vehicle failed: truck " + vehicle.getRegistrationNumber() + "couldn't load food items");
                 vehicle.unloadFoodItems();
             }
         }
@@ -185,10 +185,10 @@ public class Warehouse extends BusinessFacility implements Transportable{
                 try{
                     vehicle.loadFoodItem(item);
                 }
-                catch (CapacityExceededException e)
+                catch (Exception e)
                 {
-                    System.out.println("accepting vehicle failed");
-                    vehicle.unloadFoodItems();
+                    System.out.println("accepting vehicle failed: item " + item.getLabel() + "couldn't be loaded");
+                    // without unloading whole van
                 }
             }
         }

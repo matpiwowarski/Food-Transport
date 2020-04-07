@@ -177,13 +177,18 @@ public abstract class Vehicle {
     }
 
 
-    public void loadFoodItem(FoodItem foodItem) throws CapacityExceededException
+    public void loadFoodItem(FoodItem foodItem) throws CapacityExceededException, VolumeExceededException
     {
         for(int i = 0; i < this.cargo.length;  i++)
         {
             if(this.cargo[i] == null)
             {
                 this.cargo[i] = foodItem; // adding
+                if(getTakenSpace() > 1) // checking volume
+                {
+                    this.cargo[i] = null; // removing
+                    throw new VolumeExceededException();
+                }
                 break;
             }
         }

@@ -17,44 +17,34 @@ import java.io.Console;
 public class Launcher {
     public static void main(String[] args) {
 
-        FoodItem orange = new FoodItem("yellow Orange", 1, 10, java.time.LocalDate.now().plusYears(1));
-        FoodItem banana = new FoodItem("green Banana", 1, 5, java.time.LocalDate.now().plusDays(4));
-        FoodItem apple = new FoodItem("red Apple", 1, 3, java.time.LocalDate.now().plusDays(2));
+        // food items
+        FoodItem orange = new FoodItem("yellow Orange", 1, 10, java.time.LocalDate.now().plusYears(10));
+        FoodItem banana = new FoodItem("green Banana", 1, 5, java.time.LocalDate.now().plusDays(10));
+        FoodItem apple = new FoodItem("red Apple", 1, 3, java.time.LocalDate.now().plusDays(10));
+        FoodItem bigOrange = new FoodItem("big yellow Orange", 5, 10, java.time.LocalDate.now().plusYears(10));
+        FoodItem bigBanana = new FoodItem("big green Banana", 5, 5, java.time.LocalDate.now().plusDays(10));
+        FoodItem bigApple = new FoodItem("big red Apple", 5, 3, java.time.LocalDate.now().plusDays(10));
 
-        Location maribor = new Location("Maribor", "Slovenia");
         Location katowice = new Location("Katowice", "Poland");
-        Store mmPanda = new Store("MM Panda", maribor);
-        Truck bigTruck = new Truck("XD123", 10, 3000, 70, 10, 10);
-        Van frozenVan = new Van("VAN", 50,4000, 60, 5, FoodItemType.FROZEN);
-        Warehouse wareHouse = new Warehouse("Test warehouse", katowice, 10);
-        Route testRoute = new si.um.opj.piwowarski.logic.Route(mmPanda, wareHouse, 600);
+        Store mmPanda = new Store("Katowice Store", katowice);
 
-        // testing a)
-        try
-        {
-            bigTruck.loadFoodItem(apple);
-            bigTruck.loadFoodItem(orange);
-        }
-        catch (CapacityExceededException e)
-        {
-            System.out.println("Capacity exception");
-        }
-        System.out.println(bigTruck);
-        System.out.println("taken space: " + bigTruck.getTakenSpace());
+        // max volume = 30; array size = 10
+        Truck bigTruck = new Truck("TRUCK123", 10, 3000, 70, 10, 3);
+        // max volume = 10; array size = 5
+        Van frozenVan = new Van("FROZEN123", 10,4000, 60, 5, FoodItemType.FROZEN);
 
-        bigTruck.unloadFoodItems();
-        System.out.println(bigTruck);
-        System.out.println("taken space: " + bigTruck.getTakenSpace());
+        // warehouse with 100 items
+        Warehouse wareHouse = new Warehouse("Katowice warehouse", katowice, 100);
 
-        // testing b)
-
-        System.out.println("max volume: " + bigTruck.getVehicleMaxVolume());
-        System.out.println("max volume: " + frozenVan.getVehicleMaxVolume());
-
-        // testing c)
+        // ADDING ITEMS TO WAREHOUSE
         wareHouse.addItem(orange);
         wareHouse.addItem(banana);
-        wareHouse.addItem(apple); // expiration date = now + 2 days => shouldn't be added
+        wareHouse.addItem(apple);
+        wareHouse.addItem(bigOrange);
+        wareHouse.addItem(bigBanana);
+        wareHouse.addItem(bigApple);
+
         System.out.println(wareHouse);
+
     }
 }
