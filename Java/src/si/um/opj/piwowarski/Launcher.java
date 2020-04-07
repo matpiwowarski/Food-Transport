@@ -30,9 +30,15 @@ public class Launcher {
         Route testRoute = new si.um.opj.piwowarski.logic.Route(mmPanda, wareHouse, 600);
 
         // testing a)
-
-        bigTruck.loadFoodItem(apple);
-        bigTruck.loadFoodItem(orange);
+        try
+        {
+            bigTruck.loadFoodItem(apple);
+            bigTruck.loadFoodItem(orange);
+        }
+        catch (CapacityExceededException e)
+        {
+            System.out.println("Capacity exception");
+        }
         System.out.println(bigTruck);
         System.out.println("taken space: " + bigTruck.getTakenSpace());
 

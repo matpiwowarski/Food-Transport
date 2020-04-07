@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.time.LocalDate;
 import si.um.opj.piwowarski.logic.FoodItem;
 import si.um.opj.piwowarski.logic.*;
+import si.um.opj.piwowarski.logic.transport.CapacityExceededException;
+import si.um.opj.piwowarski.logic.transport.Truck;
+import si.um.opj.piwowarski.logic.transport.Van;
+import si.um.opj.piwowarski.logic.transport.Vehicle;
 
 /**
  * Represenation of warehouse
@@ -13,7 +17,7 @@ import si.um.opj.piwowarski.logic.*;
  * @version 3.0
  */
 
-public class Warehouse extends BusinessFacility {
+public class Warehouse extends BusinessFacility implements Transportable{
     private FoodItem[] foodItems;
 
     // Constructors
@@ -100,6 +104,17 @@ public class Warehouse extends BusinessFacility {
             }
         }
     }
+
+    public void removeAllItems()
+    {
+        for(int i = 0; i < this.foodItems.length;  i++)
+        {
+            if(this.foodItems[i] != null)
+            {
+                this.foodItems[i] = null; // deleting
+            }
+        }
+    }
     /**
      * Count how many food items do we have in si.um.opj.piwowarski.logic.FoodItem array
      * @return count of food items in the si.um.opj.piwowarski.logic.FoodItem array
@@ -138,6 +153,45 @@ public class Warehouse extends BusinessFacility {
             }
         }
         return false;
+    }
+
+    /**
+     * must load the accepted vehicle with food items that are currently in the warehouse.
+     * Alert: loading of food items varies if the accepted vehicle is a Van or a Truck (hint: use operator instanceof)
+     *
+     * @param vehicle
+     */
+
+    public void acceptVehicle(Vehicle vehicle)
+    {
+        //Onto a truck, we can load a whole array of food items
+        if(vehicle instanceof Truck)
+        {
+            try{
+                vehicle.loadFoodItem(foodItems);
+            }
+            catch (CapacityExceededException e)
+            {
+                System.out.println("accepting vehicle failed");
+                vehicle.unloadFoodItems();
+            }
+        }
+        // while loading onto a van is done one food item at a time.
+        else if (vehicle instanceof  Van)
+        {
+            // foreach
+            for(FoodItem item : foodItems)
+            {
+                try{
+                    vehicle.loadFoodItem(item);
+                }
+                catch (CapacityExceededException e)
+                {
+                    System.out.println("accepting vehicle failed");
+                    vehicle.unloadFoodItems();
+                }
+            }
+        }
     }
 
     @Override

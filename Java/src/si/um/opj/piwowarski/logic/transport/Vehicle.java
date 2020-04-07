@@ -134,19 +134,6 @@ public abstract class Vehicle {
 
     // Methods
 
-    public void loadFoodItem(FoodItem foodItem)
-    {
-        for(int i = 0; i < this.cargo.length;  i++)
-        {
-            if(this.cargo[i] == null)
-            {
-                this.cargo[i] = foodItem; // adding
-                break;
-            }
-        }
-        // no place in array = no adding new foodItem
-    }
-
     public void unloadFoodItems()
     {
         Arrays.fill(this.cargo, null);
@@ -187,6 +174,35 @@ public abstract class Vehicle {
         travelDays = (int)Math.ceil(travelHours / 24);
 
         return travelDays;
+    }
+
+
+    public void loadFoodItem(FoodItem foodItem) throws CapacityExceededException
+    {
+        for(int i = 0; i < this.cargo.length;  i++)
+        {
+            if(this.cargo[i] == null)
+            {
+                this.cargo[i] = foodItem; // adding
+                break;
+            }
+        }
+        throw new CapacityExceededException();
+        // no place in array = no adding new foodItem
+    }
+    /**
+     * Loads array of foodItems into the cargo array
+      */
+    public void loadFoodItem(FoodItem[] foodItems) throws CapacityExceededException, VolumeExceededException
+    {
+        // foreach
+        for(FoodItem item : foodItems)
+        {
+            if(item != null)
+            {
+                this.loadFoodItem(item);
+            }
+        }
     }
 
     @Override

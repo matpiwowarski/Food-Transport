@@ -1,6 +1,8 @@
 package si.um.opj.piwowarski.logic.facility;
 
 import si.um.opj.piwowarski.logic.*;
+import si.um.opj.piwowarski.logic.transport.Vehicle;
+
 /**
  * Represenation of store
  *
@@ -9,7 +11,7 @@ import si.um.opj.piwowarski.logic.*;
  * @version 3.0
  */
 
-public class Store extends BusinessFacility{
+public class Store extends BusinessFacility implements Transportable {
 
     // Constructors
 
@@ -32,6 +34,15 @@ public class Store extends BusinessFacility{
     }
 
     // Methods
+
+    /**
+     * The method acceptVehicle in the class Store unloads all food items from the vehicle.
+     * @param vehicle
+     */
+    public void acceptVehicle(Vehicle vehicle)
+    {
+        vehicle.unloadFoodItems();
+    }
 
     @Override
     public String toString() {
