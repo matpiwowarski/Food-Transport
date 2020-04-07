@@ -40,7 +40,15 @@ public class Truck extends Vehicle {
     }
 
     public void setNumberOfTrailers(int numberOfTrailers) {
-        this.numberOfTrailers = numberOfTrailers;
+
+        if(numberOfTrailers < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.numberOfTrailers = numberOfTrailers;
+        }
     }
 
     // methods

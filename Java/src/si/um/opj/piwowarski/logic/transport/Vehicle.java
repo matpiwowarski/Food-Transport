@@ -99,7 +99,14 @@ public abstract class Vehicle {
      * @param volume vehicle's volume
      */
     public void setVolume(double volume) {
-        this.volume = volume;
+        if(volume < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.volume = volume;
+        }
     }
 
     /**
@@ -115,7 +122,14 @@ public abstract class Vehicle {
      * @param maxWeight vehicle's max weight (kg)
      */
     public void setMaxWeight(double maxWeight) {
-        this.maxWeight = maxWeight;
+        if(maxWeight < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.maxWeight = maxWeight;
+        }
     }
 
     /**
@@ -131,7 +145,14 @@ public abstract class Vehicle {
      * @param averageSpeed vehicle's average speed (km/h)
      */
     public void setAverageSpeed(double averageSpeed) {
-        this.averageSpeed = averageSpeed;
+        if(averageSpeed < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.averageSpeed = averageSpeed;
+        }
     }
 
     // Methods

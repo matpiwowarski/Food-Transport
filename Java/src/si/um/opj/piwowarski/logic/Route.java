@@ -85,7 +85,14 @@ public class Route {
      * @param distance distance of the route
      */
     public void setDistance(double distance) {
-        this.distance = distance;
+        if(distance < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.distance = distance;
+        }
     }
 
     // Methods

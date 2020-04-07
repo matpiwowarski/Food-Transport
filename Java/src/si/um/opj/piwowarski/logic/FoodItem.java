@@ -88,7 +88,14 @@ public class FoodItem {
      * @param volume food item's volume
      */
     public void setVolume(double volume) {
-        this.volume = volume;
+        if(volume < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.volume = volume;
+        }
     }
 
     /**
@@ -104,7 +111,14 @@ public class FoodItem {
      * @param weight food item's weight (in kilograms)
      */
     public void setWeight(double weight) {
-        this.weight = weight;
+        if( weight < 0)
+        {
+            throw new java.lang.IllegalArgumentException();
+        }
+        else
+        {
+            this.weight = weight;
+        }
     }
 
     /**
