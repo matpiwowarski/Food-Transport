@@ -18,20 +18,29 @@ public class Launcher {
     public static void main(String[] args) {
 
         // food items
-        FoodItem orange = new FoodItem("yellow Orange", 1, 10, java.time.LocalDate.now().plusYears(10));
-        FoodItem banana = new FoodItem("green Banana", 1, 5, java.time.LocalDate.now().plusDays(10));
-        FoodItem apple = new FoodItem("red Apple", 1, 3, java.time.LocalDate.now().plusDays(10));
-        FoodItem bigOrange = new FoodItem("big yellow Orange", 5, 10, java.time.LocalDate.now().plusYears(10));
-        FoodItem bigBanana = new FoodItem("big green Banana", 10, 5, java.time.LocalDate.now().plusDays(10));
-        FoodItem bigApple = new FoodItem("big red Apple", 15, 3, java.time.LocalDate.now().plusDays(10));
+        FoodItem orange = new FoodItem("Orange", 1, 10, java.time.LocalDate.now().plusYears(10));
+        FoodItem banana = new FoodItem("Banana", 1, 5, java.time.LocalDate.now().plusDays(10));
+        FoodItem apple = new FoodItem("Apple", 1, 3, java.time.LocalDate.now().plusDays(10));
+        FoodItem lemon = new FoodItem("Lemon", 1, 3, java.time.LocalDate.now().plusDays(10));
+        FoodItem strawberry = new FoodItem("Strawberry", 1, 3, java.time.LocalDate.now().plusDays(10));
+
+
+        // big food items
+        FoodItem bigOrange = new FoodItem( "Big orange", 3, 10, java.time.LocalDate.now().plusYears(10));
+        FoodItem bigBanana = new FoodItem("Big banana", 5, 5, java.time.LocalDate.now().plusDays(10));
+        FoodItem bigApple = new FoodItem("Big apple", 5, 3, java.time.LocalDate.now().plusDays(10));
+        FoodItem bigLemon = new FoodItem("Big lemon", 10, 3, java.time.LocalDate.now().plusDays(10));
+        FoodItem bigStrawberry = new FoodItem("Big strawberry", 3, 3, java.time.LocalDate.now().plusDays(10));
 
         Location katowice = new Location("Katowice", "Poland");
-        Store mmPanda = new Store("Katowice Store", katowice);
+        Store store = new Store("Katowice Store", katowice);
 
         // max volume = 30; array size = 10
         Truck bigTruck = new Truck("TRUCK123", 10, 3000, 70, 10, 3);
         // max volume = 10; array size = 5
         Van frozenVan = new Van("FROZEN123", 10,4000, 60, 5, FoodItemType.FROZEN);
+        // small truck
+        Truck smallTruck = new Truck("SMALL123", 4, 3000, 70, 10, 2);
 
         // warehouse with 100 items
         Warehouse wareHouse = new Warehouse("Katowice warehouse", katowice, 100);
@@ -39,20 +48,62 @@ public class Launcher {
         // ADDING ITEMS TO WAREHOUSE
         wareHouse.addItem(apple);
         wareHouse.addItem(banana);
+        wareHouse.addItem(lemon);
+        wareHouse.addItem(strawberry);
+        wareHouse.addItem(bigLemon);
         wareHouse.addItem(bigOrange);
         wareHouse.addItem(bigApple);
         wareHouse.addItem(bigBanana);
+        wareHouse.addItem(bigStrawberry);
         wareHouse.addItem(orange);
 
         System.out.println("WAREHOUSE AT THE BEGINNING:");
         PrintFoodItemsLabels(wareHouse.getFoodItems());
+        System.out.println();
 
         // LOADING FROM WAREHOUSE TO VAN
+        System.out.println("VAN LOADING:");
         wareHouse.acceptVehicle(frozenVan);
+        System.out.println();
         System.out.println("VAN AFTER LOADING:");
         PrintFoodItemsLabels(frozenVan.getCargo());
-        System.out.println("WAREHOUSE AFTER LOADING:");
+        System.out.println();
+        System.out.println("WAREHOUSE AFTER LOADING VAN:");
         PrintFoodItemsLabels(wareHouse.getFoodItems());
+        System.out.println();
+
+        // LOADING FROM WAREHOUSE TO SMALL TRUCK
+        System.out.println("SMALL TRUCK LOADING:");
+        wareHouse.acceptVehicle(smallTruck);
+        System.out.println();
+        System.out.println("SMALL TRUCK AFTER LOADING:");
+        PrintFoodItemsLabels(smallTruck.getCargo());
+        System.out.println();
+        System.out.println("WAREHOUSE AFTER LOADING SMALL TRUCK:");
+        PrintFoodItemsLabels(wareHouse.getFoodItems());
+        System.out.println();
+
+        // LOADING FROM WAREHOUSE TO BIG TRUCK
+
+        System.out.println("BIG TRUCK LOADING:");
+        wareHouse.acceptVehicle(bigTruck);
+        System.out.println();
+        System.out.println("BIG TRUCK AFTER LOADING:");
+        PrintFoodItemsLabels(bigTruck.getCargo());
+        System.out.println();
+        System.out.println("WAREHOUSE AFTER LOADING BIG TRUCK:");
+        PrintFoodItemsLabels(wareHouse.getFoodItems());
+        System.out.println();
+
+        // LOADING FROM BIG TRUCK AND VAN TO THE STORE
+        System.out.println("VAN TRUCK UNLOADING:");
+        store.acceptVehicle(frozenVan);
+        System.out.println("BIG TRUCK UNLOADING:");
+        store.acceptVehicle(bigTruck);
+        System.out.println("VAN TRUCK AFTER UNLOADING:");
+        PrintFoodItemsLabels(frozenVan.getCargo());
+        System.out.println("BIG TRUCK AFTER UNLOADING:");
+        PrintFoodItemsLabels(bigTruck.getCargo());
     }
 
     // additional

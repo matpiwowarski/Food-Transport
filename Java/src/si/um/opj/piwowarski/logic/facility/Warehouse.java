@@ -4,10 +4,7 @@ import java.util.Arrays;
 import java.time.LocalDate;
 import si.um.opj.piwowarski.logic.FoodItem;
 import si.um.opj.piwowarski.logic.*;
-import si.um.opj.piwowarski.logic.transport.CapacityExceededException;
-import si.um.opj.piwowarski.logic.transport.Truck;
-import si.um.opj.piwowarski.logic.transport.Van;
-import si.um.opj.piwowarski.logic.transport.Vehicle;
+import si.um.opj.piwowarski.logic.transport.*;
 
 /**
  * Represenation of warehouse
@@ -171,10 +168,16 @@ public class Warehouse extends BusinessFacility implements Transportable{
             try{
                 vehicle.loadFoodItem(foodItems);
             }
-            catch (Exception e)
+            catch (CapacityExceededException e)
             {
                 success = false;
-                System.out.println("accepting vehicle failed: truck " + vehicle.getRegistrationNumber() + " couldn't load food items");
+                System.out.println("accepting vehicle failed " + e.info);
+                vehicle.unloadFoodItems();
+            }
+            catch (VolumeExceededException e)
+            {
+                success = false;
+                System.out.println("accepting vehicle failed " + e.info);
                 vehicle.unloadFoodItems();
             }
             // removing items array if added to truck
@@ -199,10 +202,16 @@ public class Warehouse extends BusinessFacility implements Transportable{
                     try{
                         vehicle.loadFoodItem(item);
                     }
-                    catch (Exception e)
+                    catch (CapacityExceededException e)
                     {
                         success = false;
-                        System.out.println("accepting vehicle failed: item " + item.getLabel() + " couldn't be loaded");
+                        System.out.println("accepting vehicle failed" + e.info);
+                        // without unloading whole van
+                    }
+                    catch (VolumeExceededException e)
+                    {
+                        success = false;
+                        System.out.println("accepting vehicle failed" + e.info);
                         // without unloading whole van
                     }
                     // removing item if added to van

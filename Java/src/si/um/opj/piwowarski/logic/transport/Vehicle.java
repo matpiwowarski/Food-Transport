@@ -188,7 +188,7 @@ public abstract class Vehicle {
                 if(getTakenSpace() > 1) // checking volume
                 {
                     this.cargo[i] = null; // removing
-                    throw new VolumeExceededException();
+                    throw new VolumeExceededException(foodItem.getLabel(), foodItem.getVolume(), (1-this.getTakenSpace())* volume);
                 }
                 added = true;
                 break;
@@ -196,7 +196,7 @@ public abstract class Vehicle {
         }
         if(added == false) // no place in array = exception
         {
-            throw new CapacityExceededException();
+            throw new CapacityExceededException(foodItem.getLabel(), this.getCargo().length);
         }
     }
     /**
