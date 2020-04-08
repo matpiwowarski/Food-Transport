@@ -3,6 +3,7 @@ package si.um.opj.piwowarski.logic.transport;
 import java.util.Arrays;
 import si.um.opj.piwowarski.logic.*;
 import si.um.opj.piwowarski.logic.exception.CapacityExceededException;
+import si.um.opj.piwowarski.logic.exception.FoodItemTypeException;
 import si.um.opj.piwowarski.logic.exception.VolumeExceededException;
 
 /**
@@ -221,9 +222,18 @@ public abstract class Vehicle {
     }
 
 
-    public void loadFoodItem(FoodItem foodItem) throws CapacityExceededException, VolumeExceededException
+    public void loadFoodItem(FoodItem foodItem) throws CapacityExceededException, VolumeExceededException, FoodItemTypeException
     {
         boolean added = false;
+        // checking food item type
+        if(this instanceof Van)
+        {
+            if(foodItem.getType() != ((Van) this).getFoodItemType())
+            {
+                throw new FoodItemTypeException(foodItem.getLabel(), foodItem.getType(), ((Van)this).getFoodItemType());
+            }
+        }
+        // food item type is ok/ we are loading into truck
         for(int i = 0; i < this.cargo.length;  i++)
         {
             if(this.cargo[i] == null)
@@ -246,7 +256,7 @@ public abstract class Vehicle {
     /**
      * Loads array of foodItems into the cargo array
       */
-    public void loadFoodItem(FoodItem[] foodItems) throws CapacityExceededException, VolumeExceededException
+    public void loadFoodItem(FoodItem[] foodItems) throws CapacityExceededException, VolumeExceededException, FoodItemTypeException
     {
         // foreach
         for(FoodItem item : foodItems)

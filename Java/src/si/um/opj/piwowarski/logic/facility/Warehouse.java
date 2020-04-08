@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import si.um.opj.piwowarski.logic.FoodItem;
 import si.um.opj.piwowarski.logic.*;
 import si.um.opj.piwowarski.logic.exception.CapacityExceededException;
+import si.um.opj.piwowarski.logic.exception.FoodItemTypeException;
 import si.um.opj.piwowarski.logic.exception.VolumeExceededException;
 import si.um.opj.piwowarski.logic.transport.*;
 
@@ -182,6 +183,10 @@ public class Warehouse extends BusinessFacility implements Transportable{
                 System.out.println("accepting vehicle failed " + e.info);
                 vehicle.unloadFoodItems();
             }
+            catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
             // removing items array if added to truck
             if(success)
             {
@@ -202,6 +207,7 @@ public class Warehouse extends BusinessFacility implements Transportable{
                 {
                     boolean success = true;
                     try{
+                        // TRY TO ADD IF TYPE IS THE SAME
                         vehicle.loadFoodItem(item);
                     }
                     catch (CapacityExceededException e)
@@ -215,6 +221,16 @@ public class Warehouse extends BusinessFacility implements Transportable{
                         success = false;
                         System.out.println("accepting vehicle failed" + e.info);
                         // without unloading whole van
+                    }
+                    catch (FoodItemTypeException e)
+                    {
+                        success = false;
+                        System.out.println("accepting vehicle failed" + e.info);
+                        // without unloading whole van
+                    }
+                    catch (Exception e)
+                    {
+                        System.out.println(e.getMessage());
                     }
                     // removing item if added to van
                     if(success)

@@ -1,5 +1,7 @@
 package si.um.opj.piwowarski.logic;
 
+import java.time.LocalDate;
+
 /**
  * Represenation of food item
  *
@@ -17,33 +19,8 @@ public class FoodItem {
 
     // constructors
 
-    /**
-     * Create food item with label
-     * @param label label of food item
-     */
-    public FoodItem(String label)
-    {
+    public FoodItem(String label, double volume, double weight, LocalDate expirationDate, FoodItemType type) {
         this.label = label;
-    }
-
-    /**
-     * Create food item with empty fields
-     */
-    public FoodItem()
-    {
-
-    }
-
-    /**
-     * Create food item with label, volume, weight, expirationDate
-     * @param label label of food item
-     * @param volume volume of food item
-     * @param weight weight of food item in kilograms
-     * @param expirationDate expiration date of food item (yyyy-mm-dd)
-     */
-    public FoodItem(String label, double volume, double weight, java.time.LocalDate expirationDate)
-    {
-        this(label);
         if(volume < 0)
         {
             throw new java.lang.IllegalArgumentException();
@@ -61,6 +38,7 @@ public class FoodItem {
             this.weight = weight;
         }
         this.expirationDate = expirationDate;
+        this.type = type;
     }
 
     // getters/setters
