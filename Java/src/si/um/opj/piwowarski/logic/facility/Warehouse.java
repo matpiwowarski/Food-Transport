@@ -162,39 +162,18 @@ public class Warehouse extends BusinessFacility implements Transportable{
      * @param vehicle
      */
 
-    public void acceptVehicle(Vehicle vehicle)
+    public void acceptVehicle(Vehicle vehicle) throws CapacityExceededException, VolumeExceededException, FoodItemTypeException
     {
         //Onto a truck, we can load a whole array of food items
         if(vehicle instanceof Truck)
         {
-            boolean success = true;
-            try{
-                vehicle.loadFoodItem(foodItems);
-            }
-            catch (CapacityExceededException e)
-            {
-                success = false;
-                System.out.println("accepting vehicle failed " + e.info);
-                vehicle.unloadFoodItems();
-            }
-            catch (VolumeExceededException e)
-            {
-                success = false;
-                System.out.println("accepting vehicle failed " + e.info);
-                vehicle.unloadFoodItems();
-            }
-            catch (Exception e)
-            {
-                System.out.println(e.getMessage());
-            }
+            vehicle.loadFoodItem(foodItems);
             // removing items array if added to truck
-            if(success)
+
+            // foreach
+            for(FoodItem item : vehicle.getCargo())
             {
-                // foreach
-                for(FoodItem item : vehicle.getCargo())
-                {
-                    this.removeItem(item);
-                }
+                this.removeItem(item);
             }
         }
         // while loading onto a van is done one food item at a time.
@@ -205,38 +184,9 @@ public class Warehouse extends BusinessFacility implements Transportable{
             {
                 if(item != null)
                 {
-                    boolean success = true;
-                    try{
-                        // TRY TO ADD IF TYPE IS THE SAME
-                        vehicle.loadFoodItem(item);
-                    }
-                    catch (CapacityExceededException e)
-                    {
-                        success = false;
-                        System.out.println("accepting vehicle failed" + e.info);
-                        // without unloading whole van
-                    }
-                    catch (VolumeExceededException e)
-                    {
-                        success = false;
-                        System.out.println("accepting vehicle failed" + e.info);
-                        // without unloading whole van
-                    }
-                    catch (FoodItemTypeException e)
-                    {
-                        success = false;
-                        System.out.println("accepting vehicle failed" + e.info);
-                        // without unloading whole van
-                    }
-                    catch (Exception e)
-                    {
-                        System.out.println(e.getMessage());
-                    }
+                    vehicle.loadFoodItem(item);
                     // removing item if added to van
-                    if(success)
-                    {
-                        this.removeItem(item);
-                    }
+                    this.removeItem(item);
                 }
             }
         }

@@ -1,6 +1,9 @@
 package si.um.opj.piwowarski;
 
 import si.um.opj.piwowarski.logic.*;
+import si.um.opj.piwowarski.logic.exception.CapacityExceededException;
+import si.um.opj.piwowarski.logic.exception.VolumeExceededException;
+import si.um.opj.piwowarski.logic.exception.FoodItemTypeException;
 import si.um.opj.piwowarski.logic.facility.*;
 import si.um.opj.piwowarski.logic.transport.*;
 
@@ -57,41 +60,41 @@ public class Launcher {
         wareHouse.addItem(orange);
 
         System.out.println("WAREHOUSE AT THE BEGINNING:");
-        PrintFoodItemsLabels(wareHouse.getFoodItems());
+        printFoodItemsLabels(wareHouse.getFoodItems());
         System.out.println();
 
         // LOADING FROM WAREHOUSE TO VAN
         System.out.println("VAN LOADING:");
-        wareHouse.acceptVehicle(frozenVan);
+        tryToAcceptVehicle(wareHouse, frozenVan);
         System.out.println();
         System.out.println("VAN AFTER LOADING:");
-        PrintFoodItemsLabels(frozenVan.getCargo());
+        printFoodItemsLabels(frozenVan.getCargo());
         System.out.println();
         System.out.println("WAREHOUSE AFTER LOADING VAN:");
-        PrintFoodItemsLabels(wareHouse.getFoodItems());
+        printFoodItemsLabels(wareHouse.getFoodItems());
         System.out.println();
 
         // LOADING FROM WAREHOUSE TO SMALL TRUCK
         System.out.println("SMALL TRUCK LOADING:");
-        wareHouse.acceptVehicle(smallTruck);
+        tryToAcceptVehicle(wareHouse, smallTruck);
         System.out.println();
         System.out.println("SMALL TRUCK AFTER LOADING:");
-        PrintFoodItemsLabels(smallTruck.getCargo());
+        printFoodItemsLabels(smallTruck.getCargo());
         System.out.println();
         System.out.println("WAREHOUSE AFTER LOADING SMALL TRUCK:");
-        PrintFoodItemsLabels(wareHouse.getFoodItems());
+        printFoodItemsLabels(wareHouse.getFoodItems());
         System.out.println();
 
         // LOADING FROM WAREHOUSE TO BIG TRUCK
 
         System.out.println("BIG TRUCK LOADING:");
-        wareHouse.acceptVehicle(bigTruck);
+        tryToAcceptVehicle(wareHouse, bigTruck);
         System.out.println();
         System.out.println("BIG TRUCK AFTER LOADING:");
-        PrintFoodItemsLabels(bigTruck.getCargo());
+        printFoodItemsLabels(bigTruck.getCargo());
         System.out.println();
         System.out.println("WAREHOUSE AFTER LOADING BIG TRUCK:");
-        PrintFoodItemsLabels(wareHouse.getFoodItems());
+        printFoodItemsLabels(wareHouse.getFoodItems());
         System.out.println();
 
         // LOADING FROM BIG TRUCK AND VAN TO THE STORE
@@ -100,9 +103,9 @@ public class Launcher {
         System.out.println("BIG TRUCK UNLOADING:");
         store.acceptVehicle(bigTruck);
         System.out.println("VAN AFTER UNLOADING:");
-        PrintFoodItemsLabels(frozenVan.getCargo());
+        printFoodItemsLabels(frozenVan.getCargo());
         System.out.println("BIG TRUCK AFTER UNLOADING:");
-        PrintFoodItemsLabels(bigTruck.getCargo());
+        printFoodItemsLabels(bigTruck.getCargo());
         System.out.println();
 
         // BONUS PART:
@@ -115,24 +118,58 @@ public class Launcher {
         wareHouse.addItem(frozenPotato);
         wareHouse.addItem(freshPotato);
         System.out.println("WAREHOUSE AT THE BEGINNING:");
-        PrintFoodItemsLabels(wareHouse.getFoodItems());
+        printFoodItemsLabels(wareHouse.getFoodItems());
         System.out.println();
         // LOADING FROZEN VAN
         System.out.println("LOADING FROZEN VAN:");
-        wareHouse.acceptVehicle(frozenVan);
+        tryToAcceptVehicle(wareHouse, frozenVan);
         System.out.println();
         // FROZEN VAN AFTER LOADING
         System.out.println("FROZEN VAN AFTER LOADING:");
-        PrintFoodItemsLabels(frozenVan.getCargo());
+        printFoodItemsLabels(frozenVan.getCargo());
         System.out.println();
         // WAREHOUSE AFTER LOADING FROZEN VAN
         System.out.println("WAREHOUSE AFTER LOADING FROZEN VAN:");
-        PrintFoodItemsLabels(wareHouse.getFoodItems());
+        printFoodItemsLabels(wareHouse.getFoodItems());
     }
 
     // additional
 
-    static public void PrintFoodItemsLabels(FoodItem[] foodItems)
+    static public void tryToAcceptVehicle(Transportable place, Vehicle vehicle)
+    {
+        try {
+            place.acceptVehicle(vehicle);
+        }
+        catch (CapacityExceededException e)
+        {
+            System.out.println("accepting vehicle failed " + e.info);
+            if(vehicle instanceof Truck) {
+                vehicle.unloadFoodItems();
+            }
+            // without unloading whole van
+        }
+        catch (VolumeExceededException e)
+        {
+            System.out.println("accepting vehicle failed " + e.info);
+            if(vehicle instanceof Truck) {
+                vehicle.unloadFoodItems();
+            }
+            // without unloading whole van
+        }
+        catch (FoodItemTypeException e)
+        {
+            System.out.println("accepting vehicle failed" + e.info);
+            // without unloading whole van
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+
+    static public void printFoodItemsLabels(FoodItem[] foodItems)
     {
         StringBuilder str = new StringBuilder();
         int index = 1;
