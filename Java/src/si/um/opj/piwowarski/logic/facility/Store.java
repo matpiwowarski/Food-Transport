@@ -7,8 +7,8 @@ import si.um.opj.piwowarski.logic.transport.Vehicle;
  * Represenation of store
  *
  * @author  Mateusz Piwowarski
- * @since   2020-03-31
- * @version 3.0
+ * @since   2020-04-08
+ * @version 4.0
  */
 
 public class Store extends BusinessFacility implements Transportable {

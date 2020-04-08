@@ -13,8 +13,8 @@ import si.um.opj.piwowarski.logic.transport.*;
  * Represenation of warehouse
  *
  * @author  Mateusz Piwowarski
- * @since   2020-03-31
- * @version 3.0
+ * @since   2020-04-08
+ * @version 4.0
  */
 
 public class Warehouse extends BusinessFacility implements Transportable{
@@ -164,12 +164,20 @@ public class Warehouse extends BusinessFacility implements Transportable{
 
     public void acceptVehicle(Vehicle vehicle) throws CapacityExceededException, VolumeExceededException, FoodItemTypeException
     {
+        int numberOfFoodItems = this.getNumberOfFoodItems();
         //Onto a truck, we can load a whole array of food items
         if(vehicle instanceof Truck)
         {
             vehicle.loadFoodItem(foodItems);
-            // removing items array if added to truck
+            // capacity
 
+            if(vehicle.getCargo().length < numberOfFoodItems)
+                throw new CapacityExceededException(vehicle.getCargo().length, numberOfFoodItems);
+            // volume
+            if(vehicle.getTakenSpace() > 1)
+                throw new VolumeExceededException(vehicle.getRegistrationNumber(),vehicle.getVehicleMaxVolume());
+
+            // success
             // foreach
             for(FoodItem item : vehicle.getCargo())
             {
@@ -179,17 +187,59 @@ public class Warehouse extends BusinessFacility implements Transportable{
         // while loading onto a van is done one food item at a time.
         else if (vehicle instanceof  Van)
         {
+            boolean volumeException = false;
+            boolean foodItemException = false;
             // foreach
             for(FoodItem item : foodItems)
             {
                 if(item != null)
                 {
-                    vehicle.loadFoodItem(item);
-                    // removing item if added to van
-                    this.removeItem(item);
+                    // capacity
+                    if(vehicle.isFull())
+                        throw new CapacityExceededException(vehicle.getCargo().length, numberOfFoodItems);
+
+                    if(vehicle.checkSpaceForFoodItem(item))
+                    {
+                        if(((Van)vehicle).getFoodItemType() == item.getType())
+                        {
+                            vehicle.loadFoodItem(item);
+                            // removing item if added to van
+                            this.removeItem(item);
+                        }
+                        else
+                        {
+                            foodItemException = true;
+                        }
+                    }
+                    else
+                    {
+                        volumeException = true;
+                    }
                 }
             }
+            if(volumeException)
+            {
+                throw new VolumeExceededException(vehicle.getRegistrationNumber(),vehicle.getVehicleMaxVolume());
+            }
+            if(foodItemException)
+            {
+                throw new FoodItemTypeException(vehicle.getRegistrationNumber(),((Van)vehicle).getFoodItemType());
+            }
+
         }
+    }
+
+    public int getNumberOfFoodItems()
+    {
+        int number = 0;
+        for(int i = 0; i < this.foodItems.length;  i++)
+        {
+            if(this.foodItems[i] != null)
+            {
+                number++;
+            }
+        }
+        return number;
     }
 
     @Override

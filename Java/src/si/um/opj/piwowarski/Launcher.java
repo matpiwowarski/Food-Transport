@@ -13,8 +13,8 @@ import java.io.Console;
  * User can run every methods here in main method
  *
  * @author  Mateusz Piwowarski
- * @since   2020-03-31
- * @version 3.0
+ * @since   2020-04-08
+ * @version 4.0
  */
 
 public class Launcher {
@@ -146,7 +146,6 @@ public class Launcher {
             if(vehicle instanceof Truck) {
                 vehicle.unloadFoodItems();
             }
-            // without unloading whole van
         }
         catch (VolumeExceededException e)
         {

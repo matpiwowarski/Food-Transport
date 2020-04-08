@@ -12,4 +12,14 @@ public class VolumeExceededException extends Exception {
         info += "\t\t item volume: " + volume;
         info += "\t\t empty volume in vehicle: " + emptyVolume;
     }
+
+    public VolumeExceededException()
+    {
+
+    }
+
+    public VolumeExceededException(String registrationNumber, double vehicleMaxVolume) {
+        info = " (VOLUME PROBLEM): vehicle " + registrationNumber + " couldn't be loaded";
+        info += " ; vehicleMaxVolume = " + vehicleMaxVolume;
+    }
 }

@@ -10,8 +10,8 @@ import si.um.opj.piwowarski.logic.exception.VolumeExceededException;
  * Represenation of vehicle
  *
  * @author  Mateusz Piwowarski
- * @since   2020-03-31
- * @version 3.0
+ * @since   2020-04-08
+ * @version 4.0
  */
 
 public abstract class Vehicle {
@@ -222,41 +222,21 @@ public abstract class Vehicle {
     }
 
 
-    public void loadFoodItem(FoodItem foodItem) throws CapacityExceededException, VolumeExceededException, FoodItemTypeException
+    public void loadFoodItem(FoodItem foodItem)
     {
-        boolean added = false;
-        // checking food item type
-        if(this instanceof Van)
-        {
-            if(foodItem.getType() != ((Van) this).getFoodItemType())
-            {
-                throw new FoodItemTypeException(foodItem.getLabel(), foodItem.getType(), ((Van)this).getFoodItemType());
-            }
-        }
         // food item type is ok/ we are loading into truck
         for(int i = 0; i < this.cargo.length;  i++)
         {
-            if(this.cargo[i] == null)
-            {
+            if (this.cargo[i] == null) {
                 this.cargo[i] = foodItem; // adding
-                if(getTakenSpace() > 1) // checking volume
-                {
-                    this.cargo[i] = null; // removing
-                    throw new VolumeExceededException(foodItem.getLabel(), foodItem.getVolume(), (1-this.getTakenSpace())* volume);
-                }
-                added = true;
                 break;
             }
-        }
-        if(added == false) // no place in array = exception
-        {
-            throw new CapacityExceededException(foodItem.getLabel(), this.getCargo().length);
         }
     }
     /**
      * Loads array of foodItems into the cargo array
       */
-    public void loadFoodItem(FoodItem[] foodItems) throws CapacityExceededException, VolumeExceededException, FoodItemTypeException
+    public void loadFoodItem(FoodItem[] foodItems)
     {
         // foreach
         for(FoodItem item : foodItems)
@@ -268,6 +248,19 @@ public abstract class Vehicle {
         }
     }
 
+    public boolean isFull() {
+
+        for(int i = 0; i < this.cargo.length;  i++)
+        {
+            if(this.cargo[i] == null)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     @Override
     public String toString() {
         return "Vehicle{" +
@@ -277,5 +270,25 @@ public abstract class Vehicle {
                 ", averageSpeed=" + averageSpeed +
                 ", cargo=" + Arrays.toString(cargo) +
                 '}';
+    }
+
+    public boolean checkSpaceForFoodItem(FoodItem item) {
+        double space = this.getVehicleMaxVolume();
+
+        double foodItemsVolume = 0;
+
+        for(int i = 0; i < this.cargo.length;  i++)
+        {
+            if(this.cargo[i] != null)
+            {
+                foodItemsVolume += this.cargo[i].getVolume();
+            }
+        }
+
+        double foodItemsVolumeWithNewItem = foodItemsVolume + item.getVolume();
+        if(foodItemsVolumeWithNewItem > space)
+            return false;
+
+        return true;
     }
 }
