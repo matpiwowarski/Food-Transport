@@ -146,6 +146,7 @@ public class Launcher {
             if(vehicle instanceof Truck) {
                 vehicle.unloadFoodItems();
             }
+            e.printStackTrace();
         }
         catch (VolumeExceededException e)
         {
@@ -153,16 +154,17 @@ public class Launcher {
             if(vehicle instanceof Truck) {
                 vehicle.unloadFoodItems();
             }
-            // without unloading whole van
+            e.printStackTrace();
         }
         catch (FoodItemTypeException e)
         {
             System.out.println("accepting vehicle failed" + e.info);
-            // without unloading whole van
+            e.printStackTrace();
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
     }
