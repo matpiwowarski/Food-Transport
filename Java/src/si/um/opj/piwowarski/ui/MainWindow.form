@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="si.um.opj.piwowarski.ui.MainWindow">
   <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="654" height="402"/>
+      <xy x="20" y="20" width="849" height="402"/>
     </constraints>
     <properties>
       <background color="-12631749"/>
@@ -127,7 +127,7 @@
                               </component>
                             </children>
                           </grid>
-                          <grid id="41f4f" binding="InformationPanel" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                          <grid id="41f4f" binding="Information1Panel" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                             <margin top="20" left="20" bottom="20" right="20"/>
                             <constraints border-constraint="Center"/>
                             <properties/>
@@ -166,7 +166,9 @@
                                     <preferred-size width="150" height="-1"/>
                                   </grid>
                                 </constraints>
-                                <properties/>
+                                <properties>
+                                  <font size="16"/>
+                                </properties>
                               </component>
                               <component id="46a18" class="javax.swing.JTextField" binding="LocationField">
                                 <constraints>
@@ -174,11 +176,145 @@
                                     <preferred-size width="150" height="-1"/>
                                   </grid>
                                 </constraints>
-                                <properties/>
+                                <properties>
+                                  <font size="16"/>
+                                </properties>
                               </component>
                               <component id="49a19" class="javax.swing.JTextField" binding="CapacityField">
                                 <constraints>
                                   <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                    <preferred-size width="150" height="-1"/>
+                                  </grid>
+                                </constraints>
+                                <properties>
+                                  <font size="16"/>
+                                </properties>
+                              </component>
+                            </children>
+                          </grid>
+                        </children>
+                      </grid>
+                      <grid id="331f4" binding="VehiclePanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                        <constraints>
+                          <tabbedpane title="Vehicle"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <grid id="da9aa" binding="TruckVanPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                            <constraints border-constraint="North"/>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="4edae" class="javax.swing.JRadioButton" binding="TruckButton">
+                                <constraints/>
+                                <properties>
+                                  <text value="Truck"/>
+                                </properties>
+                              </component>
+                              <component id="237a2" class="javax.swing.JRadioButton" binding="VanButton">
+                                <constraints/>
+                                <properties>
+                                  <text value="Van"/>
+                                </properties>
+                              </component>
+                            </children>
+                          </grid>
+                          <grid id="b479b" binding="Information2Panel" layout-manager="GridLayoutManager" row-count="6" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                            <margin top="20" left="20" bottom="20" right="20"/>
+                            <constraints border-constraint="Center"/>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="25894" class="javax.swing.JLabel">
+                                <constraints>
+                                  <grid row="0" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <text value="Registration Number"/>
+                                </properties>
+                              </component>
+                              <component id="497e1" class="javax.swing.JLabel">
+                                <constraints>
+                                  <grid row="1" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <text value="Volume"/>
+                                </properties>
+                              </component>
+                              <component id="84dea" class="javax.swing.JLabel">
+                                <constraints>
+                                  <grid row="2" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <text value="Max Weight"/>
+                                </properties>
+                              </component>
+                              <component id="6099d" class="javax.swing.JLabel">
+                                <constraints>
+                                  <grid row="3" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <text value="Average Speed"/>
+                                </properties>
+                              </component>
+                              <component id="b93f6" class="javax.swing.JLabel">
+                                <constraints>
+                                  <grid row="4" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <text value="Length"/>
+                                </properties>
+                              </component>
+                              <component id="5ec5a" class="javax.swing.JLabel">
+                                <constraints>
+                                  <grid row="5" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <text value="Number Of Trailers"/>
+                                </properties>
+                              </component>
+                              <component id="29070" class="javax.swing.JComboBox" binding="NumberOfTrailers">
+                                <constraints>
+                                  <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties/>
+                              </component>
+                              <component id="4d550" class="javax.swing.JTextField" binding="Length">
+                                <constraints>
+                                  <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                    <preferred-size width="150" height="-1"/>
+                                  </grid>
+                                </constraints>
+                                <properties/>
+                              </component>
+                              <component id="e20c5" class="javax.swing.JTextField" binding="AverageSpeed">
+                                <constraints>
+                                  <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                    <preferred-size width="150" height="-1"/>
+                                  </grid>
+                                </constraints>
+                                <properties/>
+                              </component>
+                              <component id="ff066" class="javax.swing.JTextField" binding="MaxWeight">
+                                <constraints>
+                                  <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                    <preferred-size width="150" height="-1"/>
+                                  </grid>
+                                </constraints>
+                                <properties/>
+                              </component>
+                              <component id="bd2e" class="javax.swing.JTextField" binding="Volume">
+                                <constraints>
+                                  <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                    <preferred-size width="150" height="-1"/>
+                                  </grid>
+                                </constraints>
+                                <properties/>
+                              </component>
+                              <component id="b9fca" class="javax.swing.JTextField" binding="RegistrationNumber">
+                                <constraints>
+                                  <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
                                   </grid>
                                 </constraints>
@@ -188,17 +324,7 @@
                           </grid>
                         </children>
                       </grid>
-                      <grid id="331f4" binding="VehiclePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                        <margin top="0" left="0" bottom="0" right="0"/>
-                        <constraints>
-                          <tabbedpane title="Vehicle"/>
-                        </constraints>
-                        <properties/>
-                        <border type="none"/>
-                        <children/>
-                      </grid>
-                      <grid id="404e6" binding="FoodItemPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                        <margin top="0" left="0" bottom="0" right="0"/>
+                      <grid id="404e6" binding="FoodItemPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
                         <constraints>
                           <tabbedpane title="Food Item"/>
                         </constraints>

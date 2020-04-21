@@ -20,16 +20,31 @@ public class MainWindow extends JFrame {
     private JPanel StoreWarehousePanel;
     private JRadioButton StoreButton;
     private JRadioButton WarehouseButton;
-    private JPanel InformationPanel;
+    private JPanel Information1Panel;
     private JButton Delete;
     private JButton Create;
     private JButton Update;
     private JTextField NameField;
     private JTextField LocationField;
     private JTextField CapacityField;
+    private JRadioButton TruckButton;
+    private JRadioButton VanButton;
+    private JPanel TruckVanPanel;
+    private JPanel Information2Panel;
+    private JComboBox NumberOfTrailers;
+    private JTextField Length;
+    private JTextField AverageSpeed;
+    private JTextField MaxWeight;
+    private JTextField Volume;
+    private JTextField RegistrationNumber;
 
     public MainWindow()
     {
+        NumberOfTrailers.addItem("0");
+        NumberOfTrailers.addItem("1");
+        NumberOfTrailers.addItem("2");
+        NumberOfTrailers.addItem("3");
+
         CREATEUPDATEDELETEButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 ActionsCard.setVisible(false);
