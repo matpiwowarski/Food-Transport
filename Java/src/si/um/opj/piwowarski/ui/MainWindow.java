@@ -2,28 +2,33 @@ package si.um.opj.piwowarski.ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame {
 
     private JPanel mainPanel;
-    private JPanel Cards;
-    private JPanel Card1;
-    private JPanel Card2;
+    private JPanel cards;
+    private JPanel card1;
+    private JPanel card2;
     private JButton CREATEUPDATEDELETEButton;
     private JButton ACTIONSButton;
 
     public MainWindow()
     {
+        CREATEUPDATEDELETEButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                card1.setVisible(true);
+                card2.setVisible(false);
+            }
+        });
 
-    }
-
-    public MainWindow(String title)
-    {
-        super(title);
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setContentPane(mainPanel);
-        this.pack();
+        ACTIONSButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                card1.setVisible(false);
+                card2.setVisible(true);
+            }
+        });
     }
 
     public static void main(String[] args) {
