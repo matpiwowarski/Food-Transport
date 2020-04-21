@@ -6,6 +6,11 @@ import java.awt.*;
 public class MainWindow extends JFrame {
 
     private JPanel mainPanel;
+    private JPanel Cards;
+    private JPanel Card1;
+    private JPanel Card2;
+    private JButton CREATEUPDATEDELETEButton;
+    private JButton ACTIONSButton;
 
     public MainWindow()
     {
