@@ -8,25 +8,39 @@ import java.awt.event.ActionListener;
 public class MainWindow extends JFrame {
 
     private JPanel mainPanel;
-    private JPanel cards;
-    private JPanel card1;
-    private JPanel card2;
+    private JPanel Cards;
+    private JPanel ActionsCard;
+    private JPanel CUDCard;
     private JButton CREATEUPDATEDELETEButton;
     private JButton ACTIONSButton;
+    private JTabbedPane TabbedPane;
+    private JPanel BusinessFacilityPanel;
+    private JPanel VehiclePanel;
+    private JPanel FoodItemPanel;
+    private JPanel StoreWarehousePanel;
+    private JRadioButton StoreButton;
+    private JRadioButton WarehouseButton;
+    private JPanel InformationPanel;
+    private JButton Delete;
+    private JButton Create;
+    private JButton Update;
+    private JTextField NameField;
+    private JTextField LocationField;
+    private JTextField CapacityField;
 
     public MainWindow()
     {
         CREATEUPDATEDELETEButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                card1.setVisible(true);
-                card2.setVisible(false);
+                ActionsCard.setVisible(false);
+                CUDCard.setVisible(true);
             }
         });
 
         ACTIONSButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                card1.setVisible(false);
-                card2.setVisible(true);
+                ActionsCard.setVisible(true);
+                CUDCard.setVisible(false);
             }
         });
     }
