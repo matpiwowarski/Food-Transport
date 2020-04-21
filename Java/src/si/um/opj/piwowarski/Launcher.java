@@ -4,10 +4,8 @@ import si.um.opj.piwowarski.logic.*;
 import si.um.opj.piwowarski.logic.exception.CapacityExceededException;
 import si.um.opj.piwowarski.logic.exception.VolumeExceededException;
 import si.um.opj.piwowarski.logic.exception.FoodItemTypeException;
-import si.um.opj.piwowarski.logic.facility.*;
 import si.um.opj.piwowarski.logic.transport.*;
-
-import java.io.Console;
+import si.um.opj.piwowarski.ui.MainWindow;
 
 /**
  * User can run every methods here in main method
@@ -20,6 +18,10 @@ import java.io.Console;
 public class Launcher {
     public static void main(String[] args) {
 
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.setVisible(true);
+
+        /*
         // food items
         FoodItem orange = new FoodItem("Orange", 1, 10, java.time.LocalDate.now().plusYears(10), FoodItemType.FROZEN);
         FoodItem banana = new FoodItem("Banana", 1, 5, java.time.LocalDate.now().plusDays(10), FoodItemType.FROZEN);
@@ -131,6 +133,7 @@ public class Launcher {
         // WAREHOUSE AFTER LOADING FROZEN VAN
         System.out.println("WAREHOUSE AFTER LOADING FROZEN VAN:");
         printFoodItemsLabels(wareHouse.getFoodItems());
+        */
     }
 
     // additional
