@@ -37,6 +37,11 @@ public class MainWindow extends JFrame {
     private JTextField MaxWeight;
     private JTextField Volume;
     private JTextField RegistrationNumber;
+    private JComboBox FoodItemType;
+    private JTextField FoodItemExpirationDate;
+    private JTextField FoodItemWeight;
+    private JTextField FoodItemVolume;
+    private JTextField FoodItemLabel;
 
     public MainWindow()
     {
@@ -44,6 +49,9 @@ public class MainWindow extends JFrame {
         NumberOfTrailers.addItem("1");
         NumberOfTrailers.addItem("2");
         NumberOfTrailers.addItem("3");
+
+        FoodItemType.addItem("Fresh");
+        FoodItemType.addItem("Frozen");
 
         CREATEUPDATEDELETEButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
