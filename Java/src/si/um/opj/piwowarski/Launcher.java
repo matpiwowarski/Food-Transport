@@ -18,9 +18,6 @@ import si.um.opj.piwowarski.ui.MainWindow;
 public class Launcher {
     public static void main(String[] args) {
 
-        MainWindow mainWindow = new MainWindow();
-        mainWindow.setVisible(true);
-
         /*
         // food items
         FoodItem orange = new FoodItem("Orange", 1, 10, java.time.LocalDate.now().plusYears(10), FoodItemType.FROZEN);
