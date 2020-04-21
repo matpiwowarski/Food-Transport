@@ -42,9 +42,13 @@ public class MainWindow extends JFrame {
     private JTextField FoodItemWeight;
     private JTextField FoodItemVolume;
     private JTextField FoodItemLabel;
+    private JLabel CapacityLabel;
 
     public MainWindow()
     {
+        CapacityField.setVisible(false);
+        CapacityLabel.setVisible(false);
+
         NumberOfTrailers.addItem("0");
         NumberOfTrailers.addItem("1");
         NumberOfTrailers.addItem("2");
@@ -52,6 +56,9 @@ public class MainWindow extends JFrame {
 
         FoodItemType.addItem("Fresh");
         FoodItemType.addItem("Frozen");
+
+        TruckButton.doClick();
+        StoreButton.doClick();
 
         CREATEUPDATEDELETEButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -64,6 +71,36 @@ public class MainWindow extends JFrame {
             public void actionPerformed(ActionEvent actionEvent) {
                 ActionsCard.setVisible(true);
                 CUDCard.setVisible(false);
+            }
+        });
+        TruckButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // TRUCK
+            }
+        });
+        VanButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // VAN
+            }
+        });
+        StoreButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // STORE
+                WarehouseButton.setSelected(false);
+                CapacityField.setVisible(false);
+                CapacityLabel.setVisible(false);
+            }
+        });
+        WarehouseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // WAREHOUSE
+                StoreButton.setSelected(false);
+                CapacityField.setVisible(true);
+                CapacityLabel.setVisible(true);
             }
         });
     }
