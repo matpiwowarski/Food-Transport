@@ -31,7 +31,7 @@ public class MainWindow extends JFrame {
     private JRadioButton VanButton;
     private JPanel TruckVanPanel;
     private JPanel Information2Panel;
-    private JComboBox NumberOfTrailers;
+    private JComboBox ExtraVehicleField;
     private JTextField Length;
     private JTextField AverageSpeed;
     private JTextField MaxWeight;
@@ -43,16 +43,17 @@ public class MainWindow extends JFrame {
     private JTextField FoodItemVolume;
     private JTextField FoodItemLabel;
     private JLabel CapacityLabel;
+    private JLabel ExtraVehicleLabel;
 
     public MainWindow()
     {
         CapacityField.setVisible(false);
         CapacityLabel.setVisible(false);
 
-        NumberOfTrailers.addItem("0");
-        NumberOfTrailers.addItem("1");
-        NumberOfTrailers.addItem("2");
-        NumberOfTrailers.addItem("3");
+        ExtraVehicleField.addItem("0");
+        ExtraVehicleField.addItem("1");
+        ExtraVehicleField.addItem("2");
+        ExtraVehicleField.addItem("3");
 
         FoodItemType.addItem("Fresh");
         FoodItemType.addItem("Frozen");
@@ -77,12 +78,24 @@ public class MainWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 // TRUCK
+                VanButton.setSelected(false);
+                ExtraVehicleLabel.setText("Number Of Trailers");
+                ExtraVehicleField.removeAllItems();
+                ExtraVehicleField.addItem("0");
+                ExtraVehicleField.addItem("1");
+                ExtraVehicleField.addItem("2");
+                ExtraVehicleField.addItem("3");
             }
         });
         VanButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 // VAN
+                TruckButton.setSelected(false);
+                ExtraVehicleLabel.setText("Food Item Type");
+                ExtraVehicleField.removeAllItems();
+                ExtraVehicleField.addItem("Fresh");
+                ExtraVehicleField.addItem("Frozen");
             }
         });
         StoreButton.addActionListener(new ActionListener() {
