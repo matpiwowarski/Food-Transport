@@ -34,6 +34,9 @@ public class MainWindow extends JFrame {
         JFrame frame = new JFrame("MainWindow");
         // set the jframe height and width
         frame.setPreferredSize(new Dimension(width, height));
+        // center position of JFrame
+        frame.setLocation((screenSize.width - width)/2, (screenSize.height-height)/2);
+
         frame.setContentPane(new MainWindow().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
