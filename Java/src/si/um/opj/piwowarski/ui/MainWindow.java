@@ -78,6 +78,15 @@ public class MainWindow extends JFrame {
     private JLabel ExtraInfoLabel;
     private JButton SAVEButton1;
     private JButton DELETEButton1;
+    private JTabbedPane tabbedPane3;
+    private JTextField UpdateLabel;
+    private JTextField UpdateFoodVolume;
+    private JTextField UpdateWeight;
+    private JTextField UpdateExpirationDate;
+    private JComboBox UpdateType;
+    private JButton DELETEButton2;
+    private JButton SAVEButton2;
+    private JList FoodItemSelect;
 
     public MainWindow()
     {
@@ -101,6 +110,9 @@ public class MainWindow extends JFrame {
 
         FoodItemType.addItem("Fresh");
         FoodItemType.addItem("Frozen");
+
+        UpdateType.addItem("Fresh");
+        UpdateType.addItem("Frozen");
 
         LOADVANRadioButton.doClick();
         TruckButton.doClick();
@@ -217,6 +229,35 @@ public class MainWindow extends JFrame {
                 LOADTRUCKRadioButton1.setSelected(false);
                 LoadUnloadButton.setText("UNLOAD");
                 FromIntoLabel.setText("Into");
+            }
+        });
+        CreateFoodItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                FoodItemLabel.setText("");
+                FoodItemVolume.setText("");
+                FoodItemWeight.setText("");
+                FoodItemExpirationDate.setText("");
+                FoodItemType.setSelectedIndex(0);
+            }
+        });
+        CreateVehicleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                RegistrationNumber.setText("");
+                Volume.setText("");
+                MaxWeight.setText("");
+                AverageSpeed.setText("");
+                Length.setText("");
+                ExtraVehicleField.setSelectedIndex(0);
+            }
+        });
+        CreateBusinessFacilityButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                NameField.setText("");
+                LocationField.setText("");
+                CapacityField.setText("");
             }
         });
     }
