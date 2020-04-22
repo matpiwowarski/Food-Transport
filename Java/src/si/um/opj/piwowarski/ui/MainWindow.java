@@ -13,7 +13,7 @@ public class MainWindow extends JFrame {
     private JPanel CUDCard;
     private JButton CREATEUPDATEDELETEButton;
     private JButton ACTIONSButton;
-    private JTabbedPane TabbedPane;
+    private JTabbedPane CUDTabbedPane;
     private JPanel BusinessFacilityPanel;
     private JPanel VehiclePanel;
     private JPanel FoodItemPanel;
@@ -44,6 +44,20 @@ public class MainWindow extends JFrame {
     private JTextField FoodItemLabel;
     private JLabel CapacityLabel;
     private JLabel ExtraVehicleLabel;
+    private JTabbedPane ActionTabbedPane;
+    private JPanel AddFoodPanel;
+    private JPanel LoadVehiclePanel;
+    private JButton AddButton;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JRadioButton LOADVANRadioButton;
+    private JRadioButton UNLOADVANRadioButton;
+    private JButton LoadUnloadButton;
+    private JPanel LoadUnload;
+    private JTextField BusinessFacilityName;
+    private JTextField RegistrationNumberLoadUnload;
+    private JRadioButton LOADTRUCKRadioButton1;
+    private JRadioButton UNLOADTRUCKRadioButton1;
 
     public MainWindow()
     {
@@ -58,6 +72,7 @@ public class MainWindow extends JFrame {
         FoodItemType.addItem("Fresh");
         FoodItemType.addItem("Frozen");
 
+        LOADVANRadioButton.doClick();
         TruckButton.doClick();
         StoreButton.doClick();
 
@@ -114,6 +129,38 @@ public class MainWindow extends JFrame {
                 StoreButton.setSelected(false);
                 CapacityField.setVisible(true);
                 CapacityLabel.setVisible(true);
+            }
+        });
+        LOADVANRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                UNLOADVANRadioButton.setSelected(false);
+                LOADTRUCKRadioButton1.setSelected(false);
+                UNLOADTRUCKRadioButton1.setSelected(false);
+            }
+        });
+        UNLOADVANRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                LOADVANRadioButton.setSelected(false);
+                LOADTRUCKRadioButton1.setSelected(false);
+                UNLOADTRUCKRadioButton1.setSelected(false);
+            }
+        });
+        LOADTRUCKRadioButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                LOADVANRadioButton.setSelected(false);
+                UNLOADVANRadioButton.setSelected(false);
+                UNLOADTRUCKRadioButton1.setSelected(false);
+            }
+        });
+        UNLOADTRUCKRadioButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                LOADVANRadioButton.setSelected(false);
+                UNLOADVANRadioButton.setSelected(false);
+                LOADTRUCKRadioButton1.setSelected(false);
             }
         });
     }
