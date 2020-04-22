@@ -21,9 +21,6 @@ public class MainWindow extends JFrame {
     private JRadioButton StoreButton;
     private JRadioButton WarehouseButton;
     private JPanel Information1Panel;
-    private JButton Delete;
-    private JButton Create;
-    private JButton Update;
     private JTextField NameField;
     private JTextField LocationField;
     private JTextField CapacityField;
@@ -59,11 +56,25 @@ public class MainWindow extends JFrame {
     private JRadioButton LOADTRUCKRadioButton1;
     private JRadioButton UNLOADTRUCKRadioButton1;
     private JLabel FromIntoLabel;
+    private JButton CreateBusinessFacilityButton;
+    private JButton CreateVehicleButton;
+    private JButton CreateFoodItemButton;
+    private JTabbedPane tabbedPane1;
+    private JList BusinessFacilitySelect;
+    private JTextField NameUpdate;
+    private JTextField LocationUpdate;
+    private JTextField CapacityUpdate;
+    private JButton DELETEButton;
+    private JLabel CapacityUpdateLabel;
+    private JButton SAVEButton;
 
     public MainWindow()
     {
+
         CapacityField.setVisible(false);
         CapacityLabel.setVisible(false);
+        CapacityUpdate.setVisible(false);
+        CapacityUpdateLabel.setVisible(false);
 
         ExtraVehicleField.addItem("0");
         ExtraVehicleField.addItem("1");
@@ -121,6 +132,8 @@ public class MainWindow extends JFrame {
                 WarehouseButton.setSelected(false);
                 CapacityField.setVisible(false);
                 CapacityLabel.setVisible(false);
+                CapacityUpdate.setVisible(false);
+                CapacityUpdateLabel.setVisible(false);
             }
         });
         WarehouseButton.addActionListener(new ActionListener() {
@@ -130,6 +143,8 @@ public class MainWindow extends JFrame {
                 StoreButton.setSelected(false);
                 CapacityField.setVisible(true);
                 CapacityLabel.setVisible(true);
+                CapacityUpdate.setVisible(true);
+                CapacityUpdateLabel.setVisible(true);
             }
         });
         LOADVANRadioButton.addActionListener(new ActionListener() {
