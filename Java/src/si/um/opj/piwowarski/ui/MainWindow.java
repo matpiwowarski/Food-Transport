@@ -58,6 +58,7 @@ public class MainWindow extends JFrame {
     private JTextField RegistrationNumberLoadUnload;
     private JRadioButton LOADTRUCKRadioButton1;
     private JRadioButton UNLOADTRUCKRadioButton1;
+    private JLabel FromIntoLabel;
 
     public MainWindow()
     {
@@ -137,6 +138,8 @@ public class MainWindow extends JFrame {
                 UNLOADVANRadioButton.setSelected(false);
                 LOADTRUCKRadioButton1.setSelected(false);
                 UNLOADTRUCKRadioButton1.setSelected(false);
+                LoadUnloadButton.setText("LOAD");
+                FromIntoLabel.setText("From");
             }
         });
         UNLOADVANRadioButton.addActionListener(new ActionListener() {
@@ -145,6 +148,8 @@ public class MainWindow extends JFrame {
                 LOADVANRadioButton.setSelected(false);
                 LOADTRUCKRadioButton1.setSelected(false);
                 UNLOADTRUCKRadioButton1.setSelected(false);
+                LoadUnloadButton.setText("UNLOAD");
+                FromIntoLabel.setText("Into");
             }
         });
         LOADTRUCKRadioButton1.addActionListener(new ActionListener() {
@@ -153,6 +158,8 @@ public class MainWindow extends JFrame {
                 LOADVANRadioButton.setSelected(false);
                 UNLOADVANRadioButton.setSelected(false);
                 UNLOADTRUCKRadioButton1.setSelected(false);
+                LoadUnloadButton.setText("LOAD");
+                FromIntoLabel.setText("From");
             }
         });
         UNLOADTRUCKRadioButton1.addActionListener(new ActionListener() {
@@ -161,6 +168,8 @@ public class MainWindow extends JFrame {
                 LOADVANRadioButton.setSelected(false);
                 UNLOADVANRadioButton.setSelected(false);
                 LOADTRUCKRadioButton1.setSelected(false);
+                LoadUnloadButton.setText("UNLOAD");
+                FromIntoLabel.setText("Into");
             }
         });
     }
