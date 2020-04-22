@@ -45,14 +45,10 @@ public class MainWindow extends JFrame {
     private JPanel AddFoodPanel;
     private JPanel LoadVehiclePanel;
     private JButton AddButton;
-    private JTextField textField1;
-    private JTextField textField2;
     private JRadioButton LOADVANRadioButton;
     private JRadioButton UNLOADVANRadioButton;
     private JButton LoadUnloadButton;
     private JPanel LoadUnload;
-    private JTextField BusinessFacilityName;
-    private JTextField RegistrationNumberLoadUnload;
     private JRadioButton LOADTRUCKRadioButton1;
     private JRadioButton UNLOADTRUCKRadioButton1;
     private JLabel FromIntoLabel;
@@ -87,6 +83,10 @@ public class MainWindow extends JFrame {
     private JButton DELETEButton2;
     private JButton SAVEButton2;
     private JList FoodItemSelect;
+    private JList list1;
+    private JList list2;
+    private JList list3;
+    private JList list4;
 
     public MainWindow()
     {
