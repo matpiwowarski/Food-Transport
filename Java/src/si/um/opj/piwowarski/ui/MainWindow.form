@@ -575,7 +575,7 @@
                               </component>
                             </children>
                           </grid>
-                          <grid id="b479b" binding="Information2Panel" layout-manager="GridLayoutManager" row-count="7" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                          <grid id="b479b" binding="Information2Panel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                             <margin top="20" left="20" bottom="20" right="20"/>
                             <constraints border-constraint="Center"/>
                             <properties>
@@ -583,127 +583,308 @@
                             </properties>
                             <border type="none"/>
                             <children>
-                              <component id="25894" class="javax.swing.JLabel">
+                              <tabbedpane id="8e59" binding="tabbedPane2" default-binding="true">
                                 <constraints>
-                                  <grid row="0" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                                </constraints>
-                                <properties>
-                                  <font size="14"/>
-                                  <text value="Registration Number"/>
-                                </properties>
-                              </component>
-                              <component id="497e1" class="javax.swing.JLabel">
-                                <constraints>
-                                  <grid row="1" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                                </constraints>
-                                <properties>
-                                  <font size="14"/>
-                                  <text value="Volume"/>
-                                </properties>
-                              </component>
-                              <component id="84dea" class="javax.swing.JLabel">
-                                <constraints>
-                                  <grid row="2" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                                </constraints>
-                                <properties>
-                                  <font size="14"/>
-                                  <text value="Max Weight"/>
-                                </properties>
-                              </component>
-                              <component id="6099d" class="javax.swing.JLabel">
-                                <constraints>
-                                  <grid row="3" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                                </constraints>
-                                <properties>
-                                  <font size="14"/>
-                                  <text value="Average Speed"/>
-                                </properties>
-                              </component>
-                              <component id="b93f6" class="javax.swing.JLabel">
-                                <constraints>
-                                  <grid row="4" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                                </constraints>
-                                <properties>
-                                  <font size="14"/>
-                                  <text value="Length"/>
-                                </properties>
-                              </component>
-                              <component id="5ec5a" class="javax.swing.JLabel" binding="ExtraVehicleLabel">
-                                <constraints>
-                                  <grid row="5" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                                </constraints>
-                                <properties>
-                                  <font size="14"/>
-                                  <text value="Number Of Trailers"/>
-                                </properties>
-                              </component>
-                              <component id="29070" class="javax.swing.JComboBox" binding="ExtraVehicleField">
-                                <constraints>
-                                  <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-                                </constraints>
-                                <properties>
-                                  <font size="14"/>
-                                </properties>
-                              </component>
-                              <component id="4d550" class="javax.swing.JTextField" binding="Length">
-                                <constraints>
-                                  <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                                    <preferred-size width="150" height="-1"/>
+                                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                                    <preferred-size width="200" height="200"/>
                                   </grid>
                                 </constraints>
-                                <properties>
-                                  <font size="14"/>
-                                </properties>
-                              </component>
-                              <component id="e20c5" class="javax.swing.JTextField" binding="AverageSpeed">
-                                <constraints>
-                                  <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                                    <preferred-size width="150" height="-1"/>
+                                <properties/>
+                                <border type="none"/>
+                                <children>
+                                  <grid id="4eb05" layout-manager="GridLayoutManager" row-count="12" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                                    <margin top="0" left="0" bottom="0" right="0"/>
+                                    <constraints>
+                                      <tabbedpane title="CREATE"/>
+                                    </constraints>
+                                    <properties/>
+                                    <border type="none"/>
+                                    <children>
+                                      <component id="25894" class="javax.swing.JLabel">
+                                        <constraints>
+                                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                          <text value="Registration Number"/>
+                                        </properties>
+                                      </component>
+                                      <component id="b9fca" class="javax.swing.JTextField" binding="RegistrationNumber">
+                                        <constraints>
+                                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="-1"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                        </properties>
+                                      </component>
+                                      <component id="497e1" class="javax.swing.JLabel">
+                                        <constraints>
+                                          <grid row="1" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                          <text value="Volume"/>
+                                        </properties>
+                                      </component>
+                                      <component id="84dea" class="javax.swing.JLabel">
+                                        <constraints>
+                                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                          <text value="Max Weight"/>
+                                        </properties>
+                                      </component>
+                                      <component id="6099d" class="javax.swing.JLabel">
+                                        <constraints>
+                                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                          <text value="Average Speed"/>
+                                        </properties>
+                                      </component>
+                                      <component id="b93f6" class="javax.swing.JLabel">
+                                        <constraints>
+                                          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                          <text value="Length"/>
+                                        </properties>
+                                      </component>
+                                      <component id="5ec5a" class="javax.swing.JLabel" binding="ExtraVehicleLabel">
+                                        <constraints>
+                                          <grid row="6" column="0" row-span="5" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                          <text value="Number Of Trailers"/>
+                                        </properties>
+                                      </component>
+                                      <component id="dddc6" class="javax.swing.JButton" binding="CreateVehicleButton">
+                                        <constraints>
+                                          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="20"/>
+                                          <text value="CREATE"/>
+                                        </properties>
+                                      </component>
+                                      <component id="29070" class="javax.swing.JComboBox" binding="ExtraVehicleField">
+                                        <constraints>
+                                          <grid row="6" column="1" row-span="5" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                        </properties>
+                                      </component>
+                                      <component id="bd2e" class="javax.swing.JTextField" binding="Volume">
+                                        <constraints>
+                                          <grid row="1" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="-1"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                        </properties>
+                                      </component>
+                                      <component id="ff066" class="javax.swing.JTextField" binding="MaxWeight">
+                                        <constraints>
+                                          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="-1"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                        </properties>
+                                      </component>
+                                      <component id="e20c5" class="javax.swing.JTextField" binding="AverageSpeed">
+                                        <constraints>
+                                          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="-1"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                        </properties>
+                                      </component>
+                                      <component id="4d550" class="javax.swing.JTextField" binding="Length">
+                                        <constraints>
+                                          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="-1"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                        </properties>
+                                      </component>
+                                    </children>
                                   </grid>
-                                </constraints>
-                                <properties>
-                                  <font size="14"/>
-                                </properties>
-                              </component>
-                              <component id="ff066" class="javax.swing.JTextField" binding="MaxWeight">
-                                <constraints>
-                                  <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                                    <preferred-size width="150" height="-1"/>
+                                  <grid id="b737a" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                                    <margin top="0" left="0" bottom="0" right="0"/>
+                                    <constraints>
+                                      <tabbedpane title="UPDATE/DELETE"/>
+                                    </constraints>
+                                    <properties/>
+                                    <border type="none"/>
+                                    <children>
+                                      <component id="c24b9" class="javax.swing.JList" binding="VehicleSelect">
+                                        <constraints>
+                                          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="20"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <layoutOrientation value="1"/>
+                                          <model>
+                                            <item value="ONE"/>
+                                            <item value="TWO"/>
+                                            <item value="THREE"/>
+                                          </model>
+                                        </properties>
+                                      </component>
+                                      <component id="d3beb" class="javax.swing.JLabel">
+                                        <constraints>
+                                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                          <text value="Registration Number"/>
+                                        </properties>
+                                      </component>
+                                      <component id="7e249" class="javax.swing.JLabel">
+                                        <constraints>
+                                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                          <text value="Volume"/>
+                                        </properties>
+                                      </component>
+                                      <component id="2bd87" class="javax.swing.JLabel" binding="ExtraInfoLabel">
+                                        <constraints>
+                                          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                          <text value="Extra Info"/>
+                                        </properties>
+                                      </component>
+                                      <component id="b383c" class="javax.swing.JLabel">
+                                        <constraints>
+                                          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                          <text value="Length"/>
+                                        </properties>
+                                      </component>
+                                      <component id="69442" class="javax.swing.JLabel">
+                                        <constraints>
+                                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                          <text value="Average Speed"/>
+                                        </properties>
+                                      </component>
+                                      <component id="22807" class="javax.swing.JLabel">
+                                        <constraints>
+                                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                          <text value="Max Weight"/>
+                                        </properties>
+                                      </component>
+                                      <component id="413c0" class="javax.swing.JTextField" binding="UpdateRegistration">
+                                        <constraints>
+                                          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="-1"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                        </properties>
+                                      </component>
+                                      <component id="acca8" class="javax.swing.JTextField" binding="UpdateVolume">
+                                        <constraints>
+                                          <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="-1"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                        </properties>
+                                      </component>
+                                      <component id="b8c8" class="javax.swing.JTextField" binding="UpdateMaxWeight">
+                                        <constraints>
+                                          <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="-1"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                        </properties>
+                                      </component>
+                                      <component id="d4c02" class="javax.swing.JTextField" binding="UpdateAverageSpeed">
+                                        <constraints>
+                                          <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="-1"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                        </properties>
+                                      </component>
+                                      <component id="a315f" class="javax.swing.JTextField" binding="UpdateLength">
+                                        <constraints>
+                                          <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="-1"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                        </properties>
+                                      </component>
+                                      <component id="3956b" class="javax.swing.JComboBox" binding="UpdateExtraInfo">
+                                        <constraints>
+                                          <grid row="6" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="14"/>
+                                        </properties>
+                                      </component>
+                                      <component id="6840a" class="javax.swing.JButton" binding="DELETEButton1" default-binding="true">
+                                        <constraints>
+                                          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="20"/>
+                                          <text value="DELETE"/>
+                                        </properties>
+                                      </component>
+                                      <component id="18df9" class="javax.swing.JButton" binding="SAVEButton1" default-binding="true">
+                                        <constraints>
+                                          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <font size="20"/>
+                                          <text value="SAVE"/>
+                                        </properties>
+                                      </component>
+                                      <vspacer id="aa78a">
+                                        <constraints>
+                                          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                      </vspacer>
+                                    </children>
                                   </grid>
-                                </constraints>
-                                <properties>
-                                  <font size="14"/>
-                                </properties>
-                              </component>
-                              <component id="bd2e" class="javax.swing.JTextField" binding="Volume">
-                                <constraints>
-                                  <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                                    <preferred-size width="150" height="-1"/>
-                                  </grid>
-                                </constraints>
-                                <properties>
-                                  <font size="14"/>
-                                </properties>
-                              </component>
-                              <component id="b9fca" class="javax.swing.JTextField" binding="RegistrationNumber">
-                                <constraints>
-                                  <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                                    <preferred-size width="150" height="-1"/>
-                                  </grid>
-                                </constraints>
-                                <properties>
-                                  <font size="14"/>
-                                </properties>
-                              </component>
-                              <component id="dddc6" class="javax.swing.JButton" binding="CreateVehicleButton">
-                                <constraints>
-                                  <grid row="6" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                                </constraints>
-                                <properties>
-                                  <font size="20"/>
-                                  <text value="CREATE"/>
-                                </properties>
-                              </component>
+                                </children>
+                              </tabbedpane>
                             </children>
                           </grid>
                         </children>

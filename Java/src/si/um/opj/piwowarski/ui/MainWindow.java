@@ -67,6 +67,17 @@ public class MainWindow extends JFrame {
     private JButton DELETEButton;
     private JLabel CapacityUpdateLabel;
     private JButton SAVEButton;
+    private JTabbedPane tabbedPane2;
+    private JList VehicleSelect;
+    private JTextField UpdateRegistration;
+    private JTextField UpdateVolume;
+    private JTextField UpdateMaxWeight;
+    private JTextField UpdateAverageSpeed;
+    private JTextField UpdateLength;
+    private JComboBox UpdateExtraInfo;
+    private JLabel ExtraInfoLabel;
+    private JButton SAVEButton1;
+    private JButton DELETEButton1;
 
     public MainWindow()
     {
@@ -80,6 +91,13 @@ public class MainWindow extends JFrame {
         ExtraVehicleField.addItem("1");
         ExtraVehicleField.addItem("2");
         ExtraVehicleField.addItem("3");
+
+        ExtraInfoLabel.setText("Number Of Trailers");
+        UpdateExtraInfo.removeAllItems();
+        UpdateExtraInfo.addItem("0");
+        UpdateExtraInfo.addItem("1");
+        UpdateExtraInfo.addItem("2");
+        UpdateExtraInfo.addItem("3");
 
         FoodItemType.addItem("Fresh");
         FoodItemType.addItem("Frozen");
@@ -106,12 +124,20 @@ public class MainWindow extends JFrame {
             public void actionPerformed(ActionEvent actionEvent) {
                 // TRUCK
                 VanButton.setSelected(false);
+                // CREATE
                 ExtraVehicleLabel.setText("Number Of Trailers");
                 ExtraVehicleField.removeAllItems();
                 ExtraVehicleField.addItem("0");
                 ExtraVehicleField.addItem("1");
                 ExtraVehicleField.addItem("2");
                 ExtraVehicleField.addItem("3");
+                // UPDATE DELETE
+                ExtraInfoLabel.setText("Number Of Trailers");
+                UpdateExtraInfo.removeAllItems();
+                UpdateExtraInfo.addItem("0");
+                UpdateExtraInfo.addItem("1");
+                UpdateExtraInfo.addItem("2");
+                UpdateExtraInfo.addItem("3");
             }
         });
         VanButton.addActionListener(new ActionListener() {
@@ -119,10 +145,16 @@ public class MainWindow extends JFrame {
             public void actionPerformed(ActionEvent actionEvent) {
                 // VAN
                 TruckButton.setSelected(false);
+                // CREATE
                 ExtraVehicleLabel.setText("Food Item Type");
                 ExtraVehicleField.removeAllItems();
                 ExtraVehicleField.addItem("Fresh");
                 ExtraVehicleField.addItem("Frozen");
+                // UPDATE DELETE
+                ExtraInfoLabel.setText("Food Item Type");
+                UpdateExtraInfo.removeAllItems();
+                UpdateExtraInfo.addItem("Fresh");
+                UpdateExtraInfo.addItem("Frozen");
             }
         });
         StoreButton.addActionListener(new ActionListener() {
