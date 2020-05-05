@@ -244,32 +244,43 @@ public class MainWindow extends JFrame {
         CreateFoodItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String label = FoodItemLabel.getText();
-                double volume = Double.parseDouble(FoodItemVolume.getText());
-                double weight = Double.parseDouble(FoodItemWeight.getText());
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-                LocalDate expirationDate = LocalDate.parse(FoodItemExpirationDate.getText(), formatter);
-                si.um.opj.piwowarski.logic.FoodItemType type;
-                if(FoodItemType.getSelectedIndex() == 0)
+
+                if(FoodItemLabel.getText().length() > 0 &&
+                        FoodItemVolume.getText().length() > 0 &&
+                        FoodItemWeight.getText().length() > 0 &&
+                        FoodItemExpirationDate.getText().length() > 0
+                )
                 {
-                    type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
+                    String label = FoodItemLabel.getText();
+                    double volume = Double.parseDouble(FoodItemVolume.getText());
+                    double weight = Double.parseDouble(FoodItemWeight.getText());
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                    LocalDate expirationDate = LocalDate.parse(FoodItemExpirationDate.getText(), formatter);
+
+
+                    si.um.opj.piwowarski.logic.FoodItemType type;
+                    if(FoodItemType.getSelectedIndex() == 0)
+                    {
+                        type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
+                    }
+                    else
+                    {
+                        type = si.um.opj.piwowarski.logic.FoodItemType.FROZEN;
+                    }
+
+                    FoodItem foodItemToAdd = new FoodItem(label, volume, weight, expirationDate, type);
+
+                    // ADDING
+                    FoodItemArrayList.add(foodItemToAdd);
+                    foodItemModel.addElement(foodItemToAdd);
+
+                    // clear
+                    FoodItemLabel.setText("");
+                    FoodItemVolume.setText("");
+                    FoodItemWeight.setText("");
+                    FoodItemExpirationDate.setText("");
+                    FoodItemType.setSelectedIndex(0);
                 }
-                else
-                {
-                    type = si.um.opj.piwowarski.logic.FoodItemType.FROZEN;
-                }
-
-                FoodItem foodItemToAdd = new FoodItem(label, volume, weight, expirationDate, type);
-                FoodItemArrayList.add(foodItemToAdd);
-
-                foodItemModel.addElement(foodItemToAdd);
-
-                // clear
-                FoodItemLabel.setText("");
-                FoodItemVolume.setText("");
-                FoodItemWeight.setText("");
-                FoodItemExpirationDate.setText("");
-                FoodItemType.setSelectedIndex(0);
             }
         });
         CreateVehicleButton.addActionListener(new ActionListener() {
@@ -291,8 +302,43 @@ public class MainWindow extends JFrame {
                 CapacityField.setText("");
             }
         });
-        DELETEButton2.addActionListener(new DeleteFoodItemListener(FoodItemSelect));
+
+        DELETEButton2.addActionListener(new DeleteFoodItemListener(FoodItemSelect, FoodItemArrayList));
+
         FoodItemSelect.addListSelectionListener(new FoodItemLoadInfo());
+
+        SAVEButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (FoodItemSelect.getSelectedIndex() >= 0) {
+                    int index = FoodItemSelect.getSelectedIndex();
+                    FoodItem selectedItem = FoodItemArrayList.get(index);
+
+                    selectedItem.setLabel(UpdateLabel.getText());
+                    selectedItem.setVolume(Double.parseDouble(UpdateFoodVolume.getText()));
+                    selectedItem.setWeight(Double.parseDouble(UpdateWeight.getText()));
+                    selectedItem.setExpirationDate(java.time.LocalDate.parse(UpdateExpirationDate.getText()));
+
+                    if (UpdateType.getSelectedIndex() == 0) {
+                        selectedItem.setType(si.um.opj.piwowarski.logic.FoodItemType.FRESH);
+                    } else // FROZEN
+                    {
+                        selectedItem.setType(si.um.opj.piwowarski.logic.FoodItemType.FROZEN);
+                    }
+
+                    FoodItemSelect.setSelectedIndex(-1);
+                }
+                else
+                {
+                    // clear
+                    FoodItemLabel.setText("");
+                    FoodItemVolume.setText("");
+                    FoodItemWeight.setText("");
+                    FoodItemExpirationDate.setText("");
+                    FoodItemType.setSelectedIndex(0);
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -321,20 +367,23 @@ public class MainWindow extends JFrame {
 
         @Override
         public void valueChanged(ListSelectionEvent listSelectionEvent) {
-            int index = FoodItemSelect.getSelectedIndex();
-            FoodItem selectedItem = FoodItemArrayList.get(index);
+            if(FoodItemSelect.getSelectedIndex() >= 0)
+            {
+                int index = FoodItemSelect.getSelectedIndex();
+                FoodItem selectedItem = foodItemModel.get(index);
 
-            UpdateLabel.setText(selectedItem.getLabel());
-            UpdateFoodVolume.setText(String.valueOf(selectedItem.getVolume()));
-            UpdateWeight.setText(String.valueOf(selectedItem.getWeight()));
-            UpdateExpirationDate.setText(String.valueOf(selectedItem.getExpirationDate()));
-            if(selectedItem.getType() == si.um.opj.piwowarski.logic.FoodItemType.FRESH)
-            {
-                UpdateType.setSelectedIndex(0);
-            }
-            else // FROZEN
-            {
-                UpdateType.setSelectedIndex(1);
+                UpdateLabel.setText(selectedItem.getLabel());
+                UpdateFoodVolume.setText(String.valueOf(selectedItem.getVolume()));
+                UpdateWeight.setText(String.valueOf(selectedItem.getWeight()));
+                UpdateExpirationDate.setText(String.valueOf(selectedItem.getExpirationDate()));
+                if(selectedItem.getType() == si.um.opj.piwowarski.logic.FoodItemType.FRESH)
+                {
+                    UpdateType.setSelectedIndex(0);
+                }
+                else // FROZEN
+                {
+                    UpdateType.setSelectedIndex(1);
+                }
             }
         }
     }
