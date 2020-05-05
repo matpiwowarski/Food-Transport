@@ -29,7 +29,6 @@ public class MainWindow extends JFrame {
     private JPanel BusinessFacilityPanel;
     private JPanel VehiclePanel;
     private JPanel FoodItemPanel;
-    private JPanel StoreWarehousePanel;
     private JRadioButton StoreButton;
     private JRadioButton WarehouseButton;
     private JPanel Information1Panel;
@@ -103,6 +102,7 @@ public class MainWindow extends JFrame {
     private JList list4;
     private JComboBox LocationComboBox;
     private JComboBox LocationComboBoxUpdate;
+    private JPanel StoreWarehousePanel;
 
     public MainWindow()
     {
@@ -275,6 +275,7 @@ public class MainWindow extends JFrame {
         CreateBusinessFacilityButton.addActionListener(new AddBusinessFacility());
         DELETEButton.addActionListener(new DeleteBusinessFacilityListener(BusinessFacilitySelect, businessFacilityArrayList));
         BusinessFacilitySelect.addListSelectionListener(new BusinessFacilityLoadInfo());
+        SAVEButton.addActionListener(new UpdateBusinessFacility());
 
         // FOOD ITEM
         CreateFoodItemButton.addActionListener(new AddFoodItem());
@@ -305,6 +306,33 @@ public class MainWindow extends JFrame {
         frame.setVisible(true);
     }
 
+    class UpdateBusinessFacility implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            if (BusinessFacilitySelect.getSelectedIndex() >= 0) {
+                int index = BusinessFacilitySelect.getSelectedIndex();
+                BusinessFacility selectedItem = businessFacilityArrayList.get(index);
+
+                selectedItem.setName(NameUpdate.getText());
+                Location location = new Location();
+                if (LocationComboBoxUpdate.getSelectedIndex() == 0) {
+                    location = new Location("Katowice", "Poland");
+                } else if (LocationComboBoxUpdate.getSelectedIndex() == 1) {
+                    location = new Location("Maribor", "Slovenia");
+                } else if (LocationComboBoxUpdate.getSelectedIndex() == 2) {
+                    location = new Location("Ljubljana", "Slovenia");
+                } else {
+                    location = new Location("Paris", "France");
+                }
+                selectedItem.setLocation(location);
+
+                if (selectedItem instanceof Warehouse) {
+                    ((Warehouse) selectedItem).setFoodItems(new FoodItem[Integer.parseInt(CapacityUpdate.getText())]);
+                }
+            }
+        }
+    }
+
     class BusinessFacilityLoadInfo implements ListSelectionListener{
 
         @Override
@@ -316,32 +344,25 @@ public class MainWindow extends JFrame {
 
                 if(selectedItem instanceof Store)
                 {
-                    StoreButton.doClick();
-                    NameUpdate.setText(selectedItem.getName());
-                    if(selectedItem.getLocation().getCity() == "Katowice")
-                        LocationComboBoxUpdate.setSelectedIndex(0);
-                    else if(selectedItem.getLocation().getCity() == "Maribor")
-                        LocationComboBoxUpdate.setSelectedIndex(1);
-                    else if(selectedItem.getLocation().getCity() == "Ljubljana")
-                        LocationComboBoxUpdate.setSelectedIndex(2);
-                    else
-                        LocationComboBoxUpdate.setSelectedIndex(3);
+                    CapacityUpdate.setVisible(false);
+                    CapacityUpdateLabel.setVisible(false);
                 }
                 else
                 {
-                    WarehouseButton.doClick();
-                    NameUpdate.setText(selectedItem.getName());
-                    if(selectedItem.getLocation().getCity() == "Katowice")
-                        LocationComboBoxUpdate.setSelectedIndex(0);
-                    else if(selectedItem.getLocation().getCity() == "Maribor")
-                        LocationComboBoxUpdate.setSelectedIndex(1);
-                    else if(selectedItem.getLocation().getCity() == "Ljubljana")
-                        LocationComboBoxUpdate.setSelectedIndex(2);
-                    else
-                        LocationComboBoxUpdate.setSelectedIndex(3);
-
-                    CapacityUpdate.setText(String.valueOf(((Warehouse)selectedItem).getNumberOfFoodItems()));
+                    CapacityUpdate.setVisible(true);
+                    CapacityUpdateLabel.setVisible(true);
+                    CapacityUpdate.setText(String.valueOf(((Warehouse)selectedItem).getFoodItems().length));
                 }
+
+                NameUpdate.setText(selectedItem.getName());
+                if(selectedItem.getLocation().getCity() == "Katowice")
+                    LocationComboBoxUpdate.setSelectedIndex(0);
+                else if(selectedItem.getLocation().getCity() == "Maribor")
+                    LocationComboBoxUpdate.setSelectedIndex(1);
+                else if(selectedItem.getLocation().getCity() == "Ljubljana")
+                    LocationComboBoxUpdate.setSelectedIndex(2);
+                else
+                    LocationComboBoxUpdate.setSelectedIndex(3);
             }
         }
     }
@@ -437,13 +458,6 @@ public class MainWindow extends JFrame {
                 }
 
                 FoodItemSelect.setSelectedIndex(-1);
-            } else {
-                // clear
-                FoodItemLabel.setText("");
-                FoodItemVolume.setText("");
-                FoodItemWeight.setText("");
-                FoodItemExpirationDate.setText("");
-                FoodItemType.setSelectedIndex(0);
             }
         }
     }
