@@ -278,7 +278,7 @@ public class MainWindow extends JFrame {
 
         // VEHICLE
         CreateVehicleButton.addActionListener(new AddVehicle());
-
+        DELETEButton1.addActionListener(new DeleteVehicleListener(VehicleSelect, vehicleArrayList));
         // FOOD ITEM
         CreateFoodItemButton.addActionListener(new AddFoodItem());
         DELETEButton2.addActionListener(new DeleteFoodItemListener(FoodItemSelect, FoodItemArrayList));
