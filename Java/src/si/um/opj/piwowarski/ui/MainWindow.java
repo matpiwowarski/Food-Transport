@@ -274,6 +274,7 @@ public class MainWindow extends JFrame {
         // BUSINESS FACILITY
         CreateBusinessFacilityButton.addActionListener(new AddBusinessFacility());
         DELETEButton.addActionListener(new DeleteBusinessFacilityListener(BusinessFacilitySelect, businessFacilityArrayList));
+        BusinessFacilitySelect.addListSelectionListener(new BusinessFacilityLoadInfo());
 
         // FOOD ITEM
         CreateFoodItemButton.addActionListener(new AddFoodItem());
@@ -304,8 +305,48 @@ public class MainWindow extends JFrame {
         frame.setVisible(true);
     }
 
-    class AddBusinessFacility implements  ActionListener {
+    class BusinessFacilityLoadInfo implements ListSelectionListener{
 
+        @Override
+        public void valueChanged(ListSelectionEvent listSelectionEvent) {
+            if(BusinessFacilitySelect.getSelectedIndex() >= 0)
+            {
+                int index = BusinessFacilitySelect.getSelectedIndex();
+                BusinessFacility selectedItem = businessFacilityArrayList.get(index);
+
+                if(selectedItem instanceof Store)
+                {
+                    StoreButton.doClick();
+                    NameUpdate.setText(selectedItem.getName());
+                    if(selectedItem.getLocation().getCity() == "Katowice")
+                        LocationComboBoxUpdate.setSelectedIndex(0);
+                    else if(selectedItem.getLocation().getCity() == "Maribor")
+                        LocationComboBoxUpdate.setSelectedIndex(1);
+                    else if(selectedItem.getLocation().getCity() == "Ljubljana")
+                        LocationComboBoxUpdate.setSelectedIndex(2);
+                    else
+                        LocationComboBoxUpdate.setSelectedIndex(3);
+                }
+                else
+                {
+                    WarehouseButton.doClick();
+                    NameUpdate.setText(selectedItem.getName());
+                    if(selectedItem.getLocation().getCity() == "Katowice")
+                        LocationComboBoxUpdate.setSelectedIndex(0);
+                    else if(selectedItem.getLocation().getCity() == "Maribor")
+                        LocationComboBoxUpdate.setSelectedIndex(1);
+                    else if(selectedItem.getLocation().getCity() == "Ljubljana")
+                        LocationComboBoxUpdate.setSelectedIndex(2);
+                    else
+                        LocationComboBoxUpdate.setSelectedIndex(3);
+
+                    CapacityUpdate.setText(String.valueOf(((Warehouse)selectedItem).getNumberOfFoodItems()));
+                }
+            }
+        }
+    }
+
+    class AddBusinessFacility implements  ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             if(StoreButton.isSelected())
