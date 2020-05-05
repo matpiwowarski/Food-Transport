@@ -487,11 +487,7 @@
                                         </constraints>
                                         <properties>
                                           <layoutOrientation value="1"/>
-                                          <model>
-                                            <item value="ONE"/>
-                                            <item value="TWO"/>
-                                            <item value="THREE"/>
-                                          </model>
+                                          <model/>
                                         </properties>
                                       </component>
                                       <component id="9f5b" class="javax.swing.JLabel">
@@ -595,27 +591,6 @@
                         <properties/>
                         <border type="none"/>
                         <children>
-                          <grid id="da9aa" binding="TruckVanPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-                            <constraints border-constraint="North"/>
-                            <properties/>
-                            <border type="none"/>
-                            <children>
-                              <component id="4edae" class="javax.swing.JRadioButton" binding="TruckButton">
-                                <constraints/>
-                                <properties>
-                                  <font size="16"/>
-                                  <text value="Truck"/>
-                                </properties>
-                              </component>
-                              <component id="237a2" class="javax.swing.JRadioButton" binding="VanButton">
-                                <constraints/>
-                                <properties>
-                                  <font size="16"/>
-                                  <text value="Van"/>
-                                </properties>
-                              </component>
-                            </children>
-                          </grid>
                           <grid id="b479b" binding="Information2Panel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                             <margin top="20" left="20" bottom="20" right="20"/>
                             <constraints border-constraint="Center"/>
@@ -633,7 +608,7 @@
                                 <properties/>
                                 <border type="none"/>
                                 <children>
-                                  <grid id="4eb05" layout-manager="GridLayoutManager" row-count="12" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                                  <grid id="4eb05" layout-manager="GridLayoutManager" row-count="15" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                                     <margin top="10" left="10" bottom="10" right="10"/>
                                     <constraints>
                                       <tabbedpane title="CREATE"/>
@@ -643,7 +618,7 @@
                                     <children>
                                       <component id="25894" class="javax.swing.JLabel">
                                         <constraints>
-                                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                                         </constraints>
                                         <properties>
                                           <font size="14"/>
@@ -652,7 +627,7 @@
                                       </component>
                                       <component id="b9fca" class="javax.swing.JTextField" binding="RegistrationNumber">
                                         <constraints>
-                                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                             <preferred-size width="150" height="-1"/>
                                           </grid>
                                         </constraints>
@@ -662,7 +637,7 @@
                                       </component>
                                       <component id="497e1" class="javax.swing.JLabel">
                                         <constraints>
-                                          <grid row="1" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                          <grid row="3" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                                         </constraints>
                                         <properties>
                                           <font size="14"/>
@@ -671,7 +646,7 @@
                                       </component>
                                       <component id="84dea" class="javax.swing.JLabel">
                                         <constraints>
-                                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                                         </constraints>
                                         <properties>
                                           <font size="14"/>
@@ -680,7 +655,7 @@
                                       </component>
                                       <component id="6099d" class="javax.swing.JLabel">
                                         <constraints>
-                                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                                         </constraints>
                                         <properties>
                                           <font size="14"/>
@@ -689,7 +664,7 @@
                                       </component>
                                       <component id="b93f6" class="javax.swing.JLabel">
                                         <constraints>
-                                          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                                         </constraints>
                                         <properties>
                                           <font size="14"/>
@@ -698,7 +673,7 @@
                                       </component>
                                       <component id="5ec5a" class="javax.swing.JLabel" binding="ExtraVehicleLabel">
                                         <constraints>
-                                          <grid row="6" column="0" row-span="5" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                          <grid row="8" column="0" row-span="5" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                                         </constraints>
                                         <properties>
                                           <font size="14"/>
@@ -707,7 +682,7 @@
                                       </component>
                                       <component id="dddc6" class="javax.swing.JButton" binding="CreateVehicleButton">
                                         <constraints>
-                                          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                          <grid row="14" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                         </constraints>
                                         <properties>
                                           <font size="20"/>
@@ -716,7 +691,7 @@
                                       </component>
                                       <component id="29070" class="javax.swing.JComboBox" binding="ExtraVehicleField">
                                         <constraints>
-                                          <grid row="6" column="1" row-span="5" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                                          <grid row="8" column="1" row-span="5" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                                         </constraints>
                                         <properties>
                                           <font size="14"/>
@@ -724,7 +699,7 @@
                                       </component>
                                       <component id="bd2e" class="javax.swing.JTextField" binding="Volume">
                                         <constraints>
-                                          <grid row="1" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                          <grid row="3" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                             <preferred-size width="150" height="-1"/>
                                           </grid>
                                         </constraints>
@@ -734,7 +709,7 @@
                                       </component>
                                       <component id="ff066" class="javax.swing.JTextField" binding="MaxWeight">
                                         <constraints>
-                                          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                             <preferred-size width="150" height="-1"/>
                                           </grid>
                                         </constraints>
@@ -744,7 +719,7 @@
                                       </component>
                                       <component id="e20c5" class="javax.swing.JTextField" binding="AverageSpeed">
                                         <constraints>
-                                          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                             <preferred-size width="150" height="-1"/>
                                           </grid>
                                         </constraints>
@@ -754,7 +729,7 @@
                                       </component>
                                       <component id="4d550" class="javax.swing.JTextField" binding="Length">
                                         <constraints>
-                                          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                             <preferred-size width="150" height="-1"/>
                                           </grid>
                                         </constraints>
@@ -762,6 +737,39 @@
                                           <font size="14"/>
                                         </properties>
                                       </component>
+                                      <grid id="255a6" binding="TruckVanPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                                        <constraints>
+                                          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties/>
+                                        <border type="none"/>
+                                        <children>
+                                          <component id="1b8f5" class="javax.swing.JRadioButton" binding="TruckButton">
+                                            <constraints/>
+                                            <properties>
+                                              <font size="16"/>
+                                              <text value="Truck"/>
+                                            </properties>
+                                          </component>
+                                          <component id="abd4c" class="javax.swing.JRadioButton" binding="VanButton">
+                                            <constraints/>
+                                            <properties>
+                                              <font size="16"/>
+                                              <text value="Van"/>
+                                            </properties>
+                                          </component>
+                                        </children>
+                                      </grid>
+                                      <vspacer id="e3fc1">
+                                        <constraints>
+                                          <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                      </vspacer>
+                                      <vspacer id="e4d3d">
+                                        <constraints>
+                                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                      </vspacer>
                                     </children>
                                   </grid>
                                   <grid id="b737a" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -780,11 +788,7 @@
                                         </constraints>
                                         <properties>
                                           <layoutOrientation value="1"/>
-                                          <model>
-                                            <item value="ONE"/>
-                                            <item value="TWO"/>
-                                            <item value="THREE"/>
-                                          </model>
+                                          <model/>
                                         </properties>
                                       </component>
                                       <component id="d3beb" class="javax.swing.JLabel">

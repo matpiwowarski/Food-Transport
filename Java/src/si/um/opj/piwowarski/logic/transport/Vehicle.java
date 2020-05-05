@@ -263,12 +263,11 @@ public abstract class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "registrationNumber='" + registrationNumber + '\'' +
+        return "registrationNumber='" + registrationNumber + '\'' +
                 ", volume=" + volume +
                 ", maxWeight=" + maxWeight +
                 ", averageSpeed=" + averageSpeed +
-                ", cargo=" + Arrays.toString(cargo) +
+                ", cargoCount=" + cargo.length +
                 '}';
     }
 

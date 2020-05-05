@@ -88,8 +88,6 @@ public class Truck extends Vehicle {
 
     @Override
     public String toString() {
-        return "si.um.opj.piwowarski.logic.transport.Truck{" +
-                "numberOfTrailers=" + numberOfTrailers +
-                '}' + super.toString();
+        return "Truck{numberOfTrailers=" + numberOfTrailers + super.toString();
     }
 }

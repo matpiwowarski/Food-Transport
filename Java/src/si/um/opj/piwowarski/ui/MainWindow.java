@@ -6,6 +6,9 @@ import si.um.opj.piwowarski.logic.Location;
 import si.um.opj.piwowarski.logic.facility.BusinessFacility;
 import si.um.opj.piwowarski.logic.facility.Store;
 import si.um.opj.piwowarski.logic.facility.Warehouse;
+import si.um.opj.piwowarski.logic.transport.Truck;
+import si.um.opj.piwowarski.logic.transport.Van;
+import si.um.opj.piwowarski.logic.transport.Vehicle;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -36,7 +39,6 @@ public class MainWindow extends JFrame {
     private JTextField CapacityField;
     private JRadioButton TruckButton;
     private JRadioButton VanButton;
-    private JPanel TruckVanPanel;
     private JPanel Information2Panel;
     private JComboBox ExtraVehicleField;
     private JTextField Length;
@@ -66,14 +68,12 @@ public class MainWindow extends JFrame {
     private JButton CreateVehicleButton;
     private JButton CreateFoodItemButton;
     private JTabbedPane tabbedPane1;
-    private JList BusinessFacilitySelect;
     private JTextField NameUpdate;
     private JTextField CapacityUpdate;
     private JButton DELETEButton;
     private JLabel CapacityUpdateLabel;
     private JButton SAVEButton;
     private JTabbedPane tabbedPane2;
-    private JList VehicleSelect;
     private JTextField UpdateRegistration;
     private JTextField UpdateVolume;
     private JTextField UpdateMaxWeight;
@@ -91,11 +91,6 @@ public class MainWindow extends JFrame {
     private JComboBox UpdateType;
     private JButton DELETEButton2;
     private JButton SAVEButton2;
-    private DefaultListModel<BusinessFacility> businessFacilityModel = new DefaultListModel<BusinessFacility>();
-    private ArrayList<BusinessFacility> businessFacilityArrayList = new ArrayList<BusinessFacility>();
-    private DefaultListModel<FoodItem>  foodItemModel = new DefaultListModel<FoodItem>();
-    private ArrayList<FoodItem> FoodItemArrayList = new ArrayList<FoodItem>();
-    private JList FoodItemSelect;
     private JList list1;
     private JList list2;
     private JList list3;
@@ -103,11 +98,26 @@ public class MainWindow extends JFrame {
     private JComboBox LocationComboBox;
     private JComboBox LocationComboBoxUpdate;
     private JPanel StoreWarehousePanel;
+    private JPanel TruckVanPanel;
+    // DATA
+    // business facility
+    private DefaultListModel<BusinessFacility> businessFacilityModel = new DefaultListModel<BusinessFacility>();
+    private ArrayList<BusinessFacility> businessFacilityArrayList = new ArrayList<BusinessFacility>();
+    private JList BusinessFacilitySelect;
+    // vehicle
+    private DefaultListModel<Vehicle>  vehicleModel = new DefaultListModel<Vehicle>();
+    private ArrayList<Vehicle> vehicleArrayList = new ArrayList<Vehicle>();
+    private JList VehicleSelect;
+    // food item
+    private DefaultListModel<FoodItem>  foodItemModel = new DefaultListModel<FoodItem>();
+    private ArrayList<FoodItem> FoodItemArrayList = new ArrayList<FoodItem>();
+    private JList FoodItemSelect;
 
     public MainWindow()
     {
         BusinessFacilitySelect.setModel(businessFacilityModel);
         FoodItemSelect.setModel(foodItemModel);
+        VehicleSelect.setModel(vehicleModel);
 
         CapacityField.setVisible(false);
         CapacityLabel.setVisible(false);
@@ -259,23 +269,15 @@ public class MainWindow extends JFrame {
                 FromIntoLabel.setText("Into");
             }
         });
-        CreateVehicleButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                RegistrationNumber.setText("");
-                Volume.setText("");
-                MaxWeight.setText("");
-                AverageSpeed.setText("");
-                Length.setText("");
-                ExtraVehicleField.setSelectedIndex(0);
-            }
-        });
 
         // BUSINESS FACILITY
         CreateBusinessFacilityButton.addActionListener(new AddBusinessFacility());
         DELETEButton.addActionListener(new DeleteBusinessFacilityListener(BusinessFacilitySelect, businessFacilityArrayList));
         BusinessFacilitySelect.addListSelectionListener(new BusinessFacilityLoadInfo());
         SAVEButton.addActionListener(new UpdateBusinessFacility());
+
+        // VEHICLE
+        CreateVehicleButton.addActionListener(new AddVehicle());
 
         // FOOD ITEM
         CreateFoodItemButton.addActionListener(new AddFoodItem());
@@ -289,10 +291,9 @@ public class MainWindow extends JFrame {
         // get the screen size as a java dimension
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        // get 2/3 of the height, and 2/3 of the width
-        int height = screenSize.height * 2 / 3;
-        int width = screenSize.width * 2 / 3;
-
+        // get 3/4 of the height, and 4/5 of the width
+        int height = (int)(screenSize.height * 0.75);
+        int width = (int)(screenSize.width * 0.8);
 
         JFrame frame = new JFrame("MainWindow");
         // set the jframe height and width
@@ -304,6 +305,90 @@ public class MainWindow extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    class AddVehicle implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            if (TruckButton.isSelected()) {
+                if (RegistrationNumber.getText().length() > 0
+                && Volume.getText().length() > 0
+                && MaxWeight.getText().length() > 0
+                && AverageSpeed.getText().length() > 0
+                && Length.getText().length() > 0)
+                {
+                    String registration = RegistrationNumber.getText();
+                    double volume = Double.parseDouble(Volume.getText());
+                    double maxweight = Double.parseDouble(MaxWeight.getText());
+                    double averageSpeed = Double.parseDouble(AverageSpeed.getText());
+                    int length = Integer.parseInt(Length.getText());
+                    int numberOfTrailers = 0;
+                    if (ExtraVehicleField.getSelectedIndex() == 0)
+                    {
+                        numberOfTrailers = 0;
+                    }
+                    else if (ExtraVehicleField.getSelectedIndex() == 1)
+                    {
+                        numberOfTrailers = 1;
+                    }
+                    else if (ExtraVehicleField.getSelectedIndex() == 2)
+                    {
+                        numberOfTrailers = 2;
+                    }
+                    else if (ExtraVehicleField.getSelectedIndex() == 3)
+                    {
+                        numberOfTrailers = 3;
+                    }
+
+                    Truck truck = new Truck(registration, volume, maxweight, averageSpeed, length, numberOfTrailers);
+                    // ADDING
+                    vehicleArrayList.add(truck);
+                    vehicleModel.addElement(truck);
+                    // CLEAR
+                    RegistrationNumber.setText("");
+                    Volume.setText("");
+                    MaxWeight.setText("");
+                    AverageSpeed.setText("");
+                    Length.setText("");
+                    ExtraVehicleField.setSelectedIndex(0);
+                }
+            }
+            else if (VanButton.isSelected())
+            {
+                if (RegistrationNumber.getText().length() > 0
+                        && Volume.getText().length() > 0
+                        && MaxWeight.getText().length() > 0
+                        && AverageSpeed.getText().length() > 0
+                        && Length.getText().length() > 0) {
+                    String registration = RegistrationNumber.getText();
+                    double volume = Double.parseDouble(Volume.getText());
+                    double maxweight = Double.parseDouble(MaxWeight.getText());
+                    double averageSpeed = Double.parseDouble(AverageSpeed.getText());
+                    int length = Integer.parseInt(Length.getText());
+                    si.um.opj.piwowarski.logic.FoodItemType type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
+                    if (ExtraVehicleField.getSelectedIndex() == 0)
+                    {
+                        type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
+                    }
+                    else
+                    {
+                        type = si.um.opj.piwowarski.logic.FoodItemType.FROZEN;
+                    }
+
+                    Van van = new Van(registration, volume, maxweight, averageSpeed, length, type);
+                    // ADDING
+                    vehicleArrayList.add(van);
+                    vehicleModel.addElement(van);
+                    // CLEAR
+                    RegistrationNumber.setText("");
+                    Volume.setText("");
+                    MaxWeight.setText("");
+                    AverageSpeed.setText("");
+                    Length.setText("");
+                    ExtraVehicleField.setSelectedIndex(0);
+                }
+            }
+        }
     }
 
     class UpdateBusinessFacility implements ActionListener {
@@ -334,7 +419,6 @@ public class MainWindow extends JFrame {
     }
 
     class BusinessFacilityLoadInfo implements ListSelectionListener{
-
         @Override
         public void valueChanged(ListSelectionEvent listSelectionEvent) {
             if(BusinessFacilitySelect.getSelectedIndex() >= 0)
