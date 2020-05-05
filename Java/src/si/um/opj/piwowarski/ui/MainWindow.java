@@ -105,16 +105,15 @@ public class MainWindow extends JFrame {
     private ArrayList<BusinessFacility> businessFacilityArrayList = new ArrayList<BusinessFacility>();
     private JList BusinessFacilitySelect;
     // vehicle
-    private DefaultListModel<Vehicle>  vehicleModel = new DefaultListModel<Vehicle>();
+    private DefaultListModel<Vehicle> vehicleModel = new DefaultListModel<Vehicle>();
     private ArrayList<Vehicle> vehicleArrayList = new ArrayList<Vehicle>();
     private JList VehicleSelect;
     // food item
-    private DefaultListModel<FoodItem>  foodItemModel = new DefaultListModel<FoodItem>();
+    private DefaultListModel<FoodItem> foodItemModel = new DefaultListModel<FoodItem>();
     private ArrayList<FoodItem> FoodItemArrayList = new ArrayList<FoodItem>();
     private JList FoodItemSelect;
 
-    public MainWindow()
-    {
+    public MainWindow() {
         BusinessFacilitySelect.setModel(businessFacilityModel);
         FoodItemSelect.setModel(foodItemModel);
         VehicleSelect.setModel(vehicleModel);
@@ -279,6 +278,7 @@ public class MainWindow extends JFrame {
         // VEHICLE
         CreateVehicleButton.addActionListener(new AddVehicle());
         DELETEButton1.addActionListener(new DeleteVehicleListener(VehicleSelect, vehicleArrayList));
+        VehicleSelect.addListSelectionListener(new VehicleLoadInfo());
         // FOOD ITEM
         CreateFoodItemButton.addActionListener(new AddFoodItem());
         DELETEButton2.addActionListener(new DeleteFoodItemListener(FoodItemSelect, FoodItemArrayList));
@@ -292,14 +292,14 @@ public class MainWindow extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         // get 3/4 of the height, and 4/5 of the width
-        int height = (int)(screenSize.height * 0.75);
-        int width = (int)(screenSize.width * 0.8);
+        int height = (int) (screenSize.height * 0.75);
+        int width = (int) (screenSize.width * 0.8);
 
         JFrame frame = new JFrame("MainWindow");
         // set the jframe height and width
         frame.setPreferredSize(new Dimension(width, height));
         // center position of JFrame
-        frame.setLocation((screenSize.width - width)/2, (screenSize.height-height)/2);
+        frame.setLocation((screenSize.width - width) / 2, (screenSize.height - height) / 2);
 
         frame.setContentPane(new MainWindow().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -307,36 +307,85 @@ public class MainWindow extends JFrame {
         frame.setVisible(true);
     }
 
+    class VehicleLoadInfo implements ListSelectionListener {
+        @Override
+        public void valueChanged(ListSelectionEvent listSelectionEvent) {
+            if (VehicleSelect.getSelectedIndex() >= 0) {
+                int index = VehicleSelect.getSelectedIndex();
+                Vehicle selectedItem = vehicleArrayList.get(index);
+
+                if (selectedItem instanceof Truck) {
+                    ExtraInfoLabel.setText("Number Of Trailers");
+                    UpdateExtraInfo.removeAllItems();
+                    UpdateExtraInfo.addItem("0");
+                    UpdateExtraInfo.addItem("1");
+                    UpdateExtraInfo.addItem("2");
+                    UpdateExtraInfo.addItem("3");
+
+                    if(((Truck)selectedItem).getNumberOfTrailers() == 0)
+                    {
+                        UpdateExtraInfo.setSelectedIndex(0);
+                    }
+                    else if (((Truck)selectedItem).getNumberOfTrailers() == 1)
+                    {
+                        UpdateExtraInfo.setSelectedIndex(1);
+                    }
+                    else if (((Truck)selectedItem).getNumberOfTrailers() == 2)
+                    {
+                        UpdateExtraInfo.setSelectedIndex(2);
+                    }
+                    else
+                    {
+                        UpdateExtraInfo.setSelectedIndex(3);
+                    }
+
+                } else {
+                    ExtraInfoLabel.setText("Food Item Type");
+                    UpdateExtraInfo.removeAllItems();
+                    UpdateExtraInfo.addItem("Fresh");
+                    UpdateExtraInfo.addItem("Frozen");
+
+                    if(((Van)selectedItem).getFoodItemType() == si.um.opj.piwowarski.logic.FoodItemType.FRESH)
+                    {
+                        UpdateExtraInfo.setSelectedIndex(0);
+                    }
+                    else
+                    {
+                        UpdateExtraInfo.setSelectedIndex(1);
+                    }
+                }
+
+                UpdateRegistration.setText(selectedItem.getRegistrationNumber());
+                UpdateVolume.setText(String.valueOf(selectedItem.getVolume()));
+                UpdateMaxWeight.setText(String.valueOf(selectedItem.getMaxWeight()));
+                UpdateAverageSpeed.setText(String.valueOf(selectedItem.getAverageSpeed()));
+                UpdateLength.setText(String.valueOf(selectedItem.getCargo().length));
+            }
+        }
+    }
+
     class AddVehicle implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             if (TruckButton.isSelected()) {
                 if (RegistrationNumber.getText().length() > 0
-                && Volume.getText().length() > 0
-                && MaxWeight.getText().length() > 0
-                && AverageSpeed.getText().length() > 0
-                && Length.getText().length() > 0)
-                {
+                        && Volume.getText().length() > 0
+                        && MaxWeight.getText().length() > 0
+                        && AverageSpeed.getText().length() > 0
+                        && Length.getText().length() > 0) {
                     String registration = RegistrationNumber.getText();
                     double volume = Double.parseDouble(Volume.getText());
                     double maxweight = Double.parseDouble(MaxWeight.getText());
                     double averageSpeed = Double.parseDouble(AverageSpeed.getText());
                     int length = Integer.parseInt(Length.getText());
                     int numberOfTrailers = 0;
-                    if (ExtraVehicleField.getSelectedIndex() == 0)
-                    {
+                    if (ExtraVehicleField.getSelectedIndex() == 0) {
                         numberOfTrailers = 0;
-                    }
-                    else if (ExtraVehicleField.getSelectedIndex() == 1)
-                    {
+                    } else if (ExtraVehicleField.getSelectedIndex() == 1) {
                         numberOfTrailers = 1;
-                    }
-                    else if (ExtraVehicleField.getSelectedIndex() == 2)
-                    {
+                    } else if (ExtraVehicleField.getSelectedIndex() == 2) {
                         numberOfTrailers = 2;
-                    }
-                    else if (ExtraVehicleField.getSelectedIndex() == 3)
-                    {
+                    } else if (ExtraVehicleField.getSelectedIndex() == 3) {
                         numberOfTrailers = 3;
                     }
 
@@ -352,9 +401,7 @@ public class MainWindow extends JFrame {
                     Length.setText("");
                     ExtraVehicleField.setSelectedIndex(0);
                 }
-            }
-            else if (VanButton.isSelected())
-            {
+            } else if (VanButton.isSelected()) {
                 if (RegistrationNumber.getText().length() > 0
                         && Volume.getText().length() > 0
                         && MaxWeight.getText().length() > 0
@@ -366,12 +413,9 @@ public class MainWindow extends JFrame {
                     double averageSpeed = Double.parseDouble(AverageSpeed.getText());
                     int length = Integer.parseInt(Length.getText());
                     si.um.opj.piwowarski.logic.FoodItemType type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
-                    if (ExtraVehicleField.getSelectedIndex() == 0)
-                    {
+                    if (ExtraVehicleField.getSelectedIndex() == 0) {
                         type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
-                    }
-                    else
-                    {
+                    } else {
                         type = si.um.opj.piwowarski.logic.FoodItemType.FROZEN;
                     }
 
