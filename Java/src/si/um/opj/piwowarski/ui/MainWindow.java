@@ -270,10 +270,10 @@ public class MainWindow extends JFrame {
                 ExtraVehicleField.setSelectedIndex(0);
             }
         });
-        CreateBusinessFacilityButton.addActionListener(new AddBusinessFacility());
 
         // BUSINESS FACILITY
-
+        CreateBusinessFacilityButton.addActionListener(new AddBusinessFacility());
+        DELETEButton.addActionListener(new DeleteBusinessFacilityListener(BusinessFacilitySelect, businessFacilityArrayList));
 
         // FOOD ITEM
         CreateFoodItemButton.addActionListener(new AddFoodItem());
@@ -421,7 +421,6 @@ public class MainWindow extends JFrame {
                 double weight = Double.parseDouble(FoodItemWeight.getText());
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
                 LocalDate expirationDate = LocalDate.parse(FoodItemExpirationDate.getText(), formatter);
-
 
                 si.um.opj.piwowarski.logic.FoodItemType type;
                 if (FoodItemType.getSelectedIndex() == 0) {
