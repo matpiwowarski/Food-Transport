@@ -90,7 +90,7 @@ public class MainWindow extends JFrame {
     private JComboBox UpdateType;
     private JButton DELETEButton2;
     private JButton SAVEButton2;
-    private DefaultListModel<FoodItem> foodItemModel;
+    private DefaultListModel<FoodItem>  foodItemModel = new DefaultListModel<FoodItem>();
     private ArrayList<FoodItem> FoodItemArrayList = new ArrayList<FoodItem>();
     private JList FoodItemSelect;
     private JList list1;
@@ -100,6 +100,7 @@ public class MainWindow extends JFrame {
 
     public MainWindow()
     {
+        FoodItemSelect.setModel(foodItemModel);
         CapacityField.setVisible(false);
         CapacityLabel.setVisible(false);
         CapacityUpdate.setVisible(false);
@@ -261,15 +262,7 @@ public class MainWindow extends JFrame {
                 FoodItem foodItemToAdd = new FoodItem(label, volume, weight, expirationDate, type);
                 FoodItemArrayList.add(foodItemToAdd);
 
-                foodItemModel = new DefaultListModel<FoodItem>();
-
-                for(FoodItem item : FoodItemArrayList)
-                {
-                    foodItemModel.addElement(item);
-                }
-
-                FoodItemSelect.setModel(foodItemModel);
-                FoodItemSelect.setSelectedIndex(0);
+                foodItemModel.addElement(foodItemToAdd);
 
                 // clear
                 FoodItemLabel.setText("");
@@ -328,7 +321,21 @@ public class MainWindow extends JFrame {
 
         @Override
         public void valueChanged(ListSelectionEvent listSelectionEvent) {
+            int index = FoodItemSelect.getSelectedIndex();
+            FoodItem selectedItem = FoodItemArrayList.get(index);
 
+            UpdateLabel.setText(selectedItem.getLabel());
+            UpdateFoodVolume.setText(String.valueOf(selectedItem.getVolume()));
+            UpdateWeight.setText(String.valueOf(selectedItem.getWeight()));
+            UpdateExpirationDate.setText(String.valueOf(selectedItem.getExpirationDate()));
+            if(selectedItem.getType() == si.um.opj.piwowarski.logic.FoodItemType.FRESH)
+            {
+                UpdateType.setSelectedIndex(0);
+            }
+            else // FROZEN
+            {
+                UpdateType.setSelectedIndex(1);
+            }
         }
     }
 }
