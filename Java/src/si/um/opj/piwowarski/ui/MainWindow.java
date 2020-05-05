@@ -34,7 +34,6 @@ public class MainWindow extends JFrame {
     private JRadioButton WarehouseButton;
     private JPanel Information1Panel;
     private JTextField NameField;
-    private JTextField LocationField;
     private JTextField CapacityField;
     private JRadioButton TruckButton;
     private JRadioButton VanButton;
@@ -70,7 +69,6 @@ public class MainWindow extends JFrame {
     private JTabbedPane tabbedPane1;
     private JList BusinessFacilitySelect;
     private JTextField NameUpdate;
-    private JTextField LocationUpdate;
     private JTextField CapacityUpdate;
     private JButton DELETEButton;
     private JLabel CapacityUpdateLabel;
@@ -103,6 +101,8 @@ public class MainWindow extends JFrame {
     private JList list2;
     private JList list3;
     private JList list4;
+    private JComboBox LocationComboBox;
+    private JComboBox LocationComboBoxUpdate;
 
     public MainWindow()
     {
@@ -113,6 +113,16 @@ public class MainWindow extends JFrame {
         CapacityLabel.setVisible(false);
         CapacityUpdate.setVisible(false);
         CapacityUpdateLabel.setVisible(false);
+
+        LocationComboBox.addItem("Katowice (POL)");
+        LocationComboBox.addItem("Maribor (SLV)");
+        LocationComboBox.addItem("Ljubljana (SLV)");
+        LocationComboBox.addItem("Paris (FRA)");
+
+        LocationComboBoxUpdate.addItem("Katowice (POL)");
+        LocationComboBoxUpdate.addItem("Maribor (SLV)");
+        LocationComboBoxUpdate.addItem("Ljubljana (SLV)");
+        LocationComboBoxUpdate.addItem("Paris (FRA)");
 
         ExtraVehicleField.addItem("0");
         ExtraVehicleField.addItem("1");
@@ -300,29 +310,58 @@ public class MainWindow extends JFrame {
         public void actionPerformed(ActionEvent actionEvent) {
             if(StoreButton.isSelected())
             {
-                if (NameField.getText().length() > 0 && LocationField.getText().length() > 0)
+                if (NameField.getText().length() > 0)
                 {
                     String name = NameField.getText();
-                    String locationString = LocationField.getText();
-                    Location location = new Location(locationString);
+                    Location location = new Location();
+                    if(LocationComboBox.getSelectedIndex() == 0)
+                    {
+                        location = new Location("Katowice", "Poland");
+                    }
+                    else if(LocationComboBox.getSelectedIndex() == 1)
+                    {
+                        location = new Location("Maribor", "Slovenia");
+                    }
+                    else if(LocationComboBox.getSelectedIndex() == 2)
+                    {
+                        location = new Location("Ljubljana", "Slovenia");
+                    }
+                    else
+                    {
+                        location = new Location("Paris", "France");
+                    }
                     Store store = new Store(name, location);
                     // ADDING
                     businessFacilityArrayList.add(store);
                     businessFacilityModel.addElement(store);
                     // CLEAR
                     NameField.setText("");
-                    LocationField.setText("");
+                    LocationComboBox.setSelectedIndex(0);
                     CapacityField.setText("");
                 }
             }
             else if(WarehouseButton.isSelected())
             {
-                if (NameField.getText().length() > 0 && LocationField.getText().length() > 0
-                && CapacityField.getText().length() > 0)
+                if (NameField.getText().length() > 0 && CapacityField.getText().length() > 0)
                 {
                     String name = NameField.getText();
-                    String locationString = LocationField.getText();
-                    Location location = new Location(locationString);
+                    Location location = new Location();
+                    if(LocationComboBox.getSelectedIndex() == 0)
+                    {
+                        location = new Location("Katowice", "Poland");
+                    }
+                    else if(LocationComboBox.getSelectedIndex() == 1)
+                    {
+                        location = new Location("Maribor", "Slovenia");
+                    }
+                    else if(LocationComboBox.getSelectedIndex() == 2)
+                    {
+                        location = new Location("Ljubljana", "Slovenia");
+                    }
+                    else
+                    {
+                        location = new Location("Paris", "France");
+                    }
                     int capacity = Integer.parseInt(CapacityField.getText());
                     Warehouse warehouse = new Warehouse(name, location, capacity);
                     // ADDING
@@ -330,7 +369,7 @@ public class MainWindow extends JFrame {
                     businessFacilityModel.addElement(warehouse);
                     // CLEAR
                     NameField.setText("");
-                    LocationField.setText("");
+                    LocationComboBox.setSelectedIndex(0);
                     CapacityField.setText("");
                 }
             }
