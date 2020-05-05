@@ -4,11 +4,14 @@ import si.um.opj.piwowarski.logic.FoodItem;
 import si.um.opj.piwowarski.logic.FoodItemType;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class MainWindow extends JFrame {
 
@@ -87,6 +90,8 @@ public class MainWindow extends JFrame {
     private JComboBox UpdateType;
     private JButton DELETEButton2;
     private JButton SAVEButton2;
+    private DefaultListModel<FoodItem> foodItemModel;
+    private ArrayList<FoodItem> FoodItemArrayList = new ArrayList<FoodItem>();
     private JList FoodItemSelect;
     private JList list1;
     private JList list2;
@@ -254,9 +259,17 @@ public class MainWindow extends JFrame {
                 }
 
                 FoodItem foodItemToAdd = new FoodItem(label, volume, weight, expirationDate, type);
-                DefaultListModel model = new DefaultListModel();
-                model.addElement(foodItemToAdd);
-                FoodItemSelect.setModel(model);
+                FoodItemArrayList.add(foodItemToAdd);
+
+                foodItemModel = new DefaultListModel<FoodItem>();
+
+                for(FoodItem item : FoodItemArrayList)
+                {
+                    foodItemModel.addElement(item);
+                }
+
+                FoodItemSelect.setModel(foodItemModel);
+                FoodItemSelect.setSelectedIndex(0);
 
                 // clear
                 FoodItemLabel.setText("");
@@ -286,7 +299,7 @@ public class MainWindow extends JFrame {
             }
         });
         DELETEButton2.addActionListener(new DeleteFoodItemListener(FoodItemSelect));
-
+        FoodItemSelect.addListSelectionListener(new FoodItemLoadInfo());
     }
 
     public static void main(String[] args) {
@@ -309,6 +322,14 @@ public class MainWindow extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    class FoodItemLoadInfo implements ListSelectionListener{
+
+        @Override
+        public void valueChanged(ListSelectionEvent listSelectionEvent) {
+
+        }
     }
 }
 
