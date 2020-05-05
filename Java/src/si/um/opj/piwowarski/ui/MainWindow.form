@@ -1172,11 +1172,7 @@
                                     </constraints>
                                     <properties>
                                       <layoutOrientation value="1"/>
-                                      <model>
-                                        <item value="ONE"/>
-                                        <item value="TWO"/>
-                                        <item value="THREE"/>
-                                      </model>
+                                      <model/>
                                     </properties>
                                   </component>
                                   <vspacer id="12f09">

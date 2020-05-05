@@ -6,11 +6,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class IndependentFoodItemListener implements ActionListener {
+public class DeleteFoodItemListener implements ActionListener {
 
     private JList<FoodItem> foodItemJList;
 
-    public IndependentFoodItemListener(JList<FoodItem> foodItemJList)
+    public DeleteFoodItemListener(JList<FoodItem> foodItemJList)
     {
         this.foodItemJList = foodItemJList;
     }

@@ -1,9 +1,14 @@
 package si.um.opj.piwowarski.ui;
 
+import si.um.opj.piwowarski.logic.FoodItem;
+import si.um.opj.piwowarski.logic.FoodItemType;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class MainWindow extends JFrame {
 
@@ -90,7 +95,6 @@ public class MainWindow extends JFrame {
 
     public MainWindow()
     {
-
         CapacityField.setVisible(false);
         CapacityLabel.setVisible(false);
         CapacityUpdate.setVisible(false);
@@ -234,6 +238,27 @@ public class MainWindow extends JFrame {
         CreateFoodItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                String label = FoodItemLabel.getText();
+                double volume = Double.parseDouble(FoodItemVolume.getText());
+                double weight = Double.parseDouble(FoodItemWeight.getText());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                LocalDate expirationDate = LocalDate.parse(FoodItemExpirationDate.getText(), formatter);
+                si.um.opj.piwowarski.logic.FoodItemType type;
+                if(FoodItemType.getSelectedIndex() == 0)
+                {
+                    type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
+                }
+                else
+                {
+                    type = si.um.opj.piwowarski.logic.FoodItemType.FROZEN;
+                }
+
+                FoodItem foodItemToAdd = new FoodItem(label, volume, weight, expirationDate, type);
+                DefaultListModel model = new DefaultListModel();
+                model.addElement(foodItemToAdd);
+                FoodItemSelect.setModel(model);
+
+                // clear
                 FoodItemLabel.setText("");
                 FoodItemVolume.setText("");
                 FoodItemWeight.setText("");
@@ -260,6 +285,8 @@ public class MainWindow extends JFrame {
                 CapacityField.setText("");
             }
         });
+        DELETEButton2.addActionListener(new DeleteFoodItemListener(FoodItemSelect));
+
     }
 
     public static void main(String[] args) {
