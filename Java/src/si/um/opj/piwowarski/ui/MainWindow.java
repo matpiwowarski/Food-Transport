@@ -279,6 +279,8 @@ public class MainWindow extends JFrame {
         CreateVehicleButton.addActionListener(new AddVehicle());
         DELETEButton1.addActionListener(new DeleteVehicleListener(VehicleSelect, vehicleArrayList));
         VehicleSelect.addListSelectionListener(new VehicleLoadInfo());
+        SAVEButton1.addActionListener(new UpdateVehicle());
+
         // FOOD ITEM
         CreateFoodItemButton.addActionListener(new AddFoodItem());
         DELETEButton2.addActionListener(new DeleteFoodItemListener(FoodItemSelect, FoodItemArrayList));
@@ -305,6 +307,41 @@ public class MainWindow extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    class UpdateVehicle implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            if (VehicleSelect.getSelectedIndex() >= 0) {
+                int index = VehicleSelect.getSelectedIndex();
+                Vehicle selectedItem = vehicleArrayList.get(index);
+
+                selectedItem.setRegistrationNumber(UpdateRegistration.getText());
+                selectedItem.setVolume(Double.parseDouble(UpdateVolume.getText()));
+                selectedItem.setMaxWeight(Double.parseDouble(UpdateMaxWeight.getText()));
+                selectedItem.setAverageSpeed(Double.parseDouble(UpdateAverageSpeed.getText()));
+                selectedItem.setCargo(new FoodItem[Integer.parseInt(UpdateLength.getText())]);
+
+                if (selectedItem instanceof Truck) {
+                    if (UpdateExtraInfo.getSelectedIndex() == 0) {
+                        ((Truck) selectedItem).setNumberOfTrailers(0);
+                    } else if (UpdateExtraInfo.getSelectedIndex() == 1) {
+                        ((Truck) selectedItem).setNumberOfTrailers(1);
+                    } else if (UpdateExtraInfo.getSelectedIndex() == 2) {
+                        ((Truck) selectedItem).setNumberOfTrailers(2);
+                    } else {
+                        ((Truck) selectedItem).setNumberOfTrailers(3);
+                    }
+                } else // Van
+                {
+                    if (UpdateExtraInfo.getSelectedIndex() == 0) {
+                        ((Van) selectedItem).setFoodItemType(si.um.opj.piwowarski.logic.FoodItemType.FRESH);
+                    } else {
+                        ((Van) selectedItem).setFoodItemType(si.um.opj.piwowarski.logic.FoodItemType.FROZEN);
+                    }
+                }
+            }
+        }
     }
 
     class VehicleLoadInfo implements ListSelectionListener {
