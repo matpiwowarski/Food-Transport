@@ -46,6 +46,6 @@ public class Store extends BusinessFacility implements Transportable {
 
     @Override
     public String toString() {
-        return "Store{}" + super.toString();
+        return "Store{" + super.toString();
     }
 }

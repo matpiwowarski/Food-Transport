@@ -22,6 +22,11 @@ public class Location {
 
     }
 
+    public Location(String locationString)
+    {
+        this.city = locationString;
+    }
+
     /**
      * Create si.um.opj.piwowarski.logic.Location with name of city and name of country
      * @param city name of city
@@ -73,7 +78,7 @@ public class Location {
      */
     @Override
     public String toString() {
-        return "si.um.opj.piwowarski.logic.Location{" +
+        return "Location{" +
                 "city='" + city + '\'' +
                 ", country='" + country + '\'' +
                 '}';

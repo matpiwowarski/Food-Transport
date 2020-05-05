@@ -48,8 +48,7 @@ public class BusinessFacility {
 
     @Override
     public String toString() {
-        return "BusinessFacility{" +
-                "name='" + name + '\'' +
+        return "name='" + name + '\'' +
                 ", location=" + location +
                 '}';
     }

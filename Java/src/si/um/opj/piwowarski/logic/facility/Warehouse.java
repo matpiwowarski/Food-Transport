@@ -245,7 +245,9 @@ public class Warehouse extends BusinessFacility implements Transportable{
     @Override
     public String toString() {
         return "Warehouse{" +
-                "foodItems=" + Arrays.toString(foodItems) +
-                '}' + super.toString();
+                " name='" + name + '\'' +
+                ", location=" + location +
+                "foodItemsCount=" + foodItems.length +
+        '}';
     }
 }

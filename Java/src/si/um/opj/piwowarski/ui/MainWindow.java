@@ -2,6 +2,10 @@ package si.um.opj.piwowarski.ui;
 
 import si.um.opj.piwowarski.logic.FoodItem;
 import si.um.opj.piwowarski.logic.FoodItemType;
+import si.um.opj.piwowarski.logic.Location;
+import si.um.opj.piwowarski.logic.facility.BusinessFacility;
+import si.um.opj.piwowarski.logic.facility.Store;
+import si.um.opj.piwowarski.logic.facility.Warehouse;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -90,6 +94,8 @@ public class MainWindow extends JFrame {
     private JComboBox UpdateType;
     private JButton DELETEButton2;
     private JButton SAVEButton2;
+    private DefaultListModel<BusinessFacility> businessFacilityModel = new DefaultListModel<BusinessFacility>();
+    private ArrayList<BusinessFacility> businessFacilityArrayList = new ArrayList<BusinessFacility>();
     private DefaultListModel<FoodItem>  foodItemModel = new DefaultListModel<FoodItem>();
     private ArrayList<FoodItem> FoodItemArrayList = new ArrayList<FoodItem>();
     private JList FoodItemSelect;
@@ -100,7 +106,9 @@ public class MainWindow extends JFrame {
 
     public MainWindow()
     {
+        BusinessFacilitySelect.setModel(businessFacilityModel);
         FoodItemSelect.setModel(foodItemModel);
+
         CapacityField.setVisible(false);
         CapacityLabel.setVisible(false);
         CapacityUpdate.setVisible(false);
@@ -241,48 +249,6 @@ public class MainWindow extends JFrame {
                 FromIntoLabel.setText("Into");
             }
         });
-        CreateFoodItemButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-                if(FoodItemLabel.getText().length() > 0 &&
-                        FoodItemVolume.getText().length() > 0 &&
-                        FoodItemWeight.getText().length() > 0 &&
-                        FoodItemExpirationDate.getText().length() > 0
-                )
-                {
-                    String label = FoodItemLabel.getText();
-                    double volume = Double.parseDouble(FoodItemVolume.getText());
-                    double weight = Double.parseDouble(FoodItemWeight.getText());
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-                    LocalDate expirationDate = LocalDate.parse(FoodItemExpirationDate.getText(), formatter);
-
-
-                    si.um.opj.piwowarski.logic.FoodItemType type;
-                    if(FoodItemType.getSelectedIndex() == 0)
-                    {
-                        type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
-                    }
-                    else
-                    {
-                        type = si.um.opj.piwowarski.logic.FoodItemType.FROZEN;
-                    }
-
-                    FoodItem foodItemToAdd = new FoodItem(label, volume, weight, expirationDate, type);
-
-                    // ADDING
-                    FoodItemArrayList.add(foodItemToAdd);
-                    foodItemModel.addElement(foodItemToAdd);
-
-                    // clear
-                    FoodItemLabel.setText("");
-                    FoodItemVolume.setText("");
-                    FoodItemWeight.setText("");
-                    FoodItemExpirationDate.setText("");
-                    FoodItemType.setSelectedIndex(0);
-                }
-            }
-        });
         CreateVehicleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -294,51 +260,16 @@ public class MainWindow extends JFrame {
                 ExtraVehicleField.setSelectedIndex(0);
             }
         });
-        CreateBusinessFacilityButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                NameField.setText("");
-                LocationField.setText("");
-                CapacityField.setText("");
-            }
-        });
+        CreateBusinessFacilityButton.addActionListener(new AddBusinessFacility());
 
+        // BUSINESS FACILITY
+
+
+        // FOOD ITEM
+        CreateFoodItemButton.addActionListener(new AddFoodItem());
         DELETEButton2.addActionListener(new DeleteFoodItemListener(FoodItemSelect, FoodItemArrayList));
-
         FoodItemSelect.addListSelectionListener(new FoodItemLoadInfo());
-
-        SAVEButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if (FoodItemSelect.getSelectedIndex() >= 0) {
-                    int index = FoodItemSelect.getSelectedIndex();
-                    FoodItem selectedItem = FoodItemArrayList.get(index);
-
-                    selectedItem.setLabel(UpdateLabel.getText());
-                    selectedItem.setVolume(Double.parseDouble(UpdateFoodVolume.getText()));
-                    selectedItem.setWeight(Double.parseDouble(UpdateWeight.getText()));
-                    selectedItem.setExpirationDate(java.time.LocalDate.parse(UpdateExpirationDate.getText()));
-
-                    if (UpdateType.getSelectedIndex() == 0) {
-                        selectedItem.setType(si.um.opj.piwowarski.logic.FoodItemType.FRESH);
-                    } else // FROZEN
-                    {
-                        selectedItem.setType(si.um.opj.piwowarski.logic.FoodItemType.FROZEN);
-                    }
-
-                    FoodItemSelect.setSelectedIndex(-1);
-                }
-                else
-                {
-                    // clear
-                    FoodItemLabel.setText("");
-                    FoodItemVolume.setText("");
-                    FoodItemWeight.setText("");
-                    FoodItemExpirationDate.setText("");
-                    FoodItemType.setSelectedIndex(0);
-                }
-            }
-        });
+        SAVEButton2.addActionListener(new UpdateFoodItem());
     }
 
     public static void main(String[] args) {
@@ -363,6 +294,120 @@ public class MainWindow extends JFrame {
         frame.setVisible(true);
     }
 
+    class AddBusinessFacility implements  ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            if(StoreButton.isSelected())
+            {
+                if (NameField.getText().length() > 0 && LocationField.getText().length() > 0)
+                {
+                    String name = NameField.getText();
+                    String locationString = LocationField.getText();
+                    Location location = new Location(locationString);
+                    Store store = new Store(name, location);
+                    // ADDING
+                    businessFacilityArrayList.add(store);
+                    businessFacilityModel.addElement(store);
+                    // CLEAR
+                    NameField.setText("");
+                    LocationField.setText("");
+                    CapacityField.setText("");
+                }
+            }
+            else if(WarehouseButton.isSelected())
+            {
+                if (NameField.getText().length() > 0 && LocationField.getText().length() > 0
+                && CapacityField.getText().length() > 0)
+                {
+                    String name = NameField.getText();
+                    String locationString = LocationField.getText();
+                    Location location = new Location(locationString);
+                    int capacity = Integer.parseInt(CapacityField.getText());
+                    Warehouse warehouse = new Warehouse(name, location, capacity);
+                    // ADDING
+                    businessFacilityArrayList.add(warehouse);
+                    businessFacilityModel.addElement(warehouse);
+                    // CLEAR
+                    NameField.setText("");
+                    LocationField.setText("");
+                    CapacityField.setText("");
+                }
+            }
+        }
+    }
+
+    class UpdateFoodItem implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            if (FoodItemSelect.getSelectedIndex() >= 0) {
+                int index = FoodItemSelect.getSelectedIndex();
+                FoodItem selectedItem = FoodItemArrayList.get(index);
+
+                selectedItem.setLabel(UpdateLabel.getText());
+                selectedItem.setVolume(Double.parseDouble(UpdateFoodVolume.getText()));
+                selectedItem.setWeight(Double.parseDouble(UpdateWeight.getText()));
+                selectedItem.setExpirationDate(java.time.LocalDate.parse(UpdateExpirationDate.getText()));
+
+                if (UpdateType.getSelectedIndex() == 0) {
+                    selectedItem.setType(si.um.opj.piwowarski.logic.FoodItemType.FRESH);
+                } else // FROZEN
+                {
+                    selectedItem.setType(si.um.opj.piwowarski.logic.FoodItemType.FROZEN);
+                }
+
+                FoodItemSelect.setSelectedIndex(-1);
+            } else {
+                // clear
+                FoodItemLabel.setText("");
+                FoodItemVolume.setText("");
+                FoodItemWeight.setText("");
+                FoodItemExpirationDate.setText("");
+                FoodItemType.setSelectedIndex(0);
+            }
+        }
+    }
+
+    class AddFoodItem implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            if (FoodItemLabel.getText().length() > 0 &&
+                    FoodItemVolume.getText().length() > 0 &&
+                    FoodItemWeight.getText().length() > 0 &&
+                    FoodItemExpirationDate.getText().length() > 0
+            ) {
+                String label = FoodItemLabel.getText();
+                double volume = Double.parseDouble(FoodItemVolume.getText());
+                double weight = Double.parseDouble(FoodItemWeight.getText());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                LocalDate expirationDate = LocalDate.parse(FoodItemExpirationDate.getText(), formatter);
+
+
+                si.um.opj.piwowarski.logic.FoodItemType type;
+                if (FoodItemType.getSelectedIndex() == 0) {
+                    type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
+                } else {
+                    type = si.um.opj.piwowarski.logic.FoodItemType.FROZEN;
+                }
+
+                FoodItem foodItemToAdd = new FoodItem(label, volume, weight, expirationDate, type);
+
+                // ADDING
+                FoodItemArrayList.add(foodItemToAdd);
+                foodItemModel.addElement(foodItemToAdd);
+
+                // clear
+                FoodItemLabel.setText("");
+                FoodItemVolume.setText("");
+                FoodItemWeight.setText("");
+                FoodItemExpirationDate.setText("");
+                FoodItemType.setSelectedIndex(0);
+            }
+        }
+    }
+
+
     class FoodItemLoadInfo implements ListSelectionListener{
 
         @Override
@@ -370,7 +415,7 @@ public class MainWindow extends JFrame {
             if(FoodItemSelect.getSelectedIndex() >= 0)
             {
                 int index = FoodItemSelect.getSelectedIndex();
-                FoodItem selectedItem = foodItemModel.get(index);
+                FoodItem selectedItem = FoodItemArrayList.get(index);
 
                 UpdateLabel.setText(selectedItem.getLabel());
                 UpdateFoodVolume.setText(String.valueOf(selectedItem.getVolume()));
