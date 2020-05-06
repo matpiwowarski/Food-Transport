@@ -1,7 +1,6 @@
 package si.um.opj.piwowarski.ui;
 
 import si.um.opj.piwowarski.logic.FoodItem;
-import si.um.opj.piwowarski.logic.FoodItemType;
 import si.um.opj.piwowarski.logic.Location;
 import si.um.opj.piwowarski.logic.facility.BusinessFacility;
 import si.um.opj.piwowarski.logic.facility.Store;
@@ -57,10 +56,9 @@ public class MainWindow extends JFrame {
     private JPanel AddFoodPanel;
     private JPanel LoadVehiclePanel;
     private JButton AddButton;
-    private JRadioButton LOADVANRadioButton;
-    private JRadioButton UNLOADVANRadioButton;
+    private JRadioButton LoadButton;
+    private JRadioButton UnloadButton;
     private JButton LoadUnloadButton;
-    private JPanel LoadUnload;
     private JRadioButton LOADTRUCKRadioButton1;
     private JRadioButton UNLOADTRUCKRadioButton1;
     private JLabel FromIntoLabel;
@@ -118,10 +116,14 @@ public class MainWindow extends JFrame {
 
     public MainWindow() {
         BusinessFacilitySelect.setModel(businessFacilityModel);
+        BusinessFacilityJList.setModel(businessFacilityModel);
+
         FoodItemSelect.setModel(foodItemModel);
         FoodItemJList.setModel(foodItemModel);
+
         VehicleSelect.setModel(vehicleModel);
         WarehouseJList.setModel(warehouseModel);
+        VehicleJList.setModel(vehicleModel);
 
         CapacityField.setVisible(false);
         CapacityLabel.setVisible(false);
@@ -156,7 +158,6 @@ public class MainWindow extends JFrame {
         UpdateType.addItem("Fresh");
         UpdateType.addItem("Frozen");
 
-        LOADVANRadioButton.doClick();
         TruckButton.doClick();
         StoreButton.doClick();
 
@@ -233,46 +234,6 @@ public class MainWindow extends JFrame {
                 CapacityUpdateLabel.setVisible(true);
             }
         });
-        LOADVANRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                UNLOADVANRadioButton.setSelected(false);
-                LOADTRUCKRadioButton1.setSelected(false);
-                UNLOADTRUCKRadioButton1.setSelected(false);
-                LoadUnloadButton.setText("LOAD");
-                FromIntoLabel.setText("From");
-            }
-        });
-        UNLOADVANRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                LOADVANRadioButton.setSelected(false);
-                LOADTRUCKRadioButton1.setSelected(false);
-                UNLOADTRUCKRadioButton1.setSelected(false);
-                LoadUnloadButton.setText("UNLOAD");
-                FromIntoLabel.setText("Into");
-            }
-        });
-        LOADTRUCKRadioButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                LOADVANRadioButton.setSelected(false);
-                UNLOADVANRadioButton.setSelected(false);
-                UNLOADTRUCKRadioButton1.setSelected(false);
-                LoadUnloadButton.setText("LOAD");
-                FromIntoLabel.setText("From");
-            }
-        });
-        UNLOADTRUCKRadioButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                LOADVANRadioButton.setSelected(false);
-                UNLOADVANRadioButton.setSelected(false);
-                LOADTRUCKRadioButton1.setSelected(false);
-                LoadUnloadButton.setText("UNLOAD");
-                FromIntoLabel.setText("Into");
-            }
-        });
 
         // BUSINESS FACILITY
         CreateBusinessFacilityButton.addActionListener(new AddBusinessFacility());
@@ -292,7 +253,10 @@ public class MainWindow extends JFrame {
         DELETEButton2.addActionListener(new DeleteFoodItemListener(FoodItemSelect, FoodItemArrayList));
         FoodItemSelect.addListSelectionListener(new FoodItemLoadInfo());
         SAVEButton2.addActionListener(new UpdateFoodItem());
+
+        // ACTIONS
         AddButton.addActionListener(new AddFoodItemToWarehouseListener(WarehouseJList, warehouses, FoodItemJList, FoodItemArrayList));
+        LoadUnloadButton.addActionListener(new LoadUnloadVehicleListener(VehicleJList, BusinessFacilityJList));
     }
 
     public static void main(String[] args) {

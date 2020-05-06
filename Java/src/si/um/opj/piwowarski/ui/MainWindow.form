@@ -86,7 +86,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <grid id="1f5e" binding="AddFoodPanel" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                      <grid id="1f5e" binding="AddFoodPanel" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="20" left="20" bottom="20" right="20"/>
                         <constraints>
                           <tabbedpane title="Add food into warehouse"/>
@@ -96,7 +96,7 @@
                         <children>
                           <component id="32f67" class="javax.swing.JButton" binding="AddButton">
                             <constraints>
-                              <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                              <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
                               <background color="-12828863"/>
@@ -110,7 +110,7 @@
                             </constraints>
                             <properties>
                               <font size="28"/>
-                              <text value="Add"/>
+                              <text value="ADD"/>
                               <verticalTextPosition value="3"/>
                             </properties>
                           </component>
@@ -120,18 +120,13 @@
                             </constraints>
                             <properties>
                               <font size="28"/>
-                              <text value="Into"/>
+                              <text value="INTO"/>
                               <verticalTextPosition value="3"/>
                             </properties>
                           </component>
-                          <vspacer id="444c9">
-                            <constraints>
-                              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                            </constraints>
-                          </vspacer>
                           <scrollpane id="8de4e">
                             <constraints>
-                              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                              <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties/>
                             <border type="none"/>
@@ -148,7 +143,7 @@
                           </scrollpane>
                           <scrollpane id="2f09f">
                             <constraints>
-                              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                              <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties/>
                             <border type="none"/>
@@ -183,7 +178,7 @@
                           </component>
                         </children>
                       </grid>
-                      <grid id="30eb0" binding="LoadVehiclePanel" layout-manager="GridLayoutManager" row-count="9" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                      <grid id="30eb0" binding="LoadVehiclePanel" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="20" left="20" bottom="20" right="20"/>
                         <constraints>
                           <tabbedpane title="Load/Unload vehicle"/>
@@ -193,82 +188,16 @@
                         <children>
                           <component id="84527" class="javax.swing.JButton" binding="LoadUnloadButton">
                             <constraints>
-                              <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
                               <font size="36"/>
-                              <text value="Load"/>
+                              <text value="LOAD/UNLOAD"/>
                             </properties>
                           </component>
-                          <component id="74d5c" class="javax.swing.JLabel" binding="FromIntoLabel">
-                            <constraints>
-                              <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                            </constraints>
-                            <properties>
-                              <font size="28"/>
-                              <text value="FROM"/>
-                            </properties>
-                          </component>
-                          <grid id="d91ba" binding="LoadUnload" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-                            <constraints>
-                              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                            </constraints>
-                            <properties/>
-                            <border type="none"/>
-                            <children>
-                              <component id="371d7" class="javax.swing.JRadioButton" binding="LOADVANRadioButton" default-binding="true">
-                                <constraints/>
-                                <properties>
-                                  <font size="14"/>
-                                  <text value="LOAD VAN"/>
-                                </properties>
-                              </component>
-                              <component id="25229" class="javax.swing.JRadioButton" binding="UNLOADVANRadioButton" default-binding="true">
-                                <constraints/>
-                                <properties>
-                                  <font size="14"/>
-                                  <text value="UNLOAD VAN"/>
-                                </properties>
-                              </component>
-                              <component id="bca11" class="javax.swing.JRadioButton" binding="LOADTRUCKRadioButton1" default-binding="true">
-                                <constraints/>
-                                <properties>
-                                  <font size="14"/>
-                                  <text value="LOAD TRUCK"/>
-                                </properties>
-                              </component>
-                              <component id="26229" class="javax.swing.JRadioButton" binding="UNLOADTRUCKRadioButton1" default-binding="true">
-                                <constraints/>
-                                <properties>
-                                  <font size="14"/>
-                                  <text value="UNLOAD TRUCK"/>
-                                </properties>
-                              </component>
-                            </children>
-                          </grid>
-                          <vspacer id="61f35">
-                            <constraints>
-                              <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                            </constraints>
-                          </vspacer>
-                          <vspacer id="59a9b">
-                            <constraints>
-                              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                            </constraints>
-                          </vspacer>
-                          <vspacer id="6a81c">
-                            <constraints>
-                              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                            </constraints>
-                          </vspacer>
-                          <vspacer id="46b90">
-                            <constraints>
-                              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                            </constraints>
-                          </vspacer>
                           <scrollpane id="2d3e7">
                             <constraints>
-                              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties/>
                             <border type="none"/>
@@ -285,7 +214,7 @@
                           </scrollpane>
                           <component id="cc756" class="javax.swing.JLabel">
                             <constraints>
-                              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
                               <font size="20"/>
@@ -294,7 +223,7 @@
                           </component>
                           <scrollpane id="d350c">
                             <constraints>
-                              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties/>
                             <border type="none"/>
@@ -311,11 +240,30 @@
                           </scrollpane>
                           <component id="fce86" class="javax.swing.JLabel">
                             <constraints>
-                              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
                               <font size="20"/>
                               <text value="Vehicle"/>
+                            </properties>
+                          </component>
+                          <component id="b3317" class="javax.swing.JLabel">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <font size="28"/>
+                              <horizontalAlignment value="0"/>
+                              <text value="LOAD/UNLOAD"/>
+                            </properties>
+                          </component>
+                          <component id="74d5c" class="javax.swing.JLabel" binding="FromIntoLabel">
+                            <constraints>
+                              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <font size="28"/>
+                              <text value="FROM/INTO"/>
                             </properties>
                           </component>
                         </children>
@@ -475,7 +423,7 @@
                                       </vspacer>
                                     </children>
                                   </grid>
-                                  <grid id="2a1a9" layout-manager="GridLayoutManager" row-count="7" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                                  <grid id="2a1a9" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                                     <margin top="10" left="10" bottom="10" right="10"/>
                                     <constraints>
                                       <tabbedpane title="UPDATE/DELETE"/>
@@ -540,7 +488,7 @@
                                       </component>
                                       <component id="3f82e" class="javax.swing.JButton" binding="DELETEButton" default-binding="true">
                                         <constraints>
-                                          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                         </constraints>
                                         <properties>
                                           <font size="20"/>
@@ -549,18 +497,13 @@
                                       </component>
                                       <component id="9b4a0" class="javax.swing.JButton" binding="SAVEButton">
                                         <constraints>
-                                          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                         </constraints>
                                         <properties>
                                           <font size="20"/>
                                           <text value="SAVE"/>
                                         </properties>
                                       </component>
-                                      <vspacer id="5b9f0">
-                                        <constraints>
-                                          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                                        </constraints>
-                                      </vspacer>
                                       <component id="9bdf5" class="javax.swing.JComboBox" binding="LocationComboBoxUpdate">
                                         <constraints>
                                           <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
@@ -781,7 +724,7 @@
                                       </vspacer>
                                     </children>
                                   </grid>
-                                  <grid id="b737a" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                                  <grid id="b737a" layout-manager="GridLayoutManager" row-count="8" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                                     <margin top="10" left="10" bottom="10" right="10"/>
                                     <constraints>
                                       <tabbedpane title="UPDATE/DELETE"/>
@@ -903,7 +846,7 @@
                                       </component>
                                       <component id="6840a" class="javax.swing.JButton" binding="DELETEButton1" default-binding="true">
                                         <constraints>
-                                          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                         </constraints>
                                         <properties>
                                           <font size="20"/>
@@ -912,18 +855,13 @@
                                       </component>
                                       <component id="18df9" class="javax.swing.JButton" binding="SAVEButton1" default-binding="true">
                                         <constraints>
-                                          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                         </constraints>
                                         <properties>
                                           <font size="20"/>
                                           <text value="SAVE"/>
                                         </properties>
                                       </component>
-                                      <vspacer id="aa78a">
-                                        <constraints>
-                                          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                                        </constraints>
-                                      </vspacer>
                                       <scrollpane id="53af0">
                                         <constraints>
                                           <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -967,7 +905,7 @@
                             <properties/>
                             <border type="none"/>
                             <children>
-                              <grid id="48a7f" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                              <grid id="48a7f" layout-manager="GridLayoutManager" row-count="8" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                                 <margin top="10" left="10" bottom="10" right="10"/>
                                 <constraints>
                                   <tabbedpane title="CREATE"/>
@@ -1004,7 +942,7 @@
                                   </component>
                                   <component id="ea9fc" class="javax.swing.JLabel">
                                     <constraints>
-                                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
                                     </constraints>
                                     <properties>
                                       <font size="16"/>
@@ -1013,7 +951,7 @@
                                   </component>
                                   <component id="76685" class="javax.swing.JLabel">
                                     <constraints>
-                                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                                     </constraints>
                                     <properties>
                                       <font size="16"/>
@@ -1052,7 +990,7 @@
                                   </component>
                                   <component id="d90bd" class="javax.swing.JTextField" binding="FoodItemExpirationDate">
                                     <constraints>
-                                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                      <grid row="4" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                         <preferred-size width="150" height="-1"/>
                                       </grid>
                                     </constraints>
@@ -1062,7 +1000,7 @@
                                   </component>
                                   <component id="7b64b" class="javax.swing.JComboBox" binding="FoodItemType">
                                     <constraints>
-                                      <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                                     </constraints>
                                     <properties>
                                       <font size="16"/>
@@ -1070,16 +1008,24 @@
                                   </component>
                                   <component id="1e5b5" class="javax.swing.JButton" binding="CreateFoodItemButton">
                                     <constraints>
-                                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                      <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                     </constraints>
                                     <properties>
                                       <font size="20"/>
                                       <text value="CREATE"/>
                                     </properties>
                                   </component>
+                                  <component id="633bb" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="(dd/mm/yyyy)"/>
+                                    </properties>
+                                  </component>
                                 </children>
                               </grid>
-                              <grid id="4cba6" layout-manager="GridLayoutManager" row-count="8" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                              <grid id="4cba6" layout-manager="GridLayoutManager" row-count="7" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                                 <margin top="10" left="10" bottom="10" right="10"/>
                                 <constraints>
                                   <tabbedpane title="UPDATE/DELETE"/>
@@ -1174,7 +1120,7 @@
                                   </component>
                                   <component id="c0f39" class="javax.swing.JButton" binding="DELETEButton2" default-binding="true">
                                     <constraints>
-                                      <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                      <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                     </constraints>
                                     <properties>
                                       <font size="20"/>
@@ -1183,18 +1129,13 @@
                                   </component>
                                   <component id="c8b9d" class="javax.swing.JButton" binding="SAVEButton2" default-binding="true">
                                     <constraints>
-                                      <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                     </constraints>
                                     <properties>
                                       <font size="20"/>
                                       <text value="SAVE"/>
                                     </properties>
                                   </component>
-                                  <vspacer id="12f09">
-                                    <constraints>
-                                      <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                                    </constraints>
-                                  </vspacer>
                                   <scrollpane id="68432">
                                     <constraints>
                                       <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
