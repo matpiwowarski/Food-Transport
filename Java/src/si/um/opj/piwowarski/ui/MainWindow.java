@@ -91,8 +91,8 @@ public class MainWindow extends JFrame {
     private JComboBox UpdateType;
     private JButton DELETEButton2;
     private JButton SAVEButton2;
-    private JList list3;
-    private JList list4;
+    private JList VehicleJList;
+    private JList BusinessFacilityJList;
     private JComboBox LocationComboBox;
     private JComboBox LocationComboBoxUpdate;
     private JPanel StoreWarehousePanel;
