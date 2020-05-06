@@ -142,7 +142,7 @@
                               <verticalTextPosition value="3"/>
                             </properties>
                           </component>
-                          <component id="7769e" class="javax.swing.JList" binding="list1" default-binding="true">
+                          <component id="7769e" class="javax.swing.JList" binding="FoodItemJList">
                             <constraints>
                               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                                 <preferred-size width="150" height="50"/>
@@ -150,15 +150,11 @@
                             </constraints>
                             <properties>
                               <font size="14"/>
-                              <layoutOrientation value="1"/>
-                              <model>
-                                <item value="Food1"/>
-                                <item value="Food2"/>
-                                <item value="Food3"/>
-                              </model>
+                              <layoutOrientation value="2"/>
+                              <model/>
                             </properties>
                           </component>
-                          <component id="4b471" class="javax.swing.JList" binding="list2" default-binding="true">
+                          <component id="4b471" class="javax.swing.JList" binding="WarehouseJList">
                             <constraints>
                               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                                 <preferred-size width="150" height="50"/>
@@ -166,12 +162,8 @@
                             </constraints>
                             <properties>
                               <font size="14"/>
-                              <layoutOrientation value="1"/>
-                              <model>
-                                <item value="Warehouse1"/>
-                                <item value="Warehouse2"/>
-                                <item value="Warehouse3"/>
-                              </model>
+                              <layoutOrientation value="2"/>
+                              <model/>
                             </properties>
                           </component>
                           <vspacer id="444c9">

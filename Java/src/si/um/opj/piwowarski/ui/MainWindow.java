@@ -91,8 +91,6 @@ public class MainWindow extends JFrame {
     private JComboBox UpdateType;
     private JButton DELETEButton2;
     private JButton SAVEButton2;
-    private JList list1;
-    private JList list2;
     private JList list3;
     private JList list4;
     private JComboBox LocationComboBox;
@@ -112,11 +110,18 @@ public class MainWindow extends JFrame {
     private DefaultListModel<FoodItem> foodItemModel = new DefaultListModel<FoodItem>();
     private ArrayList<FoodItem> FoodItemArrayList = new ArrayList<FoodItem>();
     private JList FoodItemSelect;
+    private JList FoodItemJList;
+    // only warehouses
+    private ArrayList<Warehouse> warehouses = new ArrayList<Warehouse>();
+    private DefaultListModel<Warehouse> warehouseModel = new DefaultListModel<Warehouse>();
+    private JList WarehouseJList;
 
     public MainWindow() {
         BusinessFacilitySelect.setModel(businessFacilityModel);
         FoodItemSelect.setModel(foodItemModel);
+        FoodItemJList.setModel(foodItemModel);
         VehicleSelect.setModel(vehicleModel);
+        WarehouseJList.setModel(warehouseModel);
 
         CapacityField.setVisible(false);
         CapacityLabel.setVisible(false);
@@ -271,7 +276,8 @@ public class MainWindow extends JFrame {
 
         // BUSINESS FACILITY
         CreateBusinessFacilityButton.addActionListener(new AddBusinessFacility());
-        DELETEButton.addActionListener(new DeleteBusinessFacilityListener(BusinessFacilitySelect, businessFacilityArrayList));
+        DELETEButton.addActionListener(new DeleteBusinessFacilityListener(BusinessFacilitySelect, businessFacilityArrayList,
+                WarehouseJList, warehouses));
         BusinessFacilitySelect.addListSelectionListener(new BusinessFacilityLoadInfo());
         SAVEButton.addActionListener(new UpdateBusinessFacility());
 
@@ -286,6 +292,7 @@ public class MainWindow extends JFrame {
         DELETEButton2.addActionListener(new DeleteFoodItemListener(FoodItemSelect, FoodItemArrayList));
         FoodItemSelect.addListSelectionListener(new FoodItemLoadInfo());
         SAVEButton2.addActionListener(new UpdateFoodItem());
+        AddButton.addActionListener(new AddFoodItemToWarehouseListener(WarehouseJList, warehouses, FoodItemJList, FoodItemArrayList));
     }
 
     public static void main(String[] args) {
@@ -594,6 +601,8 @@ public class MainWindow extends JFrame {
                     // ADDING
                     businessFacilityArrayList.add(warehouse);
                     businessFacilityModel.addElement(warehouse);
+                    warehouses.add(warehouse);
+                    warehouseModel.addElement(warehouse);
                     // CLEAR
                     NameField.setText("");
                     LocationComboBox.setSelectedIndex(0);
