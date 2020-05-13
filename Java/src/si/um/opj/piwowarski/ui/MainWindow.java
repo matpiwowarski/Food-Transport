@@ -1,5 +1,7 @@
 package si.um.opj.piwowarski.ui;
 
+import jdk.jfr.Event;
+import si.um.opj.piwowarski.logic.EventReporter;
 import si.um.opj.piwowarski.logic.FoodItem;
 import si.um.opj.piwowarski.logic.Location;
 import si.um.opj.piwowarski.logic.Serializer;
@@ -313,34 +315,44 @@ public class MainWindow extends JFrame {
     class UpdateVehicle implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            if (VehicleSelect.getSelectedIndex() >= 0) {
-                int index = VehicleSelect.getSelectedIndex();
-                Vehicle selectedItem = vehicleArrayList.get(index);
+            try
+            {
+                if (VehicleSelect.getSelectedIndex() >= 0) {
+                    int index = VehicleSelect.getSelectedIndex();
+                    Vehicle selectedItem = vehicleArrayList.get(index);
 
-                selectedItem.setRegistrationNumber(UpdateRegistration.getText());
-                selectedItem.setVolume(Double.parseDouble(UpdateVolume.getText()));
-                selectedItem.setMaxWeight(Double.parseDouble(UpdateMaxWeight.getText()));
-                selectedItem.setAverageSpeed(Double.parseDouble(UpdateAverageSpeed.getText()));
-                selectedItem.setCargo(new FoodItem[Integer.parseInt(UpdateLength.getText())]);
+                    selectedItem.setRegistrationNumber(UpdateRegistration.getText());
+                    selectedItem.setVolume(Double.parseDouble(UpdateVolume.getText()));
+                    selectedItem.setMaxWeight(Double.parseDouble(UpdateMaxWeight.getText()));
+                    selectedItem.setAverageSpeed(Double.parseDouble(UpdateAverageSpeed.getText()));
+                    selectedItem.setCargo(new FoodItem[Integer.parseInt(UpdateLength.getText())]);
 
-                if (selectedItem instanceof Truck) {
-                    if (UpdateExtraInfo.getSelectedIndex() == 0) {
-                        ((Truck) selectedItem).setNumberOfTrailers(0);
-                    } else if (UpdateExtraInfo.getSelectedIndex() == 1) {
-                        ((Truck) selectedItem).setNumberOfTrailers(1);
-                    } else if (UpdateExtraInfo.getSelectedIndex() == 2) {
-                        ((Truck) selectedItem).setNumberOfTrailers(2);
-                    } else {
-                        ((Truck) selectedItem).setNumberOfTrailers(3);
-                    }
-                } else // Van
-                {
-                    if (UpdateExtraInfo.getSelectedIndex() == 0) {
-                        ((Van) selectedItem).setFoodItemType(si.um.opj.piwowarski.logic.FoodItemType.FRESH);
-                    } else {
-                        ((Van) selectedItem).setFoodItemType(si.um.opj.piwowarski.logic.FoodItemType.FROZEN);
+                    if (selectedItem instanceof Truck) {
+                        if (UpdateExtraInfo.getSelectedIndex() == 0) {
+                            ((Truck) selectedItem).setNumberOfTrailers(0);
+                        } else if (UpdateExtraInfo.getSelectedIndex() == 1) {
+                            ((Truck) selectedItem).setNumberOfTrailers(1);
+                        } else if (UpdateExtraInfo.getSelectedIndex() == 2) {
+                            ((Truck) selectedItem).setNumberOfTrailers(2);
+                        } else {
+                            ((Truck) selectedItem).setNumberOfTrailers(3);
+                        }
+                    } else // Van
+                    {
+                        if (UpdateExtraInfo.getSelectedIndex() == 0) {
+                            ((Van) selectedItem).setFoodItemType(si.um.opj.piwowarski.logic.FoodItemType.FRESH);
+                        } else {
+                            ((Van) selectedItem).setFoodItemType(si.um.opj.piwowarski.logic.FoodItemType.FROZEN);
+                        }
                     }
                 }
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport("Vehicle updated");
+            }
+            catch (Exception e)
+            {
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport(e);
             }
         }
     }
@@ -405,97 +417,118 @@ public class MainWindow extends JFrame {
     class AddVehicle implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            if (TruckButton.isSelected()) {
-                if (RegistrationNumber.getText().length() > 0
-                        && Volume.getText().length() > 0
-                        && MaxWeight.getText().length() > 0
-                        && AverageSpeed.getText().length() > 0
-                        && Length.getText().length() > 0) {
-                    String registration = RegistrationNumber.getText();
-                    double volume = Double.parseDouble(Volume.getText());
-                    double maxweight = Double.parseDouble(MaxWeight.getText());
-                    double averageSpeed = Double.parseDouble(AverageSpeed.getText());
-                    int length = Integer.parseInt(Length.getText());
-                    int numberOfTrailers = 0;
-                    if (ExtraVehicleField.getSelectedIndex() == 0) {
-                        numberOfTrailers = 0;
-                    } else if (ExtraVehicleField.getSelectedIndex() == 1) {
-                        numberOfTrailers = 1;
-                    } else if (ExtraVehicleField.getSelectedIndex() == 2) {
-                        numberOfTrailers = 2;
-                    } else if (ExtraVehicleField.getSelectedIndex() == 3) {
-                        numberOfTrailers = 3;
-                    }
+            try
+            {
+                if (TruckButton.isSelected()) {
+                    if (RegistrationNumber.getText().length() > 0
+                            && Volume.getText().length() > 0
+                            && MaxWeight.getText().length() > 0
+                            && AverageSpeed.getText().length() > 0
+                            && Length.getText().length() > 0) {
+                        String registration = RegistrationNumber.getText();
+                        double volume = Double.parseDouble(Volume.getText());
+                        double maxweight = Double.parseDouble(MaxWeight.getText());
+                        double averageSpeed = Double.parseDouble(AverageSpeed.getText());
+                        int length = Integer.parseInt(Length.getText());
+                        int numberOfTrailers = 0;
+                        if (ExtraVehicleField.getSelectedIndex() == 0) {
+                            numberOfTrailers = 0;
+                        } else if (ExtraVehicleField.getSelectedIndex() == 1) {
+                            numberOfTrailers = 1;
+                        } else if (ExtraVehicleField.getSelectedIndex() == 2) {
+                            numberOfTrailers = 2;
+                        } else if (ExtraVehicleField.getSelectedIndex() == 3) {
+                            numberOfTrailers = 3;
+                        }
 
-                    Truck truck = new Truck(registration, volume, maxweight, averageSpeed, length, numberOfTrailers);
-                    // ADDING
-                    vehicleArrayList.add(truck);
-                    vehicleModel.addElement(truck);
-                    // CLEAR
-                    RegistrationNumber.setText("");
-                    Volume.setText("");
-                    MaxWeight.setText("");
-                    AverageSpeed.setText("");
-                    Length.setText("");
-                    ExtraVehicleField.setSelectedIndex(0);
-                }
-            } else if (VanButton.isSelected()) {
-                if (RegistrationNumber.getText().length() > 0
-                        && Volume.getText().length() > 0
-                        && MaxWeight.getText().length() > 0
-                        && AverageSpeed.getText().length() > 0
-                        && Length.getText().length() > 0) {
-                    String registration = RegistrationNumber.getText();
-                    double volume = Double.parseDouble(Volume.getText());
-                    double maxweight = Double.parseDouble(MaxWeight.getText());
-                    double averageSpeed = Double.parseDouble(AverageSpeed.getText());
-                    int length = Integer.parseInt(Length.getText());
-                    si.um.opj.piwowarski.logic.FoodItemType type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
-                    if (ExtraVehicleField.getSelectedIndex() == 0) {
-                        type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
-                    } else {
-                        type = si.um.opj.piwowarski.logic.FoodItemType.FROZEN;
+                        Truck truck = new Truck(registration, volume, maxweight, averageSpeed, length, numberOfTrailers);
+                        // ADDING
+                        vehicleArrayList.add(truck);
+                        vehicleModel.addElement(truck);
+                        // CLEAR
+                        RegistrationNumber.setText("");
+                        Volume.setText("");
+                        MaxWeight.setText("");
+                        AverageSpeed.setText("");
+                        Length.setText("");
+                        ExtraVehicleField.setSelectedIndex(0);
                     }
+                } else if (VanButton.isSelected()) {
+                    if (RegistrationNumber.getText().length() > 0
+                            && Volume.getText().length() > 0
+                            && MaxWeight.getText().length() > 0
+                            && AverageSpeed.getText().length() > 0
+                            && Length.getText().length() > 0) {
+                        String registration = RegistrationNumber.getText();
+                        double volume = Double.parseDouble(Volume.getText());
+                        double maxweight = Double.parseDouble(MaxWeight.getText());
+                        double averageSpeed = Double.parseDouble(AverageSpeed.getText());
+                        int length = Integer.parseInt(Length.getText());
+                        si.um.opj.piwowarski.logic.FoodItemType type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
+                        if (ExtraVehicleField.getSelectedIndex() == 0) {
+                            type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
+                        } else {
+                            type = si.um.opj.piwowarski.logic.FoodItemType.FROZEN;
+                        }
 
-                    Van van = new Van(registration, volume, maxweight, averageSpeed, length, type);
-                    // ADDING
-                    vehicleArrayList.add(van);
-                    vehicleModel.addElement(van);
-                    // CLEAR
-                    RegistrationNumber.setText("");
-                    Volume.setText("");
-                    MaxWeight.setText("");
-                    AverageSpeed.setText("");
-                    Length.setText("");
-                    ExtraVehicleField.setSelectedIndex(0);
+                        Van van = new Van(registration, volume, maxweight, averageSpeed, length, type);
+                        // ADDING
+                        vehicleArrayList.add(van);
+                        vehicleModel.addElement(van);
+                        // CLEAR
+                        RegistrationNumber.setText("");
+                        Volume.setText("");
+                        MaxWeight.setText("");
+                        AverageSpeed.setText("");
+                        Length.setText("");
+                        ExtraVehicleField.setSelectedIndex(0);
+                    }
                 }
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport("Vehicle added");
             }
+            catch(Exception e)
+            {
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport(e);
+            }
+
         }
     }
 
     class UpdateBusinessFacility implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            if (BusinessFacilitySelect.getSelectedIndex() >= 0) {
-                int index = BusinessFacilitySelect.getSelectedIndex();
-                BusinessFacility selectedItem = businessFacilityArrayList.get(index);
+            try
+            {
+                if (BusinessFacilitySelect.getSelectedIndex() >= 0) {
+                    int index = BusinessFacilitySelect.getSelectedIndex();
+                    BusinessFacility selectedItem = businessFacilityArrayList.get(index);
 
-                selectedItem.setName(NameUpdate.getText());
-                Location location = new Location();
-                if (LocationComboBoxUpdate.getSelectedIndex() == 0) {
-                    location = new Location("Katowice", "Poland");
-                } else if (LocationComboBoxUpdate.getSelectedIndex() == 1) {
-                    location = new Location("Maribor", "Slovenia");
-                } else if (LocationComboBoxUpdate.getSelectedIndex() == 2) {
-                    location = new Location("Ljubljana", "Slovenia");
-                } else {
-                    location = new Location("Paris", "France");
-                }
-                selectedItem.setLocation(location);
+                    selectedItem.setName(NameUpdate.getText());
+                    Location location = new Location();
+                    if (LocationComboBoxUpdate.getSelectedIndex() == 0) {
+                        location = new Location("Katowice", "Poland");
+                    } else if (LocationComboBoxUpdate.getSelectedIndex() == 1) {
+                        location = new Location("Maribor", "Slovenia");
+                    } else if (LocationComboBoxUpdate.getSelectedIndex() == 2) {
+                        location = new Location("Ljubljana", "Slovenia");
+                    } else {
+                        location = new Location("Paris", "France");
+                    }
+                    selectedItem.setLocation(location);
 
-                if (selectedItem instanceof Warehouse) {
-                    ((Warehouse) selectedItem).setFoodItems(new FoodItem[Integer.parseInt(CapacityUpdate.getText())]);
+                    if (selectedItem instanceof Warehouse) {
+                        ((Warehouse) selectedItem).setFoodItems(new FoodItem[Integer.parseInt(CapacityUpdate.getText())]);
+                    }
                 }
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport("Updated Business Facility");
+            }
+            catch (Exception e)
+            {
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport(e);
             }
         }
     }
@@ -536,72 +569,81 @@ public class MainWindow extends JFrame {
     class AddBusinessFacility implements  ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            if(StoreButton.isSelected())
-            {
-                if (NameField.getText().length() > 0)
+            try {
+                if(StoreButton.isSelected())
                 {
-                    String name = NameField.getText();
-                    Location location = new Location();
-                    if(LocationComboBox.getSelectedIndex() == 0)
+                    if (NameField.getText().length() > 0)
                     {
-                        location = new Location("Katowice", "Poland");
+                        String name = NameField.getText();
+                        Location location = new Location();
+                        if(LocationComboBox.getSelectedIndex() == 0)
+                        {
+                            location = new Location("Katowice", "Poland");
+                        }
+                        else if(LocationComboBox.getSelectedIndex() == 1)
+                        {
+                            location = new Location("Maribor", "Slovenia");
+                        }
+                        else if(LocationComboBox.getSelectedIndex() == 2)
+                        {
+                            location = new Location("Ljubljana", "Slovenia");
+                        }
+                        else
+                        {
+                            location = new Location("Paris", "France");
+                        }
+                        Store store = new Store(name, location);
+                        // ADDING
+                        businessFacilityArrayList.add(store);
+                        businessFacilityModel.addElement(store);
+                        // CLEAR
+                        NameField.setText("");
+                        LocationComboBox.setSelectedIndex(0);
+                        CapacityField.setText("");
                     }
-                    else if(LocationComboBox.getSelectedIndex() == 1)
-                    {
-                        location = new Location("Maribor", "Slovenia");
-                    }
-                    else if(LocationComboBox.getSelectedIndex() == 2)
-                    {
-                        location = new Location("Ljubljana", "Slovenia");
-                    }
-                    else
-                    {
-                        location = new Location("Paris", "France");
-                    }
-                    Store store = new Store(name, location);
-                    // ADDING
-                    businessFacilityArrayList.add(store);
-                    businessFacilityModel.addElement(store);
-                    // CLEAR
-                    NameField.setText("");
-                    LocationComboBox.setSelectedIndex(0);
-                    CapacityField.setText("");
                 }
+                else if(WarehouseButton.isSelected())
+                {
+                    if (NameField.getText().length() > 0 && CapacityField.getText().length() > 0)
+                    {
+                        String name = NameField.getText();
+                        Location location = new Location();
+                        if(LocationComboBox.getSelectedIndex() == 0)
+                        {
+                            location = new Location("Katowice", "Poland");
+                        }
+                        else if(LocationComboBox.getSelectedIndex() == 1)
+                        {
+                            location = new Location("Maribor", "Slovenia");
+                        }
+                        else if(LocationComboBox.getSelectedIndex() == 2)
+                        {
+                            location = new Location("Ljubljana", "Slovenia");
+                        }
+                        else
+                        {
+                            location = new Location("Paris", "France");
+                        }
+                        int capacity = Integer.parseInt(CapacityField.getText());
+                        Warehouse warehouse = new Warehouse(name, location, capacity);
+                        // ADDING
+                        businessFacilityArrayList.add(warehouse);
+                        businessFacilityModel.addElement(warehouse);
+                        warehouses.add(warehouse);
+                        warehouseModel.addElement(warehouse);
+                        // CLEAR
+                        NameField.setText("");
+                        LocationComboBox.setSelectedIndex(0);
+                        CapacityField.setText("");
+                    }
+                }
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport("Business Facility added");
             }
-            else if(WarehouseButton.isSelected())
+            catch (Exception e)
             {
-                if (NameField.getText().length() > 0 && CapacityField.getText().length() > 0)
-                {
-                    String name = NameField.getText();
-                    Location location = new Location();
-                    if(LocationComboBox.getSelectedIndex() == 0)
-                    {
-                        location = new Location("Katowice", "Poland");
-                    }
-                    else if(LocationComboBox.getSelectedIndex() == 1)
-                    {
-                        location = new Location("Maribor", "Slovenia");
-                    }
-                    else if(LocationComboBox.getSelectedIndex() == 2)
-                    {
-                        location = new Location("Ljubljana", "Slovenia");
-                    }
-                    else
-                    {
-                        location = new Location("Paris", "France");
-                    }
-                    int capacity = Integer.parseInt(CapacityField.getText());
-                    Warehouse warehouse = new Warehouse(name, location, capacity);
-                    // ADDING
-                    businessFacilityArrayList.add(warehouse);
-                    businessFacilityModel.addElement(warehouse);
-                    warehouses.add(warehouse);
-                    warehouseModel.addElement(warehouse);
-                    // CLEAR
-                    NameField.setText("");
-                    LocationComboBox.setSelectedIndex(0);
-                    CapacityField.setText("");
-                }
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport(e);
             }
         }
     }
@@ -609,23 +651,32 @@ public class MainWindow extends JFrame {
     class UpdateFoodItem implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            if (FoodItemSelect.getSelectedIndex() >= 0) {
-                int index = FoodItemSelect.getSelectedIndex();
-                FoodItem selectedItem = FoodItemArrayList.get(index);
+            try {
+                if (FoodItemSelect.getSelectedIndex() >= 0) {
+                    int index = FoodItemSelect.getSelectedIndex();
+                    FoodItem selectedItem = FoodItemArrayList.get(index);
 
-                selectedItem.setLabel(UpdateLabel.getText());
-                selectedItem.setVolume(Double.parseDouble(UpdateFoodVolume.getText()));
-                selectedItem.setWeight(Double.parseDouble(UpdateWeight.getText()));
-                selectedItem.setExpirationDate(java.time.LocalDate.parse(UpdateExpirationDate.getText()));
+                    selectedItem.setLabel(UpdateLabel.getText());
+                    selectedItem.setVolume(Double.parseDouble(UpdateFoodVolume.getText()));
+                    selectedItem.setWeight(Double.parseDouble(UpdateWeight.getText()));
+                    selectedItem.setExpirationDate(java.time.LocalDate.parse(UpdateExpirationDate.getText()));
 
-                if (UpdateType.getSelectedIndex() == 0) {
-                    selectedItem.setType(si.um.opj.piwowarski.logic.FoodItemType.FRESH);
-                } else // FROZEN
-                {
-                    selectedItem.setType(si.um.opj.piwowarski.logic.FoodItemType.FROZEN);
+                    if (UpdateType.getSelectedIndex() == 0) {
+                        selectedItem.setType(si.um.opj.piwowarski.logic.FoodItemType.FRESH);
+                    } else // FROZEN
+                    {
+                        selectedItem.setType(si.um.opj.piwowarski.logic.FoodItemType.FROZEN);
+                    }
+
+                    FoodItemSelect.setSelectedIndex(-1);
+                    EventReporter reporter = new EventReporter();
+                    reporter.addToReport("Updated food item");
                 }
-
-                FoodItemSelect.setSelectedIndex(-1);
+            }
+            catch (Exception e)
+            {
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport(e);
             }
         }
     }
@@ -634,36 +685,47 @@ public class MainWindow extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            if (FoodItemLabel.getText().length() > 0 &&
-                    FoodItemVolume.getText().length() > 0 &&
-                    FoodItemWeight.getText().length() > 0 &&
-                    FoodItemExpirationDate.getText().length() > 0
-            ) {
-                String label = FoodItemLabel.getText();
-                double volume = Double.parseDouble(FoodItemVolume.getText());
-                double weight = Double.parseDouble(FoodItemWeight.getText());
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-                LocalDate expirationDate = LocalDate.parse(FoodItemExpirationDate.getText(), formatter);
+            try
+            {
+                if (FoodItemLabel.getText().length() > 0 &&
+                        FoodItemVolume.getText().length() > 0 &&
+                        FoodItemWeight.getText().length() > 0 &&
+                        FoodItemExpirationDate.getText().length() > 0
+                ) {
+                    String label = FoodItemLabel.getText();
+                    double volume = Double.parseDouble(FoodItemVolume.getText());
+                    double weight = Double.parseDouble(FoodItemWeight.getText());
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                    LocalDate expirationDate = LocalDate.parse(FoodItemExpirationDate.getText(), formatter);
 
-                si.um.opj.piwowarski.logic.FoodItemType type;
-                if (FoodItemType.getSelectedIndex() == 0) {
-                    type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
-                } else {
-                    type = si.um.opj.piwowarski.logic.FoodItemType.FROZEN;
+                    si.um.opj.piwowarski.logic.FoodItemType type;
+                    if (FoodItemType.getSelectedIndex() == 0) {
+                        type = si.um.opj.piwowarski.logic.FoodItemType.FRESH;
+                    } else {
+                        type = si.um.opj.piwowarski.logic.FoodItemType.FROZEN;
+                    }
+
+                    FoodItem foodItemToAdd = new FoodItem(label, volume, weight, expirationDate, type);
+
+                    // ADDING
+                    FoodItemArrayList.add(foodItemToAdd);
+                    foodItemModel.addElement(foodItemToAdd);
+
+                    // clear
+                    FoodItemLabel.setText("");
+                    FoodItemVolume.setText("");
+                    FoodItemWeight.setText("");
+                    FoodItemExpirationDate.setText("");
+                    FoodItemType.setSelectedIndex(0);
+
+                    EventReporter reporter = new EventReporter();
+                    reporter.addToReport("Food item added");
                 }
-
-                FoodItem foodItemToAdd = new FoodItem(label, volume, weight, expirationDate, type);
-
-                // ADDING
-                FoodItemArrayList.add(foodItemToAdd);
-                foodItemModel.addElement(foodItemToAdd);
-
-                // clear
-                FoodItemLabel.setText("");
-                FoodItemVolume.setText("");
-                FoodItemWeight.setText("");
-                FoodItemExpirationDate.setText("");
-                FoodItemType.setSelectedIndex(0);
+            }
+            catch (Exception e)
+            {
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport(e);
             }
         }
     }

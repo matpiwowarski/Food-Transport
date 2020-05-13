@@ -1,5 +1,6 @@
 package si.um.opj.piwowarski.ui;
 
+import si.um.opj.piwowarski.logic.EventReporter;
 import si.um.opj.piwowarski.logic.FoodItem;
 import si.um.opj.piwowarski.logic.facility.BusinessFacility;
 import si.um.opj.piwowarski.logic.facility.Warehouse;
@@ -31,13 +32,24 @@ public class AddFoodItemToWarehouseListener implements ActionListener {
 
         if(foodItemJList.getSelectedIndex() >= 0 && warehouseJList.getSelectedIndex() >= 0)
         {
-            int foodItemIndex = foodItemJList.getSelectedIndex();
-            int warehouseIndex = warehouseJList.getSelectedIndex();
+            try{
+                int foodItemIndex = foodItemJList.getSelectedIndex();
+                int warehouseIndex = warehouseJList.getSelectedIndex();
 
-            FoodItem selectedFoodItem = foodItems.get(foodItemIndex);
-            Warehouse selectedWarehouse = warehouses.get(warehouseIndex);
+                FoodItem selectedFoodItem = foodItems.get(foodItemIndex);
+                Warehouse selectedWarehouse = warehouses.get(warehouseIndex);
 
-            selectedWarehouse.addItem(selectedFoodItem);
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport("Added food item into warehouse");
+
+                selectedWarehouse.addItem(selectedFoodItem);
+            }
+            catch(Exception e)
+            {
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport(e);
+            }
+
         }
     }
 }

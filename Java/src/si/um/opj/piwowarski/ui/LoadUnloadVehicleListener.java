@@ -1,5 +1,6 @@
 package si.um.opj.piwowarski.ui;
 
+import si.um.opj.piwowarski.logic.EventReporter;
 import si.um.opj.piwowarski.logic.Transportable;
 import si.um.opj.piwowarski.logic.exception.CapacityExceededException;
 import si.um.opj.piwowarski.logic.exception.FoodItemTypeException;
@@ -27,29 +28,44 @@ public class LoadUnloadVehicleListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
-        DefaultListModel<Vehicle> vehicleModel = (DefaultListModel<Vehicle>) vehicleJList.getModel();
-        DefaultListModel<BusinessFacility> businessFacilityModel = (DefaultListModel<BusinessFacility>) businessFacilityJList.getModel();
+        try {
+            DefaultListModel<Vehicle> vehicleModel = (DefaultListModel<Vehicle>) vehicleJList.getModel();
+            DefaultListModel<BusinessFacility> businessFacilityModel = (DefaultListModel<BusinessFacility>) businessFacilityJList.getModel();
 
-        if(vehicleJList.getSelectedIndex() >= 0 && businessFacilityJList.getSelectedIndex() >= 0)
+            if(vehicleJList.getSelectedIndex() >= 0 && businessFacilityJList.getSelectedIndex() >= 0)
+            {
+                int vehicleIndex = vehicleJList.getSelectedIndex();
+                Vehicle selectedVehicle = vehicleModel.get(vehicleIndex);
+
+                int businessFacilityIndex = businessFacilityJList.getSelectedIndex();
+                BusinessFacility selectedBusinessFacility = businessFacilityModel.get(businessFacilityIndex);
+
+                if(selectedBusinessFacility instanceof Store)
+                {
+                    if(tryToAcceptVehicle(((Store)selectedBusinessFacility), selectedVehicle) == true)
+                    {
+                        EventReporter reporter = new EventReporter();
+                        reporter.addToReport("Loaded/Unloaded Vehicle successfully");
+                    }
+                }
+                else // Warehouse
+                {
+                    if(tryToAcceptVehicle(((Warehouse)selectedBusinessFacility), selectedVehicle) == true)
+                    {
+                        EventReporter reporter = new EventReporter();
+                        reporter.addToReport("Loaded/Unloaded Vehicle successfully");
+                    }
+                }
+            }
+        }
+        catch (Exception e)
         {
-            int vehicleIndex = vehicleJList.getSelectedIndex();
-            Vehicle selectedVehicle = vehicleModel.get(vehicleIndex);
-
-            int businessFacilityIndex = businessFacilityJList.getSelectedIndex();
-            BusinessFacility selectedBusinessFacility = businessFacilityModel.get(businessFacilityIndex);
-
-            if(selectedBusinessFacility instanceof Store)
-            {
-                tryToAcceptVehicle(((Store)selectedBusinessFacility), selectedVehicle);
-            }
-            else // Warehouse
-            {
-                tryToAcceptVehicle(((Warehouse)selectedBusinessFacility), selectedVehicle);
-            }
+            EventReporter reporter = new EventReporter();
+            reporter.addToReport(e);
         }
     }
 
-    public void tryToAcceptVehicle(Transportable place, Vehicle vehicle)
+    public boolean tryToAcceptVehicle(Transportable place, Vehicle vehicle)
     {
         try {
             place.acceptVehicle(vehicle);
@@ -61,6 +77,9 @@ public class LoadUnloadVehicleListener implements ActionListener {
                 vehicle.unloadFoodItems();
             }
             e.printStackTrace();
+            EventReporter reporter = new EventReporter();
+            reporter.addToReport(e);
+            return false;
         }
         catch (VolumeExceededException e)
         {
@@ -69,16 +88,26 @@ public class LoadUnloadVehicleListener implements ActionListener {
                 vehicle.unloadFoodItems();
             }
             e.printStackTrace();
+            EventReporter reporter = new EventReporter();
+            reporter.addToReport(e);
+            return false;
         }
         catch (FoodItemTypeException e)
         {
             System.out.println("accepting vehicle failed" + e.info);
             e.printStackTrace();
+            EventReporter reporter = new EventReporter();
+            reporter.addToReport(e);
+            return false;
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
             e.printStackTrace();
+            EventReporter reporter = new EventReporter();
+            reporter.addToReport(e);
+            return false;
         }
+        return true;
     }
 }
