@@ -2,6 +2,7 @@ package si.um.opj.piwowarski.ui;
 
 import si.um.opj.piwowarski.logic.FoodItem;
 import si.um.opj.piwowarski.logic.Location;
+import si.um.opj.piwowarski.logic.Serializer;
 import si.um.opj.piwowarski.logic.facility.BusinessFacility;
 import si.um.opj.piwowarski.logic.facility.Store;
 import si.um.opj.piwowarski.logic.facility.Warehouse;
@@ -96,6 +97,7 @@ public class MainWindow extends JFrame {
     private JPanel StoreWarehousePanel;
     private JPanel TruckVanPanel;
     // DATA
+    public static Serializer serializer;
     // business facility
     private DefaultListModel<BusinessFacility> businessFacilityModel = new DefaultListModel<BusinessFacility>();
     private ArrayList<BusinessFacility> businessFacilityArrayList = new ArrayList<BusinessFacility>();
@@ -124,6 +126,9 @@ public class MainWindow extends JFrame {
         VehicleSelect.setModel(vehicleModel);
         WarehouseJList.setModel(warehouseModel);
         VehicleJList.setModel(vehicleModel);
+
+
+        serializer = new Serializer(businessFacilityArrayList, vehicleArrayList, FoodItemArrayList, warehouses);
 
         CapacityField.setVisible(false);
         CapacityLabel.setVisible(false);
@@ -278,6 +283,12 @@ public class MainWindow extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                serializer.serialize();
+            }
+        }));
     }
 
     class UpdateVehicle implements ActionListener {
