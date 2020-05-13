@@ -5,6 +5,7 @@ import si.um.opj.piwowarski.logic.FoodItem;
 public class VolumeExceededException extends Exception {
 
     public String info;
+    public EventGravity gravity = EventGravity.WARNING;
 
     public VolumeExceededException(String label, double volume, double emptyVolume) {
 

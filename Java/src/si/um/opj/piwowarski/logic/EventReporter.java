@@ -26,15 +26,17 @@ public class EventReporter {
             bw.write("\t" + e.getMessage());
             if(e instanceof CapacityExceededException)
             {
+                bw.write("\n"+ ((CapacityExceededException) e).gravity + "\n");
                 bw.write("\t" + ((CapacityExceededException)e).info);
             }
             else if(e instanceof FoodItemTypeException)
             {
+                bw.write("\n"+ ((FoodItemTypeException) e).gravity + "\n");
                 bw.write("\t" + ((FoodItemTypeException)e).info);
-
             }
             else if(e instanceof VolumeExceededException)
             {
+                bw.write("\n"+ ((VolumeExceededException) e).gravity + "\n");
                 bw.write("\t" + ((VolumeExceededException)e).info);
             }
 

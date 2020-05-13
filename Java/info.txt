@@ -61,3 +61,39 @@
 ---
 2020-05-13T22:41:06.143029	Added food item into warehouse
 ---
+---
+2020-05-13T22:54:35.658067	Vehicle added
+---
+---
+2020-05-13T22:55:04.918822	null
+WARNING
+	accepting vehicle failed (CAPACITY PROBLEM): vehicle capacity 1 ; foodItems capacity 3
+---
+---
+2020-05-13T22:56:03.861334	null
+WARNING
+	accepting vehicle failed (CAPACITY PROBLEM): vehicle capacity 1 ; foodItems capacity 2
+---
+---
+2020-05-13T22:57:59.213631	null
+WARNING
+	accepting vehicle failed (CAPACITY PROBLEM): vehicle capacity 1 ; foodItems capacity 2
+---
+---
+2020-05-13T22:57:59.664846	null
+WARNING
+	accepting vehicle failed (CAPACITY PROBLEM): vehicle capacity 1 ; foodItems capacity 2
+---
+---
+2020-05-13T22:58:00.361344	null
+WARNING
+	accepting vehicle failed (CAPACITY PROBLEM): vehicle capacity 1 ; foodItems capacity 2
+---
+---
+2020-05-13T22:58:00.977868	null
+WARNING
+	accepting vehicle failed (CAPACITY PROBLEM): vehicle capacity 1 ; foodItems capacity 2
+---
+---
+2020-05-13T23:00:18.734796	Updated Business Facility
+---
