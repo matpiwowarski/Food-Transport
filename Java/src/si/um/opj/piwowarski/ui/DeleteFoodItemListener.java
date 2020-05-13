@@ -1,5 +1,6 @@
 package si.um.opj.piwowarski.ui;
 
+import si.um.opj.piwowarski.logic.EventReporter;
 import si.um.opj.piwowarski.logic.FoodItem;
 
 import javax.swing.*;
@@ -24,9 +25,19 @@ public class DeleteFoodItemListener implements ActionListener {
 
         if(foodItemJList.getSelectedIndex() >= 0)
         {
-            int index = foodItemJList.getSelectedIndex();
-            model.remove(index);
-            foodItemArrayList.remove(index);
+            try
+            {
+                int index = foodItemJList.getSelectedIndex();
+                model.remove(index);
+                foodItemArrayList.remove(index);
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport("Deleted food item");
+            }
+            catch(Exception e)
+            {
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport(e);
+            }
         }
         foodItemJList.setSelectedIndex(-1);
     }

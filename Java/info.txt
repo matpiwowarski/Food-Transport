@@ -97,3 +97,9 @@ WARNING
 ---
 2020-05-13T23:00:18.734796	Updated Business Facility
 ---
+---
+2020-05-13T23:07:07.832094	Business Facility added
+---
+---
+2020-05-13T23:07:13.359355	Deleted business facility
+---

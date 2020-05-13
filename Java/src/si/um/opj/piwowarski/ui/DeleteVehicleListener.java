@@ -1,5 +1,6 @@
 package si.um.opj.piwowarski.ui;
 
+import si.um.opj.piwowarski.logic.EventReporter;
 import si.um.opj.piwowarski.logic.facility.BusinessFacility;
 import si.um.opj.piwowarski.logic.transport.Vehicle;
 
@@ -25,9 +26,19 @@ public class DeleteVehicleListener implements ActionListener {
 
         if(vehicleJListJList.getSelectedIndex() >= 0)
         {
-            int index = vehicleJListJList.getSelectedIndex();
-            model.remove(index);
-            vehicleArrayList.remove(index);
+            try
+            {
+                int index = vehicleJListJList.getSelectedIndex();
+                model.remove(index);
+                vehicleArrayList.remove(index);
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport("Deleted vehicle");
+            }
+            catch (Exception e)
+            {
+                EventReporter reporter = new EventReporter();
+                reporter.addToReport(e);
+            }
         }
         vehicleJListJList.setSelectedIndex(-1);
     }
