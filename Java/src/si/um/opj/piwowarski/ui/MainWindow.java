@@ -129,7 +129,26 @@ public class MainWindow extends JFrame {
 
 
         serializer = new Serializer(businessFacilityArrayList, vehicleArrayList, FoodItemArrayList, warehouses);
+        serializer.deserialize();
 
+        businessFacilityArrayList = serializer.getBusinessFacilityArrayList();
+        vehicleArrayList = serializer.getVehicleArrayList();
+        FoodItemArrayList = serializer.getFoodItemArrayList();
+        warehouses = serializer.getWarehouses();
+
+        for (var bf: businessFacilityArrayList) {
+            businessFacilityModel.addElement(bf);
+        }
+        for (var vehicle: vehicleArrayList) {
+            vehicleModel.addElement(vehicle);
+        }
+        for (var item: FoodItemArrayList) {
+            foodItemModel.addElement(item);
+        }
+        for (var warehouse: warehouses) {
+            warehouseModel.addElement(warehouse);
+        }
+        
         CapacityField.setVisible(false);
         CapacityLabel.setVisible(false);
         CapacityUpdate.setVisible(false);

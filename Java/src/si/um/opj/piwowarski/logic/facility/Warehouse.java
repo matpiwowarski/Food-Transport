@@ -17,7 +17,7 @@ import si.um.opj.piwowarski.logic.transport.*;
  * @version 4.0
  */
 
-public class Warehouse extends BusinessFacility implements Transportable{
+public class Warehouse extends BusinessFacility implements Transportable, java.io.Serializable{
     private FoodItem[] foodItems;
 
     // Constructors

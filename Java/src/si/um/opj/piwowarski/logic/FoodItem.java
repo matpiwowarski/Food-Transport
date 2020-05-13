@@ -10,7 +10,7 @@ import java.time.LocalDate;
  * @version 3.0
  */
 
-public class FoodItem {
+public class FoodItem implements java.io.Serializable {
     private String label;
     private double volume;
     private double weight;

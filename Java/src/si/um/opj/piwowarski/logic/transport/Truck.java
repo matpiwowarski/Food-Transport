@@ -8,7 +8,7 @@ package si.um.opj.piwowarski.logic.transport;
  * @version 3.0
  */
 
-public class Truck extends Vehicle {
+public class Truck extends Vehicle implements java.io.Serializable {
 
     private int numberOfTrailers;
 

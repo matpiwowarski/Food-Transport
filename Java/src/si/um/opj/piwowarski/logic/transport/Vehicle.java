@@ -14,7 +14,7 @@ import si.um.opj.piwowarski.logic.exception.VolumeExceededException;
  * @version 4.0
  */
 
-public abstract class Vehicle {
+public abstract class Vehicle implements java.io.Serializable {
     protected String registrationNumber;
     protected double volume;
     protected double maxWeight;

@@ -11,7 +11,7 @@ import si.um.opj.piwowarski.logic.facility.Warehouse;
  * @version 2.0
  */
 
-public class Route {
+public class Route implements java.io.Serializable {
     private Store store;
     private Warehouse warehouse;
     private double distance;

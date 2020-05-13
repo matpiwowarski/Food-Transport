@@ -8,7 +8,7 @@ package si.um.opj.piwowarski.logic;
  * @version 2.0
  */
 
-public class Location {
+public class Location implements java.io.Serializable {
     private String city;
     private String country;
 

@@ -11,7 +11,7 @@ import si.um.opj.piwowarski.logic.transport.Vehicle;
  * @version 4.0
  */
 
-public class Store extends BusinessFacility implements Transportable {
+public class Store extends BusinessFacility implements Transportable, java.io.Serializable{
 
     // Constructors
 

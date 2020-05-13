@@ -9,7 +9,7 @@ import si.um.opj.piwowarski.logic.*;
  * @version 3.0
  */
 
-public class BusinessFacility {
+public class BusinessFacility implements java.io.Serializable {
 
     protected String name;
     protected Location location;

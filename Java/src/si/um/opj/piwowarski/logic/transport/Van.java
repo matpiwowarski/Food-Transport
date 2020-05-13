@@ -10,7 +10,7 @@ import si.um.opj.piwowarski.logic.FoodItemType;
  * @version 3.0
  */
 
-public class Van extends Vehicle {
+public class Van extends Vehicle implements java.io.Serializable{
 
     private FoodItemType foodItemType;
 

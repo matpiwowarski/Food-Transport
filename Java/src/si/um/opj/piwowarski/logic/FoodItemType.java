@@ -1,5 +1,5 @@
 package si.um.opj.piwowarski.logic;
 
-public enum FoodItemType {
+public enum FoodItemType implements java.io.Serializable {
     FROZEN, FRESH;
 }
